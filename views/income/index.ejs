@@ -1,0 +1,16 @@
+<% include ../partials/header %>
+
+<div class='container'>
+    <h1>Your Income</h1>
+    <h5><a href='income/new'>Add Income</a></h5>
+    <% income.forEach(function(income){ %>
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <strong><%= income.source %></strong>
+                <div class="pull-right"><p><a href="/income/<%= income._id %>" class="btn btn-primary btn-xs">More Info</a></p></div>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+

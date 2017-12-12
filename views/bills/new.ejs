@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div style="width: 30%; margin: 25px auto;">
+            <form action='/bills' method='POST'>
+                <div class="form-group">
+                    Payee: <input class='form-control' type='text' name='payee' placeholder='Payee'>
+                </div>
+                <div class='form-group'>
+                    Type:
+                    <select class='form-control' name="type">
+                        <option value="" disabled selected>Select a type of bill</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Utility">Utility</option>
+                        <option value="Student Loan">Student Loan</option>
+                        <option value="Loan">Loan</option>
+                    </select>
+                </div>        
+                <div class='form-group'>
+                    Amount Due: <input class='form-control' type='number' name='amountDue' value='0.00' min='0.00' step='0.01'>
+                </div>
+                <div class='form-group'>
+                    Due Date (Day of the month): <input class='form-control' type='text' name='dueDate' placeholder='10'>    
+                </div>           
+                <div class='form-group'>
+                    Website: <input class='form-control' type='text' name='website' placeholder='www.bankofamerica.com'>    
+                </div>        
+                <div class='form-group'>
+                    Auto Pay:
+                    <select class='form-control' name="autoPay">
+                        <option value="" disabled selected>Select one</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <button class="btn btn-lg btn-default btn-block btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+</div>

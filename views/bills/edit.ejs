@@ -1,0 +1,44 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div style="width: 30%; margin: 25px auto;">
+            <h1>Edit <%= bill.payee %></h1>
+            <form action="/bills/<%= bill._id %>?_method=PUT" method="post">
+                <div class="form-group">
+                    Payee: <input class='form-control' type='text' name='bill[payee]' value="<%= bill.payee %>">
+                </div>
+                <div class='form-group'>
+                    Type:
+                    <select class='form-control' name="bill[type]">
+                        <option value='<%= bill.type %>'><%= bill.type %></option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Utility">Utility</option>
+                        <option value="Student Loan">Student Loan</option>
+                        <option value="Loan">Loan</option>
+                    </select>
+                </div>        
+                <div class='form-group'>
+                    Amount Due: <input class='form-control' type='number' name='bill[amountDue]' value='<%= bill.amountDue %>' min='0.00' step='0.01'>
+                </div>
+                <div class='form-group'>
+                    Due Date (Day of the month): <input class='form-control' type='text' name='bill[dueDate]' value='<%= bill.dueDate %>'>    
+                </div>           
+                <div class='form-group'>
+                    Website: <input class='form-control' type='text' name='bill[website]' value='<%= bill.website %>'>    
+                </div>        
+                <div class='form-group'>
+                    Auto Pay:
+                    <select class='form-control' name="bill[autoPay]">
+                        <option value="<%= bill.autoPay %>"><%= bill.autoPay %></option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <button class="btn btn-lg btn-default btn-block btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
