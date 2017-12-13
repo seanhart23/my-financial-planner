@@ -1,7 +1,4 @@
 <% include ./partials/header %>
-<% var billTotal = 0 %>
-<% var incomeTotal = 0 %>
-<% var balance = balance %>
 
 <div class='container'>
     <div class='container'>
@@ -21,7 +18,11 @@
     
 <p>
     
-    <div class='col-lg-4 col-md-6'>
+    <div class='col-lg-6 col-md-6'>
+        <form>
+            <h4>Bank Account Balance:</h4> <input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>
+        </form>
+        <p></p>
         <div class='chiclet'>
             <div class="panel panel-default panel-danger">
                 <div class="panel-heading">Bills</div>
@@ -36,9 +37,8 @@
                         <tr>
                             <td><%= bill.dueDate %></td>
                             <td><%= bill.payee %></td>
-                            <td>$<%= bill.amountDue %></td>
+                            <td><%= bill.amountDue %></td>
                             <td><a href="https://<%= bill.website %>" class="btn btn-success btn-xs">Go to Website</a></td>
-                            <% billTotal += bill.amountDue %>
                             <% }) %>
                         </tr>    
                     </table>
@@ -46,16 +46,7 @@
             </div>
         </div>
     
-        
-    <div class='col-lg-5 col-md-6'>
-    </div>
-        
-    <div class='col-lg-3 col-md-6'>
-        <form>
-            Account Balance: <input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>
-            <div class='form-group'>
-            </div>
-        </form>
+    <div class='col-lg-6 col-md-6'>
         <div class='chiclet'>
             <div class="panel panel-default panel-default">
                 <div class="panel-heading">Totals</div>
@@ -66,27 +57,21 @@
                         </tr>
                         <tr>
                             <td>Income</td>
-                            <td>$<span id='accountBalance'></span></td>
+                            <td>$ <span id='accountBalance'></span></td>
                         </tr>
                         <tr>
                             <td>Bills</td>
-                            <td>$<%= billTotal %></td>
+                            <td>$ <span id="totalBill"></span></td>
                         </tr>                          
                         <tr>
                             <td>Remaining</td>
-                            <td>$<%= incomeTotal - billTotal %></td>
+                            <td>$ <span id="remaining"></span></td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 <% include ./partials/footer %>
-
-<script>
-$('#balance').bind('keydown keyup click', function (event, previousText) {
-    $('#accountBalance').html($(this).val());
-});
-</script>

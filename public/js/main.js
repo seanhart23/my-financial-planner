@@ -1,3 +1,26 @@
+var total = 0
+
+function billCalculate(){
+var table, tr, td, i;
+  table = document.getElementById("bills");
+  tr = table.getElementsByTagName("tr");
+  total = 0;
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if(tr[i].style.display !== "none"){
+      
+    if (td) {
+      if (td.innerHTML) {
+        total += +td.innerHTML;
+        document.getElementById('totalBill').innerHTML = total;
+      } else {
+        console.log('Not Working');
+      }
+    }
+    }
+  }
+}
+
 function first() {
   var table, tr, td, i;
   table = document.getElementById("bills");
@@ -12,6 +35,7 @@ function first() {
       }
     }
   }
+  billCalculate();
 }
 
 function second() {
@@ -28,6 +52,8 @@ function second() {
       }
     }
   }
+  billCalculate();
+
 }
 
 function full() {
@@ -44,8 +70,22 @@ function full() {
       }
     }
   }
+  billCalculate();
 }
+
 
 document.getElementById("one").addEventListener("click", first, false);
 document.getElementById("two").addEventListener("click", second, false);
 document.getElementById("full").addEventListener("click", full, false);
+
+$('#balance').bind('keydown keyup click', function (event, previousText) {
+    $('#accountBalance').html($(this).val());
+});
+
+$('#one, #two, #three').bind('keydown keyup click', function (event, previousText) {
+      var income = document.getElementById("accountBalance").innerHTML
+      var bills = document.getElementById("totalBill").innerHTML
+      var value = +income - +bills
+      document.getElementById("remaining").innerHTML = value
+});
+
