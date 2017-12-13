@@ -10,19 +10,39 @@
             <button type="button" id='two' class="btn btn-default">2nd Half</button>
         </div>
         <br>
-        <div class="pull left">
-            <a href='./bills' class="btn btn-success btn-xs">Add/Edit Bills</a>    
-            <!-- <a href='./income' class="btn btn-success btn-xs">Add/Edit Income</a> -->
-        </div>
     </div>
     
 <p>
     
-    <div class='col-lg-6 col-md-6'>
+    <div class='col-lg-12 col-md-12'>
         <form>
             <h4>Bank Account Balance:</h4> <input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>
         </form>
-        <p></p>
+    <p>
+    <div class='chiclet'>
+        <div class="panel panel-default panel-default">
+            <div class="panel-heading">Totals</div>
+                <table class="table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>Income</td>
+                        <td>$ <span id='accountBalance'>0.00</span></td>
+                    </tr>
+                    <tr>
+                        <td>Bills</td>
+                        <td>$ <span id="totalBill">0.00</span></td>
+                    </tr>                          
+                    <tr>
+                        <td>Remaining</td>
+                        <td>$ <span id="remaining">0.00</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
         <div class='chiclet'>
             <div class="panel panel-default panel-danger">
                 <div class="panel-heading">Bills</div>
@@ -38,40 +58,16 @@
                             <td><%= bill.dueDate %></td>
                             <td><%= bill.payee %></td>
                             <td><%= bill.amountDue %></td>
-                            <td><a href="https://<%= bill.website %>" class="btn btn-success btn-xs">Go to Website</a></td>
+                            <td><a href="https://<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs">Pay Bill</a></td>
                             <% }) %>
                         </tr>    
                     </table>
                 </div>
             </div>
+        <div class="pull left">
+        <a href='./bills' class="btn btn-success btn-xs">Add/Edit Bills</a>    
         </div>
+    </div>
     
-    <div class='col-lg-6 col-md-6'>
-        <div class='chiclet'>
-            <div class="panel panel-default panel-default">
-                <div class="panel-heading">Totals</div>
-                    <table class="table">
-                        <tr>
-                            <th>Type</th>
-                            <th>Total</th>
-                        </tr>
-                        <tr>
-                            <td>Income</td>
-                            <td>$ <span id='accountBalance'></span></td>
-                        </tr>
-                        <tr>
-                            <td>Bills</td>
-                            <td>$ <span id="totalBill"></span></td>
-                        </tr>                          
-                        <tr>
-                            <td>Remaining</td>
-                            <td>$ <span id="remaining"></span></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
 
 <% include ./partials/footer %>

@@ -14,12 +14,10 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride('_method'));
 
 var billRoutes         = require('./routes/bills');
-var incomeRoutes       = require('./routes/income');
 var dashboardRoutes    = require('./routes/dashboard');
     
 //REQUIRING ROUTE FILES USING EXPRESS ROUTER
 app.use('/bills', billRoutes);
-app.use('/income', incomeRoutes);
 app.use('/dashboard', dashboardRoutes);
 
 //ROUTES

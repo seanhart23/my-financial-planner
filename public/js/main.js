@@ -82,7 +82,7 @@ $('#balance').bind('keydown keyup click', function (event, previousText) {
     $('#accountBalance').html($(this).val());
 });
 
-$('#one, #two, #three').bind('keydown keyup click', function (event, previousText) {
+$('#one, #two, #three, #balance').bind('keydown keyup click', function (event, previousText) {
       var income = document.getElementById("accountBalance").innerHTML
       var bills = document.getElementById("totalBill").innerHTML
       var value = +income - +bills
