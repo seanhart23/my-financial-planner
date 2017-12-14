@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var bill = require('../models/bills');
+var middleware = require('../middleware');
 
-router.get('/', function(req, res){
+router.get('/', middleware.isLoggedIn, function(req, res){
         bill.find({}, function(err, allBills){
         if(err){
             console.log(err);
@@ -12,7 +13,7 @@ router.get('/', function(req, res){
     });
 });
 
-router.post('/', function(req, res){
+router.post('/', middleware.isLoggedIn, function(req, res){
     var payee = req.body.payee;
     var type = req.body.type;
     var amountDue = req.body.amountDue;
@@ -29,11 +30,11 @@ router.post('/', function(req, res){
     });
 });
 
-router.get('/new', function(req, res){
+router.get('/new', middleware.isLoggedIn, function(req, res){
    res.render('bills/new');
 });
 
-router.get("/:id", function(req, res){
+router.get("/:id", middleware.isLoggedIn, function(req, res){
   bill.findById(req.params.id, function(err, foundBill){
       if(err){
           console.log(err);
@@ -43,7 +44,7 @@ router.get("/:id", function(req, res){
   });
 });
 
-router.delete('/:id', function(req, res){
+router.delete('/:id', middleware.isLoggedIn, function(req, res){
    bill.findByIdAndRemove(req.params.id, function(err){
         if(err){
             res.redirect('/bills');
@@ -53,7 +54,7 @@ router.delete('/:id', function(req, res){
     });    
 }); 
 
-router.get('/:id/edit', function(req, res){
+router.get('/:id/edit', middleware.isLoggedIn, function(req, res){
     bill.findById(req.params.id, function(err, foundBill){
         if(err) {
             console.log(err);
@@ -63,7 +64,7 @@ router.get('/:id/edit', function(req, res){
     });
 });
 
-router.put('/:id', function(req, res){
+router.put('/:id', middleware.isLoggedIn, function(req, res){
     bill.findByIdAndUpdate(req.params.id, req.body.bill, function(err, updatedBill){
         if(err){
             res.redirect('/bills');

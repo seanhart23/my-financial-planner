@@ -1,10 +1,15 @@
+td {
+    width: 90px;
+}
+
+table {
+    table-layout: fixed;
+    width: auto;
+}
+
 .chiclet {
     width: 100%;
     font-size: 11px;
-}
-
-h1 {
-    display: inline;
 }
 
 .navbar {
@@ -17,4 +22,8 @@ h1 {
 
 .btn-group {
     margin-bottom: 5px;
+}
+
+#welcome {
+    display: inline;
 }

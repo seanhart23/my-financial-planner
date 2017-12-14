@@ -21,6 +21,7 @@ var table, tr, td, i;
   }
 }
 
+billCalculate();
 function first() {
   var table, tr, td, i;
   table = document.getElementById("bills");
@@ -63,7 +64,7 @@ function full() {
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
     if (td) {
-      if (td.innerHTML > 0) {
+      if (td.innerHTML) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
@@ -82,10 +83,9 @@ $('#balance').bind('keydown keyup click', function (event, previousText) {
     $('#accountBalance').html($(this).val());
 });
 
-$('#one, #two, #three, #balance').bind('keydown keyup click', function (event, previousText) {
+$('#one, #two, #three, #full').bind('keydown keyup click', function (event, previousText) {
       var income = document.getElementById("accountBalance").innerHTML
       var bills = document.getElementById("totalBill").innerHTML
       var value = +income - +bills
       document.getElementById("remaining").innerHTML = value
 });
-
