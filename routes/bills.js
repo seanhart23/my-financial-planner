@@ -20,7 +20,11 @@ router.post('/', middleware.isLoggedIn, function(req, res){
     var dueDate = req.body.dueDate;
     var autoPay = req.body.autoPay;
     var website = req.body.website;
-    var newBill = {payee: payee, type: type, amountDue: amountDue, dueDate: dueDate, autoPay: autoPay, website: website};
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    var newBill = {payee: payee, type: type, amountDue: amountDue, dueDate: dueDate, autoPay: autoPay, website: website, author: author};
     bill.create(newBill, function(err, newlyCreated){
         if(err){
             console.log(err);

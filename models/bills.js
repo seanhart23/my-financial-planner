@@ -7,7 +7,14 @@ var billSchema = new mongoose.Schema({
     amountDue: Number,
     dueDate: String,
     autoPay: String,
-    website: String
+    website: String,
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        username: String
+    },
 });
 
 var bill = mongoose.model("bill", billSchema);
