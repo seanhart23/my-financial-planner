@@ -43,7 +43,7 @@ router.get("/:id", middleware.isLoggedIn, function(req, res){
       if(err){
           console.log(err);
       } else {
-          res.render("bills/show", {bill: foundBill});
+          res.render("bills", {bill: foundBill});
       }
   });
 });
@@ -73,8 +73,7 @@ router.put('/:id', middleware.isLoggedIn, function(req, res){
         if(err){
             res.redirect('/bills');
         } else {
-            console.log(req.body.bill);
-            res.redirect('/bills/' + req.params.id);
+            res.redirect('/bills');
         }
     });    
 });

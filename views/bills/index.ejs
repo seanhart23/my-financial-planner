@@ -1,14 +1,25 @@
 <% include ../partials/header %>
 
 <div class='container'>
-    <h1>Your Bills</h1>
-    <h5><a href='bills/new'>Add a bill</a></h5>
+    <h1 id='billHeader'>Your Bills</h1>
+    <a href='bills/new' class='btn btn-default btn-success btn-xs pull-right' id='addBill'>Add a bill</a>
+    <p></p>
     <% bills.forEach(function(bill){ %>
     <% if(currentUser.username === bill.author.username){ %>
         <div class="panel panel-primary">
             <div class="panel-body">
-                <strong><%= bill.payee %></strong>
-                <div class="pull-right"><p><a href="/bills/<%= bill._id %>" class="btn btn-primary btn-xs">More Info</a></p></div>
+                <div id='billName'><h4><strong><%= bill.payee %></strong></h4></div>
+                <span class='category'><strong>Type:</strong> <%= bill.type %>
+                <br class='category'><strong>Amount Due:</strong> $<%= bill.amountDue %>
+                <br class='category'><strong>Due Date:</strong> <%= bill.dueDate %>
+                <br class='category'><strong>Auto Pay:</strong> <%= bill.autoPay %>
+                <br class='category'><strong>Website:</strong> <%= bill.website %>
+                <span class="pull-right">
+                <form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
+                    <a href="/bills/<%= bill._id %>/edit" class='btn btn-xs btn-primary'>Edit</a>
+                    <button class='btn btn-xs btn-danger'>Delete</button>
+                </form></span>
+                </p>
             </div>
         </div>
         <% } %>

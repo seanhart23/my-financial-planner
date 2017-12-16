@@ -3,73 +3,85 @@
 <div class='container'>
     <div class='col-lg-12 col-md-12'>
         <h1 id='welcome'><%= currentUser.username %>'s Dashboard</h1>
-        
         <div class="btn-group pull-right" role="group" aria-label="...">
             <button type="button" id='one' class="btn btn-default">1st Half</button>
             <button type="button" id='full' class="btn btn-default">Full Month</button>
             <button type="button" id='two' class="btn btn-default">2nd Half</button>
         </div>
-        <br>
-    </div>
-    
-<p>
-    
-    <div class='col-lg-12 col-md-12'>
-        <form>
-            <h4>Bank Account Balance:</h4> <input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>
-        </form>
-    <p>
-    <div class='chiclet'>
-        <div class="panel panel-default panel-default">
-            <div class="panel-heading">Totals</div>
-                <table class="table">
-                    <tr>
-                        <th>Type</th>
-                        <th>Total</th>
-                    </tr>
-                    <tr>
-                        <td>Income</td>
-                        <td>$ <span id='accountBalance'>0.00</span></td>
-                    </tr>
-                    <tr>
-                        <td>Bills</td>
-                        <td>$ <span id="totalBill">0.00</span></td>
-                    </tr>                          
-                    <tr>
-                        <td>Remaining</td>
-                        <td>$ <span id="remaining">0.00</span></td>
-                    </tr>
-                </table>
-            </div>
+    <p></p>
+</div>
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-lg-3 col-md-12'>
+            <form>
+                <h4>Bank Account Balance:</h4> <input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>
+            </form>
         </div>
-        
-        <div class='chiclet'>
-            <div class="panel panel-default panel-danger">
-                <div class="panel-heading">Bills</div>
-                    <table class="table" id="bills">
-                        <tr>
-                            <th>Due Date</th>
-                            <th>Payee</th>
-                            <th>Amount Due</th>
-                            <th>Website</th>
-                        </tr>
-                            <% bills.forEach(function(bill){ %>
-                        <tr>
-                            <% if(currentUser.username === bill.author.username){ %>
-                                <td><%= bill.dueDate %></td>
-                                <td><%= bill.payee %></td>
-                                <td><%= bill.amountDue %></td>
-                                <td><a href="https://<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs">Pay Bill</a></td>
-                            <% } %>
-                            <% }) %>
-                        </tr>    
-                    </table>
+    </div>
+</div>
+<br>
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-lg-3 col-md-12'>
+            <div class='chiclet'>
+                <div class="panel panel-default panel-default">
+                    <div class="panel-heading"><strong>Overall View</strong></div>
+                        <table class="table">
+                            <tr>
+                                <th>Type</th>
+                                <th>Total</th>
+                            </tr>
+                            <tr>
+                                <td>Income</td>
+                                <td>$ <span id='accountBalance'>0.00</span></td>
+                            </tr>
+                            <tr>
+                                <td>Bills</td>
+                                <td>$ <span id="totalBill">0.00</span></td>
+                            </tr>                          
+                            <tr>
+                                <td>Remaining</td>
+                                <td>$ <span id="remaining">0.00</span></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
-        <div class="pull left">
-        <a href='./bills' class="btn btn-success btn-xs">Add/Edit Bills</a>    
+            <div class='col-lg-9 col-md-12'>
+                <div class='chiclet'>
+                    <div class="panel panel-default panel-danger">
+                        <div class="panel-heading"><strong>Bills</strong></div>
+                            <table class="table" id="bills">
+                                <tr>
+                                    <th>Due Date</th>
+                                    <th>Payee</th>
+                                    <th>Amount Due</th>
+                                    <th>Auto Pay</th>
+                                    <th>Website</th>
+                                </tr>
+                                <% bills.forEach(function(bill){ %>
+                                <tr>
+                                    <% if(currentUser.username === bill.author.username){ %>
+                                        <td><%= bill.dueDate %></td>
+                                        <td><%= bill.payee %></td>
+                                        <td><%= bill.amountDue %></td>
+                                        <td><%= bill.autoPay %></td>
+                                        <td><a href="https://<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs">Pay Bill</a></td>
+                                    <% } %>
+                                <% }) %>
+                                </tr>    
+                            </table>
+                        </div>
+                    </div>
+                    <span class="pull left">
+                        <a href='./bills' class="btn btn-success btn-xs">Add/Edit Bills</a>    
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
-    
+</div>    
 
 <% include ./partials/footer %>
