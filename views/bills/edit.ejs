@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div style="width: 30%; margin: 25px auto;">
-            <h1>Edit <%= bill.payee %></h1>
+            <h1 class='edit-title'>Edit</h1>
             <form action="/bills/<%= bill._id %>?_method=PUT" method="post">
                 <div class="form-group">
                     Payee: <input class='form-control' type='text' name='bill[payee]' value="<%= bill.payee %>">
@@ -19,7 +19,7 @@
                     </select>
                 </div>        
                 <div class='form-group'>
-                    Amount Due: <input class='form-control' type='number' name='bill[amountDue]' value='<%= bill.amountDue %>' min='0.00' step='0.01'>
+                    Amount Due: <input class='form-control' type='number' name='bill[amountDue]' value='<%= bill.amountDue.toFixed(2) %>' min='0.00' step='0.01'>
                 </div>
                 <div class='form-group'>
                     Due Date (Day of the month): <input class='form-control' type='text' name='bill[dueDate]' value='<%= bill.dueDate %>'>    

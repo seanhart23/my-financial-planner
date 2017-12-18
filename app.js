@@ -36,49 +36,12 @@ app.use(function(req, res, next){
 
 var billRoutes         = require('./routes/bills');
 var dashboardRoutes    = require('./routes/dashboard');
+var indexRoutes         = require('./routes/index');
     
 //REQUIRING ROUTE FILES USING EXPRESS ROUTER
 app.use('/bills', billRoutes);
 app.use('/dashboard', dashboardRoutes);
-
-//ROUTES
-app.get('/', function(req, res){
-    res.render('landing');
-});
-
-//AUTH ROUTES
-app.get('/register', function(req, res){
-    res.render('register');
-});
-
-app.post('/register', function(req, res){
-    var newUser = new User({username: req.body.username});
-    User.register(newUser, req.body.password, function(err, user){
-        if(err){
-            console.log(err);
-            return res.render('register');
-        }
-        passport.authenticate('local')(req, res, function(){
-            res.redirect('/dashboard');
-        });
-    });
-});
-
-app.get('/login', function(req, res){
-    res.render('login');
-});
-
-app.post('/login', passport.authenticate('local', 
-    {
-        successRedirect: 'dashboard', 
-        failureRedirect: 'login'
-    }), function(req, res){
-});
-
-app.get('/logout', function(req, res){
-    req.logout();
-    res.redirect('/');
-});
+app.use('/', indexRoutes);
 
 //TELL APP TO LISTEN TO PORT AND IP
 app.listen(process.env.PORT, process.env.IP, function(){

@@ -10,7 +10,7 @@
             <div class="panel-body">
                 <div id='billName'><h4><strong><%= bill.payee %></strong></h4></div>
                 <span class='category'><strong>Type:</strong> <%= bill.type %>
-                <br class='category'><strong>Amount Due:</strong> $<%= bill.amountDue %>
+                <br class='category'><strong>Amount Due:</strong> $<%= bill.amountDue.toFixed(2) %>
                 <br class='category'><strong>Due Date:</strong> <%= bill.dueDate %>
                 <br class='category'><strong>Auto Pay:</strong> <%= bill.autoPay %>
                 <br class='category'><strong>Website:</strong> <%= bill.website %>

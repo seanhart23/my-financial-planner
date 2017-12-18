@@ -2,20 +2,42 @@ td {
     width: 90px;
 }
 
+h1 {
+    font-weight: bold;
+}
+
+
+h4 {
+    margin-top: 0px;
+}
+
 table {
     table-layout: fixed;
     width: auto;
 }
 
+.btn-xs {
+    width: 100px;
+}
+
+.paid {
+    text-decoration: line-through;
+}
+
+.edit-title {
+    text-align: center;
+}
+
 .chiclet {
     width: 100%;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .panel-heading {
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
 }
+
 .navbar {
     border-radius: 0;
 }
@@ -24,17 +46,8 @@ table {
     line-height: 15px;
 }
 
-.btn-group {
-    padding-top: 5px;
-    margin-bottom: 5px;
-}
-
 #welcome {
     display: inline;
-}
-
-h4 {
-    margin-top: 0px;
 }
 
 #billHeader {
@@ -45,6 +58,15 @@ h4 {
     margin-top: 20px;
 }
 
-.btn-xs {
-    width: 100px;
+
+#status {
+    padding: 2px 12px;
+    height: 23px;
+    font-size: 11px;
+}
+
+#group {
+    padding-top: 30px;
+    margin-right: 15px;
+    margin-bottom: 0px;
 }
