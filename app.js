@@ -14,7 +14,9 @@ var methodOverride = require('method-override'),
 var request = require('request');
 
 //CONNECT PACKAGES
-mongoose.connect("mongodb://localhost/myfinancialplanner_v1", {useMongoClient: true});    
+// mongoose.connect("mongodb://localhost/myfinancialplanner_v1", {useMongoClient: true}); 
+mongoose.connect(process.env.DATABASEURL);    
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
