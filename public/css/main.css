@@ -1,11 +1,14 @@
+body {
+    font-size: 12px;
+}
+
 td {
-    width: 90px;
+    width: 11.5%;
 }
 
 h1 {
     font-weight: bold;
 }
-
 
 h4 {
     margin-top: 0px;
@@ -16,8 +19,16 @@ table {
     width: auto;
 }
 
+.actions{
+    text-align: center;
+}
+
 .btn-xs {
     width: 100px;
+}
+
+.dollarAmount {
+  text-align: right;
 }
 
 .paid {
@@ -33,9 +44,18 @@ table {
     font-size: 12px;
 }
 
+
+.itemLabel {
+    width: 30%;    
+}
+
+.itemLabelIncome {
+    width: 41.5%;    
+}
+
 .panel-heading {
     font-size: 14px;
-    text-align: center;
+    text-align: left;
 }
 
 .navbar {
@@ -58,7 +78,6 @@ table {
     margin-top: 20px;
 }
 
-
 #status {
     padding: 2px 12px;
     height: 23px;
@@ -70,3 +89,21 @@ table {
     margin-right: 15px;
     margin-bottom: 0px;
 }
+
+#hiddenButton {
+    background-color: transparent;
+    color: slateGray;
+    border: 0px;
+    font-size: 14px;
+    padding-top: 0px;
+    width: 15px;
+}
+
+#userID {
+    padding-top: 15px;
+    padding-right: 100px;
+}
+
+
+
+

@@ -5,6 +5,7 @@
         <h1 id='welcome'><%= currentUser.username %>'s Dashboard</h1>
     <p></p>
 </div>
+
 <div class='container'>
     <div class='row'>
         <div class='col-lg-3 col-md-12'>
@@ -17,6 +18,7 @@
             <button type="button" id='full' class="btn btn-default">Full Month</button>
             <button type="button" id='two' class="btn btn-default">2nd Half</button>
         </div>
+        
     </div>
 </div>
 <br>
@@ -26,7 +28,7 @@
         <div class='col-lg-3 col-md-12'>
             <div class='chiclet'>
                 <div class="panel panel-default panel-default">
-                    <div class="panel-heading"><strong>Overall View</strong></div>
+                    <div class="panel-heading"><strong>Snapshot</strong></div>
                         <table class="table">
                             <tr>
                                 <th>Type</th>
@@ -53,34 +55,38 @@
                     <div class="panel panel-default panel-danger">
                         <div class="panel-heading"><strong>Bills</strong></div>
                             <table class="table" id="bills">
-                                <tr>
-                                    <th>Due Date</th>
-                                    <th>Payee</th>
-                                    <th>Amount Due</th>
-                                    <th>Auto Pay</th>
-                                    <th>Website</th>
-                                    <th>Status</th>
-                                </tr>
-                                <% bills.forEach(function(bill){ %>
-                                <tr>
-                                    <% if(currentUser.username === bill.author.username){ %>
-                                        <td><%= bill.dueDate %></td>
-                                        <td><%= bill.payee %></td>
-                                        <td>$ <span id='a'><%= bill.amountDue.toFixed(2) %></span></td>
-                                        <td><%= bill.autoPay %></td>
-                                        <td><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs">Pay Bill</a></td>
-                                        <td>
-                                             <select class='form-control' id='status' name="status">
-                                                <option value="unpaid">Unpaid</option>
-                                                <option value="paid">Paid</option>
-                                                <option value="leave">Leave</option>
-                                                <option value="move">Move</option>
-                                                <option value="remove">Remove</option>
-                                            </select>
-                                        </td>
-                                    <% } %>
-                                <% }) %>
-                                </tr>    
+                                <thead>
+                                    <tr>
+                                        <th id='sort'>Due Date</th>
+                                        <th>Payee</th>
+                                        <th>Amount Due</th>
+                                        <th>Auto Pay</th>
+                                        <th>Website</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% bills.forEach(function(bill){ %>
+                                    <tr>
+                                        <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
+                                            <td class='sortnr'><%= bill.dueDate %></td>
+                                            <td><%= bill.payee %></td>
+                                            <td>$ <span id='a'><%= bill.amountDue.toFixed(2) %></span></td>
+                                            <td><%= bill.autoPay %></td>
+                                            <td><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs">Pay Bill</a></td>
+                                            <td>
+                                                 <select class='form-control' id='status' name="status">
+                                                    <option value="unpaid">Unpaid</option>
+                                                    <option value="paid">Paid</option>
+                                                    <option value="leave">Leave</option>
+                                                    <option value="move">Move</option>
+                                                    <option value="remove">Remove</option>
+                                                </select>
+                                            </td>
+                                        <% } %>
+                                    <% }) %>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -92,5 +98,7 @@
         </div>
     </div>
 </div>    
+
+<script type="text/javascript" src='/js/main.js'></script>
 
 <% include ./partials/footer %>

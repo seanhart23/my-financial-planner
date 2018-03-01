@@ -1,4 +1,5 @@
 var total = 0;
+var $;
 
 billCalculate();
 
@@ -107,8 +108,8 @@ var table, tr, td, i;
             console.log('Not Working');
           }
         }
-      }
   }
+}
 }
 
 //CALCULATE REMAINING VALUE
@@ -125,18 +126,5 @@ $('#one, #two, #three, #full, #balance, #bills, #status').bind('keydown keyup cl
       var bills = document.getElementById("totalBill").innerHTML;
       var value = +income - +bills;
       document.getElementById("remaining").innerHTML = value.toFixed(2);
-});
-
-//SORT TABLE BY DATE (WORK IN PROGRESS)
-
-function sortTable(){
-  var rows = $('#bills > tbody').children('tr').get(); // creates a JS array of DOM elements
-  rows.sort(function(a, b) {  // use a custom sort function
-  var anum = parseInt($(a).find(".sortnr").text(), 10);
-  var bnum = parseInt($(b).find(".sortnr").text(), 10);
-    return anum-bnum;
   });
-  for (var i = 0; i < rows.length; i++) {  // .append() will move them for you
-    $('#bills > tbody').append(rows[i]);
-  }
-}
+

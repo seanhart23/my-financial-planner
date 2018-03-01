@@ -7,7 +7,11 @@ var methodOverride = require('method-override'),
     request        = require("express"),
     router         = express.Router(),
     User           = require('./models/user'),
+    budgetItem     = require('./models/budgetItem'),
+    middleware = require('./middleware'),
     app            = express();
+
+var request = require('request');
 
 //CONNECT PACKAGES
 mongoose.connect("mongodb://localhost/myfinancialplanner_v1", {useMongoClient: true});    
@@ -36,12 +40,24 @@ app.use(function(req, res, next){
 
 var billRoutes         = require('./routes/bills');
 var dashboardRoutes    = require('./routes/dashboard');
-var indexRoutes         = require('./routes/index');
-    
+var indexRoutes        = require('./routes/index');
+var budgetItemRoutes   = require('./routes/budgetItem');
+
 //REQUIRING ROUTE FILES USING EXPRESS ROUTER
+app.use('/budgetItem', budgetItemRoutes);
 app.use('/bills', billRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/', indexRoutes);
+
+app.get('/budget',  middleware.isLoggedIn, function(req, res){
+budgetItem.find({}, function(err, allBudgetItems){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("budget", {budgetItem: allBudgetItems});      
+        }
+    });
+});     
 
 //TELL APP TO LISTEN TO PORT AND IP
 app.listen(process.env.PORT, process.env.IP, function(){

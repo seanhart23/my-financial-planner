@@ -3,6 +3,7 @@
     <head>
       <title>My Financial Planner</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="/css/main.css">
       <script src="https://code.jquery.com/jquery.js"></script>
     </head>
@@ -27,6 +28,7 @@
         <% } else { %>
         <li><a href='#'>Signed in as <%= currentUser.username %></a></li>
         <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/budget">Budget</a></li>
         <li><a href="/logout">Logout</a></li>
         <% } %>
       </ul>

@@ -5,7 +5,7 @@
     <a href='bills/new' class='btn btn-default btn-success btn-xs pull-right' id='addBill'>Add a bill</a>
     <p></p>
     <% bills.forEach(function(bill){ %>
-    <% if(currentUser.username === bill.author.username){ %>
+    <% if(currentUser.username === bill.author.username || currentUser.username === bill.authUser){ %>
         <div class="panel panel-primary">
             <div class="panel-body">
                 <div id='billName'><h4><strong><%= bill.payee %></strong></h4></div>
@@ -14,6 +14,7 @@
                 <br class='category'><strong>Due Date:</strong> <%= bill.dueDate %>
                 <br class='category'><strong>Auto Pay:</strong> <%= bill.autoPay %>
                 <br class='category'><strong>Website:</strong> <%= bill.website %>
+                <br class='category'><strong>Shared with:</strong> <%= bill.authUser %>
                 <span class="pull-right">
                 <form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
                     <a href="/bills/<%= bill._id %>/edit" class='btn btn-xs btn-primary'>Edit</a>

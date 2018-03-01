@@ -15,6 +15,7 @@ var billSchema = new mongoose.Schema({
         },
         username: String
     },
+    authUser: String
 });
 
 var bill = mongoose.model("bill", billSchema);
