@@ -8,7 +8,7 @@ var methodOverride = require('method-override'),
     router         = express.Router(),
     User           = require('./models/user'),
     budgetItem     = require('./models/budgetItem'),
-    middleware = require('./middleware'),
+    middleware     = require('./middleware'),
     app            = express();
 
 var request = require('request');
