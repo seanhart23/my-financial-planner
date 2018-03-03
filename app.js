@@ -15,7 +15,8 @@ var request = require('request');
 
 //CONNECT PACKAGES
 // mongoose.connect("mongodb://localhost/myfinancialplanner_v1", {useMongoClient: true}); 
-mongoose.connect(process.env.DATABASEURL);    
+mongoose.connect("mongodb://Seanhart23:Maem250123!@ds151528.mlab.com:51528/my_financial_planner", {useMongoClient: true}); 
+// mongoose.connect(process.env.DATABASEURL);    
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");

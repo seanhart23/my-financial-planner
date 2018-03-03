@@ -1,6 +1,18 @@
 var total = 0;
 var $;
 
+//CALCULATE BILL TOTAL
+
+function billCalculate() {
+    total = 0;
+    $(".a").each(function() {
+      if($(this).is(':visible'))
+        total += parseFloat($(this).text());
+    });
+    $("#totalBill").val(total);
+    document.getElementById('totalBill').innerHTML = total.toFixed(2);
+}
+
 billCalculate();
 
 //DELETE ROW FROM DROPDOWN
@@ -15,7 +27,6 @@ function deleteRow(btndel) {
     } else {
         return false;
     }
-    billCalculate();
 }
 
 $('select').on("change",function(){
@@ -24,7 +35,6 @@ $('select').on("change",function(){
       } else {
         return false;
       }
-      billCalculate();
 });
 
 //CALCULATE BILLS FOR EACH PART OF THE MONTH BASED ON BUTTON GROUP
@@ -60,7 +70,7 @@ function second() {
       }
     }
   }
-billCalculate();
+  billCalculate();
 }
 
 function full() {
@@ -83,35 +93,14 @@ function full() {
 document.getElementById("one").addEventListener("click", first, false);
 document.getElementById("two").addEventListener("click", second, false);
 document.getElementById("full").addEventListener("click", full, false);
+// document.getElementById("billCalculate").addEventListener("click", billCalculate, false);
 
 //UPDATE OVERALL TABLE REALTIME AS BALANCE IS ENTERED
 
 $('#balance').bind('keydown keyup click', function (event, previousText) {
     $('#accountBalance').html($(this).val());
 });
-
-//CALCULATE BILL TOTAL
-
-function billCalculate(){
-var table, tr, td, i;
-  table = document.getElementById("bills");
-  tr = table.getElementsByTagName("tr");
-  total = 0;
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
-      if(tr[i].style.display !== "none"){
-        if (td) {
-          if (td.innerHTML) {
-            total += +document.getElementsByTagName('span')[i].innerHTML;
-            document.getElementById('totalBill').innerHTML = total.toFixed(2);
-          } else {
-            console.log('Not Working');
-          }
-        }
-  }
-}
-}
-
+    
 //CALCULATE REMAINING VALUE
 
 $(document).ready(function (event, previousText) {
@@ -126,5 +115,44 @@ $('#one, #two, #three, #full, #balance, #bills, #status').bind('keydown keyup cl
       var bills = document.getElementById("totalBill").innerHTML;
       var value = +income - +bills;
       document.getElementById("remaining").innerHTML = value.toFixed(2);
-  });
+});
 
+//SORT THE TABLE
+function sortTable(n, name) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById(name);
+  switching = true;
+  dir = "asc"; 
+  while (switching) {
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      if (dir == "asc") {
+        if (+x.innerHTML > +y.innerHTML) {
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (+x.innerHTML < +y.innerHTML) {
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      switchcount ++; 
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+sortTable(0, 'bills');
