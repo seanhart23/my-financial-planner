@@ -1,9 +1,5 @@
 body {
-    font-size: 12px;
-}
-
-td {
-    width: 11.5%;
+    font-size: 13px;
 }
 
 h1 {
@@ -14,9 +10,18 @@ h4 {
     margin-top: 0px;
 }
 
+strong {
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
 table {
     table-layout: fixed;
     width: auto;
+}
+
+td {
+    width: 11.5%;
 }
 
 .actions{
@@ -27,23 +32,22 @@ table {
     width: 100px;
 }
 
-.dollarAmount {
-  text-align: right;
+.chiclet {
+    width: 100%;
+    font-size: 12px;
 }
 
-.paid {
-    text-decoration: line-through;
+.dollarAmount {
+  text-align: right;
 }
 
 .edit-title {
     text-align: center;
 }
 
-.chiclet {
-    width: 100%;
-    font-size: 12px;
+.glyphicon {
+    line-height: 15px;
 }
-
 
 .itemLabel {
     width: 30%;    
@@ -53,35 +57,62 @@ table {
     width: 41.5%;    
 }
 
-.panel-heading {
-    font-size: 14px;
-    text-align: left;
+.leftButton {
+    width: 100%;
+    margin-top: 10px;
 }
 
 .navbar {
     border-radius: 0;
+    box-shadow: 0px 0px 8px 4px #000000;
 }
 
-.glyphicon {
-    line-height: 15px;
+.panel {
+    text-transform: uppercase;
+    margin-bottom: 0px;
 }
 
-#welcome {
-    display: inline;
-}
-
-#billHeader {
-    display: inline;
+.panel-heading {
+    font-size: 14px;
+    text-align: left;
+    background-color: black!important;
+    color: #FEF6EB!important;
+    border-radius: 0px;
 }
 
 #addBill {
     margin-top: 20px;
 }
 
-#status {
-    padding: 2px 12px;
-    height: 23px;
-    font-size: 11px;
+#amount {
+    width: 15%;
+    vertical-align: middle;
+}
+
+#auto{
+    text-align: center;
+    width: 12%;
+    vertical-align: middle;
+}
+
+#bills {
+    text-transform: uppercase;
+}
+
+#billHeader {
+    display: inline;
+}
+
+#delete {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+}
+
+#due {
+    width: 10%;
+    text-align: center;
+    vertical-align: middle;
 }
 
 #group {
@@ -92,11 +123,42 @@ table {
 
 #hiddenButton {
     background-color: transparent;
-    color: slateGray;
+    color: white;
     border: 0px;
     font-size: 14px;
     padding-top: 0px;
     width: 15px;
+}
+
+#interestRate {
+    vertical-align: middle;
+}
+
+#monthlyPayment {
+    vertical-align: middle;
+}
+
+#payee {
+    width: 30%;
+    vertical-align: middle;
+}
+
+#status {
+    padding: 2px 12px;
+    height: 23px;
+    font-size: 11px;
+}
+
+#statusdd {
+    text-align: center;
+}
+
+#trash {
+    width: 6%;
+}
+
+#type {
+    vertical-align: middle;
 }
 
 #userID {
@@ -104,6 +166,18 @@ table {
     padding-right: 100px;
 }
 
+#website{
+    text-align: center;
+}
+
+#welcome {
+    text-align: center;
+    border-top: 1px solid slategray;
+    border-bottom: 1px solid slategray;
+    margin-bottom: 20px;
+    font-weight: 200;
+    padding-bottom: 5px;
+}
 
 
 

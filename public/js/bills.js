@@ -1,4 +1,5 @@
 var total = 0;
+var debttotal = 0;
 var $;
 
 //CALCULATE BILL TOTAL
@@ -14,28 +15,6 @@ function billCalculate() {
 }
 
 billCalculate();
-
-//DELETE ROW FROM DROPDOWN
-
-function deleteRow(btndel) {
-    if (typeof(btndel) == "object") {
-        if(confirm('Are you sure you want to delete this row?')){
-          $(btndel).closest("tr").remove();
-        } else {
-          return false;
-        }
-    } else {
-        return false;
-    }
-}
-
-$('select').on("change",function(){
-      if($(this).val()=="remove"){
-        deleteRow(this);
-      } else {
-        return false;
-      }
-});
 
 //CALCULATE BILLS FOR EACH PART OF THE MONTH BASED ON BUTTON GROUP
 
@@ -115,6 +94,28 @@ $('#one, #two, #three, #full, #balance, #bills, #status').bind('keydown keyup cl
       var bills = document.getElementById("totalBill").innerHTML;
       var value = +income - +bills;
       document.getElementById("remaining").innerHTML = value.toFixed(2);
+});
+
+//DELETE ROW FROM DROPDOWN
+
+function deleteRow(btndel) {
+    if (typeof(btndel) == "object") {
+        if(confirm('Are you sure you want to delete this row?')){
+          $(btndel).closest("tr").remove();
+        } else {
+          return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+$('select').on("change",function(){
+      if($(this).val()=="remove"){
+        deleteRow(this);
+      } else {
+        return false;
+      }
 });
 
 //SORT THE TABLE

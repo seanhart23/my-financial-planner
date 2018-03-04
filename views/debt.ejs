@@ -1,0 +1,70 @@
+<% include ./partials/header %>
+
+<div class='container'>
+    <div class='col-lg-12 col-md-12'>
+        <h1 id='welcome'>Debt Tracker</h1>
+    </div>
+<div class='col-lg-3 col-md-12'>
+            <div class='chiclet'>
+                <div class="panel panel-default panel-default">
+                    <div class="panel-heading"><strong>Debt Snapshot</strong></div>
+                        <table class="table">
+                            <tr>
+                                <th>Type</th>
+                                <th>Total</th>
+                            </tr>
+                            <tr>
+                                <td>Total Debt</td>
+                                <td id='totalDebt'>0.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+<div class='col-lg-9 col-md-12'>
+                <div class='chiclet'>
+                    <div class="panel panel-default panel-danger">
+                        <div class="panel-heading"><strong>Debts</strong>
+                            <a href="/debt/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton'><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                        </div>
+                            <table class="table" id="debts">
+                                <thead>
+                                    <tr>
+                                        <th id=''>Payee</th>
+                                        <th id='type'>Type</th>
+                                        <th id='amount'>Amount</th>
+                                        <th id='interestRate' onclick='sortTable(0)'>Interest Rate</th>
+                                        <th id='monthlyPayment'>Monthly Payment</th>
+                                        <th id='website'>Website</th>
+                                        <th id='trash'></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% debt.forEach(function(debt){ %>
+                                    <tr>
+                                        <% if(currentUser.username === debt.author.username){ %>
+                                            <td id='payee'>
+                                                <a href="/debt/<%= debt._id %>/edit"><%= debt.itemLabel %></a></span></td>
+                                            <td id='type'><%= debt.type %></td>
+                                            <td id='amount'>$ <span class='b'><%= debt.amount.toFixed(2) %></span></td>
+                                            <td id='interestRate'><%= debt.interestRate.toFixed(2) %>%</td>
+                                            <td id='monthlyPayment'>$ <%= debt.monthlyPayment.toFixed(2) %></td>
+                                            <td id='website'><a href="<%= debt.website %>" target="_blank" class="btn btn-primary btn-xs">Go</a></td>
+                                            <td>
+                                            <form action="/debt/<%= debt._id %>?_method=DELETE" method="POST" class="delete-form">
+                                                <button id='delete'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                                            </form>
+                                            </td>
+                                        <% } %>
+                                    <% }) %>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<script type="text/javascript" src='/js/debt.js'></script>
+<% include ./partials/footer %>
