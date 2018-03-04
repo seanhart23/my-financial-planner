@@ -21,7 +21,6 @@
                             <th class='dollarAmount'>Planned</th>
                             <th class='dollarAmount'>Actual</th>
                             <th class='dollarAmount'>Variance</th>
-                            <th class='actions'>Edit</th>
                             <th class='actions'>Delete</th>
                         </tr>
                     </thead>
@@ -29,12 +28,10 @@
                         <% budgetItem.forEach(function(budgetItem){ %>
                             <% if(budgetItem.type === 'Income' && currentUser.username === budgetItem.author.username){ %>
                         <tr>
-                                <td class='itemLabelIncome'><%= budgetItem.itemLabel %></td>
-                                <td class='dollarAmount'>$<span class='plannedIncomeTotal'><%= budgetItem.planned.toFixed(2); %></span></td>
-                                <td class='dollarAmount'>$<span class='actualIncomeTotal'><%= budgetItem.actual.toFixed(2); %></span></td>
+                                <td class='itemLabel'><a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editItem"><%= budgetItem.itemLabel %></a></td>                                <td class='dollarAmount'><span class='plannedIncomeTotal'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
+                                <td class='dollarAmount'><span class='actualIncomeTotal'><%= budgetItem.actual.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
                                 <% var variance = budgetItem.actual.toFixed(2) - budgetItem.planned.toFixed(2) %>
                                 <td class='dollarAmount'><span class ='a'><%= variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
-                                <td class='actions'><a href="/budgetItem/<%= budgetItem._id %>/edit" class='btn btn-primary btn-xs' id='hiddenButton' data-toggle="modal" data-target="#editItem"><i class="fa fa-pencil" aria-hidden="true" ></i></a></td>
                                 <td class='actions'>  
                                     <form action="/budgetItem/<%= budgetItem._id %>?_method=DELETE" method="POST" class="delete-form">
                                         <button class='btn btn-primary btn-xs' id='hiddenButton'><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -59,7 +56,6 @@
                             <th class='dollarAmount'>Planned</th>
                             <th class='dollarAmount'>Actual</th>
                             <th class='dollarAmount'>Variance</th>
-                            <th class='actions'>Edit</th>
                             <th class='actions'>Delete</th>
                     </thead>
                     <tbody>
@@ -67,12 +63,10 @@
                             <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Fixed' && currentUser.username === budgetItem.author.username){ %>
                         <tr>
                                 <td><%= budgetItem.dueDate %></td>
-                                <td class='itemLabel'><%= budgetItem.itemLabel %></td>
-                                <td class='dollarAmount'>$<span class='plannedExpenseTotal'><%= budgetItem.planned.toFixed(2) %></span></td>
-                                <td class='dollarAmount'>$<span class='actualExpenseTotal'><%= budgetItem.actual.toFixed(2) %></span></td>
+                                <td class='itemLabel'><a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editItem"><%= budgetItem.itemLabel %></a></td>                                <td class='dollarAmount'><span class='plannedExpenseTotal'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td class='dollarAmount'><span class='actualExpenseTotal'><%= budgetItem.actual.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                                 <% var variance = budgetItem.actual.toFixed(2) - budgetItem.planned.toFixed(2) %>
                                 <td class='dollarAmount'><span class='a'><%= variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }).replace('$',' $'); %></td>
-                                <td class='actions'><a href="/budgetItem/<%= budgetItem._id %>/edit" class='btn btn-primary btn-xs' id='hiddenButton' data-toggle="modal" data-target="#editItem"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                                 <td class='actions'>  
                                     <form action="/budgetItem/<%= budgetItem._id %>?_method=DELETE" method="POST" class="delete-form">
                                         <button class='btn btn-primary btn-xs' id='hiddenButton'><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -95,7 +89,6 @@
                             <th class='dollarAmount'>Planned</th>
                             <th class='dollarAmount'>Actual</th>
                             <th class='dollarAmount'>Variance</th>
-                            <th class='actions'>Edit</th>
                             <th class='actions'>Delete</th>
                     </thead>
                     <tbody>
@@ -103,12 +96,11 @@
                             <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Variable'  && currentUser.username === budgetItem.author.username){ %>
                         <tr>
                                 <td><%= budgetItem.dueDate %></td>
-                                <td class='itemLabel'><%= budgetItem.itemLabel %></td>
-                                <td class='dollarAmount'>$<span class='plannedExpenseTotal'><%= budgetItem.planned.toFixed(2) %></span></td>
-                                <td class='dollarAmount'>$<span class='actualExpenseTotal'><%= budgetItem.actual.toFixed(2) %></span></td>
+                                <td class='itemLabel'><a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editItem"><%= budgetItem.itemLabel %></a></td>
+                                <td class='dollarAmount'><span class='plannedExpenseTotal'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td class='dollarAmount'><span class='actualExpenseTotal'><%= budgetItem.actual.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                                 <% var variance = budgetItem.actual.toFixed(2) - budgetItem.planned.toFixed(2) %>
                                 <td class='dollarAmount'><span class='a'><%= variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }).replace('$',' $'); %></td>
-                                <td class='actions'><a href="/budgetItem/<%= budgetItem._id %>/edit" class='btn btn-primary btn-xs' id='hiddenButton' data-toggle="modal" data-target="#editItem"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                                 <td class='actions'>  
                                     <form action="/budgetItem/<%= budgetItem._id %>?_method=DELETE" method="POST" class="delete-form">
                                         <button class='btn btn-primary btn-xs' id='hiddenButton'><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -131,7 +123,6 @@
                             <th class='dollarAmount'>Planned</th>
                             <th class='dollarAmount'>Actual</th>
                             <th class='dollarAmount'>Variance</th>
-                            <th class='actions'>Edit</th>
                             <th class='actions'>Delete</th>
                     </thead>
                     <tbody>
@@ -139,12 +130,10 @@
                             <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Debt' && currentUser.username === budgetItem.author.username){ %>
                         <tr>
                                 <td><%= budgetItem.dueDate %></td>
-                                <td class='itemLabel'><%= budgetItem.itemLabel %></td>
-                                <td class='dollarAmount'>$<span class='plannedExpenseTotal'><%= budgetItem.planned.toFixed(2) %></span></td>
-                                <td class='dollarAmount'>$<span class='actualExpenseTotal'><%= budgetItem.actual.toFixed(2) %></span></td>
+                                <td class='itemLabel'><a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editItem"><%= budgetItem.itemLabel %></a></td>                                <td class='dollarAmount'><span class='plannedExpenseTotal'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td class='dollarAmount'><span class='actualExpenseTotal'><%= budgetItem.actual.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                                 <% var variance = budgetItem.actual.toFixed(2) - budgetItem.planned.toFixed(2) %>
                                 <td class='dollarAmount'><span class='a'><%= variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }).replace('$',' $'); %></td>
-                                <td class='actions'><a href="/budgetItem/<%= budgetItem._id %>/edit" class='btn btn-primary btn-xs' id='hiddenButton' data-toggle="modal" data-target="#editItem"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                                 <td class='actions'>  
                                     <form action="/budgetItem/<%= budgetItem._id %>?_method=DELETE" method="POST" class="delete-form">
                                         <button class='btn btn-primary btn-xs' id='hiddenButton'><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -167,7 +156,6 @@
                             <th class='dollarAmount'>Planned</th>
                             <th class='dollarAmount'>Actual</th>
                             <th class='dollarAmount'>Variance</th>
-                            <th class='actions'>Edit</th>
                             <th class='actions'>Delete</th>
                     </thead>
                     <tbody>
@@ -175,12 +163,11 @@
                             <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Other' && currentUser.username === budgetItem.author.username){ %>
                         <tr>
                                 <td><%= budgetItem.dueDate %></td>
-                                <td class='itemLabel'><%= budgetItem.itemLabel %></td>
-                                <td class='dollarAmount'>$<span class='plannedExpenseTotal'><%= budgetItem.planned.toFixed(2) %></span></td>
-                                <td class='dollarAmount'>$<span class='actualExpenseTotal'><%= budgetItem.actual.toFixed(2) %></span></td>
+                                <td class='itemLabel'><a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editItem"><%= budgetItem.itemLabel %></a></td>
+                                <td class='dollarAmount'><span class='plannedExpenseTotal'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td class='dollarAmount'><span class='actualExpenseTotal'><%= budgetItem.actual.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                                 <% var variance = budgetItem.actual.toFixed(2) - budgetItem.planned.toFixed(2) %>
                                 <td class='dollarAmount'><span class='a'><%= variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }).replace('$',' $'); %></td>
-                                <td class='actions'><a href="/budgetItem/<%= budgetItem._id %>/edit" class='btn btn-primary btn-xs' id='hiddenButton' data-toggle="modal" data-target="#editItem"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                                 <td class='actions'>  
                                     <form action="/budgetItem/<%= budgetItem._id %>?_method=DELETE" method="POST" class="delete-form">
                                         <button class='btn btn-primary btn-xs' id='hiddenButton'><i class="fa fa-trash" aria-hidden="true"></i></button>

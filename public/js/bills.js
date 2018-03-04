@@ -8,7 +8,7 @@ function billCalculate() {
     total = 0;
     $(".a").each(function() {
       if($(this).is(':visible'))
-        total += parseFloat($(this).text());
+        total += parseFloat($(this).text().slice(1).replace(/,/g,''));
     });
     $("#totalBill").val(total);
     document.getElementById('totalBill').innerHTML = total.toFixed(2);
@@ -102,6 +102,7 @@ function deleteRow(btndel) {
     if (typeof(btndel) == "object") {
         if(confirm('Are you sure you want to delete this row?')){
           $(btndel).closest("tr").remove();
+          billCalculate();
         } else {
           return false;
         }

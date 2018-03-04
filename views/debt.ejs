@@ -10,12 +10,24 @@
                     <div class="panel-heading"><strong>Debt Snapshot</strong></div>
                         <table class="table">
                             <tr>
-                                <th>Type</th>
+                                <th id='col1'>Type</th>
                                 <th>Total</th>
+                            </tr>
+                            <tr>
+                                <td>Starting Balance</td>
+                                <td id='startingBalance'>$121,012.54</td>
                             </tr>
                             <tr>
                                 <td>Total Debt</td>
                                 <td id='totalDebt'>0.00</td>
+                            </tr>  
+                            <tr>
+                                <td>Paid Off</td>
+                                <td id='paidOff'>0.00</td>
+                            </tr>
+                            <tr>
+                                <td> % Paid Off</td>
+                                <td><span id='%paidOff'>00</span>%</td>
                             </tr>
                         </table>
                     </div>
@@ -30,11 +42,11 @@
                             <table class="table" id="debts">
                                 <thead>
                                     <tr>
-                                        <th id=''>Payee</th>
+                                        <th id='payee'>Payee</th>
                                         <th id='type'>Type</th>
                                         <th id='amount'>Amount</th>
-                                        <th id='interestRate' onclick='sortTable(0)'>Interest Rate</th>
-                                        <th id='monthlyPayment'>Monthly Payment</th>
+                                        <th id='interestRate'>Interest %</th>
+                                        <th id='monthlyPayment'>Payment</th>
                                         <th id='website'>Website</th>
                                         <th id='trash'></th>
                                     </tr>
@@ -46,10 +58,10 @@
                                             <td id='payee'>
                                                 <a href="/debt/<%= debt._id %>/edit"><%= debt.itemLabel %></a></span></td>
                                             <td id='type'><%= debt.type %></td>
-                                            <td id='amount'>$ <span class='b'><%= debt.amount.toFixed(2) %></span></td>
-                                            <td id='interestRate'><%= debt.interestRate.toFixed(2) %>%</td>
-                                            <td id='monthlyPayment'>$ <%= debt.monthlyPayment.toFixed(2) %></td>
-                                            <td id='website'><a href="<%= debt.website %>" target="_blank" class="btn btn-primary btn-xs">Go</a></td>
+                                            <td id='amount'><span class='b'><%= debt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
+                                            <td id='interestRate'><%= debt.interestRate.toFixed(3)%>%</td>
+                                            <td id='monthlyPayment'><%= debt.monthlyPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></td>
+                                            <td id='website'><a href="<%= debt.website %>" target="_blank" class="btn btn-primary btn-xs" id='goButton'>Go</a></td>
                                             <td>
                                             <form action="/debt/<%= debt._id %>?_method=DELETE" method="POST" class="delete-form">
                                                 <button id='delete'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>

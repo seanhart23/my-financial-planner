@@ -7,7 +7,7 @@ function debtCalculate() {
     debttotal = 0;
     $(".b").each(function() {
       if($(this).is(':visible'))
-        debttotal += parseFloat($(this).text());
+        debttotal += parseFloat($(this).text().slice(1).replace(/,/g,''));
     });
     $("#totalDebt").val(debttotal);
     document.getElementById('totalDebt').innerHTML = debttotal.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -15,41 +15,23 @@ function debtCalculate() {
 
 debtCalculate();
 
-function sortTable(n, name) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById(name);
-  switching = true;
-  dir = "asc"; 
-  while (switching) {
-    switching = false;
-    rows = table.getElementsByTagName("TR");
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      if (dir == "asc") {
-        if (+x.innerHTML > +y.innerHTML) {
-          shouldSwitch= true;
-          break;
+function sortTable(table_id, sortColumn){
+    var tableData = document.getElementById(table_id).getElementsByTagName('tbody').item(0);
+    var rowData = tableData.getElementsByTagName('tr');            
+    for(var i = 0; i < rowData.length - 1; i++){
+        for(var j = 0; j < rowData.length - (i + 1); j++){
+            if(Number(rowData.item(j).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, "")) > Number(rowData.item(j+1).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, ""))){
+                tableData.insertBefore(rowData.item(j+1),rowData.item(j));
+            }
         }
-      } else if (dir == "desc") {
-        if (+x.innerHTML < +y.innerHTML) {
-          shouldSwitch= true;
-          break;
-        }
-      }
     }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount ++; 
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
 }
 
-sortTable(0, 'debts');
+sortTable('debts', 2);
+
+var variance = document.getElementById('startingBalance').innerHTML.replace(/[^0-9\.]+/g, "") - document.getElementById('totalDebt').innerHTML.replace(/[^0-9\.]+/g, "");
+
+document.getElementById('paidOff').innerHTML = variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+document.getElementById('%paidOff').innerHTML = ((variance / document.getElementById('startingBalance').innerHTML.replace(/[^0-9\.]+/g, "")) * 100).toFixed(0);
+
+

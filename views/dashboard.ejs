@@ -49,12 +49,13 @@
                     </div>
                 </div>
                 <a href='http://www.bankofamerica.com' target="_blank" class="btn btn-danger btn-sm leftButton">Bank of America</a>    
-                <a href='./bills' class="btn btn-success btn-sm leftButton">Add/Edit Bills</a>    
             </div>
             <div class='col-lg-9 col-md-12'>
                 <div class='chiclet'>
                     <div class="panel panel-default panel-danger">
-                        <div class="panel-heading"><strong>Bills</strong></div>
+                        <div class="panel-heading"><strong>Bills</strong>
+                            <a href="/bills/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton'><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                        </div>
                             <table class="table" id="bills">
                                 <thead>
                                     <tr>
@@ -62,8 +63,9 @@
                                         <th id='payee'>Payee</th>
                                         <th id='amount'>Amount Due</th>
                                         <th id='auto'>Auto Pay</th>
-                                        <th id='website'>Website</th>
+                                        <th id='billWebsite'>Website</th>
                                         <th id='statusdd'>Status</th>
+                                        <th id='trash'></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,10 +73,10 @@
                                     <tr>
                                         <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
                                             <td id='due'><%= bill.dueDate %></td>
-                                            <td id='payee'><%= bill.payee %></td>
-                                            <td id='amount'>$ <span class='a'><%= bill.amountDue.toFixed(2) %></span></td>
+                                            <td id='payee'><a href="/bills/<%= bill._id %>/edit"><%= bill.payee %></a></td>
+                                            <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                                             <td id='auto'><%= bill.autoPay %></td>
-                                            <td id='website'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs">Pay Bill</a></td>
+                                            <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs">Pay Bill</a></td>
                                             <td id='statusdd'>
                                                  <select class='form-control' id='status' name="status">
                                                     <option value="unpaid">Unpaid</option>
@@ -83,6 +85,10 @@
                                                     <option value="move">Move</option>
                                                     <option value="remove">Remove</option>
                                                 </select>
+                                            </td>
+                                            <td><form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
+                                                <button id='delete'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                                            </form>
                                             </td>
                                         <% } %>
                                     <% }) %>

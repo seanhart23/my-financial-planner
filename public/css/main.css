@@ -18,10 +18,16 @@ strong {
 table {
     table-layout: fixed;
     width: auto;
+    margin-bottom: 50px;
 }
 
 td {
     width: 11.5%;
+    text-transform: uppercase;
+}
+
+th {
+    text-transform: uppercase;
 }
 
 .actions{
@@ -43,6 +49,10 @@ td {
 
 .edit-title {
     text-align: center;
+}
+
+.fa-plus {
+    color: white;
 }
 
 .glyphicon {
@@ -69,7 +79,7 @@ td {
 
 .panel {
     text-transform: uppercase;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
 .panel-heading {
@@ -78,6 +88,10 @@ td {
     background-color: black!important;
     color: #FEF6EB!important;
     border-radius: 0px;
+}
+
+.panel-default {
+    margin-bottom: 0px;
 }
 
 #addBill {
@@ -103,6 +117,13 @@ td {
     display: inline;
 }
 
+#billWebsite {
+    text-align: center;
+}
+
+#col1 {
+    width: 60%;
+}
 #delete {
     background-color: transparent;
     border: none;
@@ -115,6 +136,10 @@ td {
     vertical-align: middle;
 }
 
+#goButton {
+    width: 60%;
+}
+
 #group {
     padding-top: 30px;
     margin-right: 15px;
@@ -123,7 +148,7 @@ td {
 
 #hiddenButton {
     background-color: transparent;
-    color: white;
+    color: black;
     border: 0px;
     font-size: 14px;
     padding-top: 0px;
@@ -132,6 +157,7 @@ td {
 
 #interestRate {
     vertical-align: middle;
+    width:12%;
 }
 
 #monthlyPayment {
@@ -139,8 +165,12 @@ td {
 }
 
 #payee {
-    width: 30%;
+    width: 28%;
     vertical-align: middle;
+}
+
+#monthlyPayment {
+    width: 10%;
 }
 
 #status {
@@ -159,6 +189,7 @@ td {
 
 #type {
     vertical-align: middle;
+    width: 16%;
 }
 
 #userID {
@@ -168,6 +199,7 @@ td {
 
 #website{
     text-align: center;
+    width: 10%;
 }
 
 #welcome {
@@ -177,6 +209,7 @@ td {
     margin-bottom: 20px;
     font-weight: 200;
     padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 

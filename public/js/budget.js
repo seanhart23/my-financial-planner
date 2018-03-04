@@ -5,30 +5,31 @@
 var sumPlannedIncome  = 0,
     sumActualIncome   = 0,
     sumPlannedExpense = 0,
-    sumActualExpense  = 0;
+    sumActualExpense  = 0,
+    $;
 
 $('.plannedIncomeTotal').each(function(){
-    sumPlannedIncome += parseFloat($(this).text());
+    sumPlannedIncome += parseFloat($(this).text().slice(1).replace(/,/g,''));
 });
 
 $('.actualIncomeTotal').each(function(){
-    sumActualIncome += parseFloat($(this).text());
+    sumActualIncome += parseFloat($(this).text().slice(1).replace(/,/g,''));
 });
 
 $('.plannedExpenseTotal').each(function(){
-    sumPlannedExpense += parseFloat($(this).text());
+    sumPlannedExpense += parseFloat($(this).text().slice(1).replace(/,/g,''));
 });
 
 $('.actualExpenseTotal').each(function(){
-    sumActualExpense += parseFloat($(this).text());
+    sumActualExpense += parseFloat($(this).text().slice(1).replace(/,/g,''));
 });
 
 document.getElementById('totalPlannedIncome').innerHTML = sumPlannedIncome.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 document.getElementById('totalActualIncome').innerHTML = sumActualIncome.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 document.getElementById('totalPlannedExpense').innerHTML = sumPlannedExpense.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 document.getElementById('totalActualExpense').innerHTML = sumActualExpense.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-document.getElementById('totalPlannedVariance').innerHTML = (sumPlannedExpense - sumPlannedIncome).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-document.getElementById('totalActualVariance').innerHTML = (sumActualExpense - sumPlannedIncome).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+document.getElementById('totalPlannedVariance').innerHTML = (sumPlannedIncome - sumPlannedExpense).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+document.getElementById('totalActualVariance').innerHTML = (sumActualIncome - sumActualExpense).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
 function sortTable(n, name) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
