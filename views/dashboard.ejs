@@ -14,9 +14,9 @@
             </form>
         </div>
         <div class="btn-group pull-right" role="group" id='group' aria-label="...">
-            <button type="button" id='one' class="btn btn-primary btn-sm">1st Half</button>
-            <button type="button" id='full' class="btn btn-primary btn-sm">Full Month</button>
-            <button type="button" id='two' class="btn btn-primary btn-sm">2nd Half</button>
+            <button type="button" id='one' class="btn btn-default btn-sm">1st Half</button>
+            <button type="button" id='full' class="btn btn-default btn-sm">Full Month</button>
+            <button type="button" id='two' class="btn btn-default btn-sm">2nd Half</button>
         </div>
     </div>
 </div>
@@ -48,7 +48,7 @@
                         </table>
                     </div>
                 </div>
-                <a href='http://www.bankofamerica.com' target="_blank" class="btn btn-danger btn-sm leftButton">Bank of America</a>    
+                <a href='http://www.bankofamerica.com' target="_blank" class="secondary-link">Go to Bankofamerica.com</a>    
             </div>
             <div class='col-lg-9 col-md-12'>
                 <div class='chiclet'>
@@ -86,9 +86,9 @@
                                                     <option value="remove">Remove</option>
                                                 </select>
                                             </td>
-                                            <td><form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
-                                                <button id='delete'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                                            </form>
+                                            <td><span id='delete'><form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
+                                               <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                                            </form></span>
                                             </td>
                                         <% } %>
                                     <% }) %>

@@ -11,7 +11,7 @@ h4 {
 }
 
 strong {
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 3px;
 }
 
@@ -26,6 +26,10 @@ td {
     text-transform: uppercase;
 }
 
+tr {
+    border-right: none;
+    border-left: none;
+}
 th {
     text-transform: uppercase;
 }
@@ -59,6 +63,10 @@ th {
     line-height: 15px;
 }
 
+.index-form {
+    margin-top: 50px;
+}
+
 .itemLabel {
     width: 30%;    
 }
@@ -72,9 +80,24 @@ th {
     margin-top: 10px;
 }
 
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+    color: white;
+}
+
 .navbar {
     border-radius: 0;
-    box-shadow: 0px 0px 8px 4px #000000;
+    box-shadow: 0px 0px 8px 4px #222222;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.negative-header {
+    color: red!important;
 }
 
 .panel {
@@ -85,13 +108,24 @@ th {
 .panel-heading {
     font-size: 14px;
     text-align: left;
-    background-color: black!important;
+    background-color: #222222!important;
     color: #FEF6EB!important;
     border-radius: 0px;
 }
 
 .panel-default {
     margin-bottom: 0px;
+}
+
+.positive-header {
+    color: green!important;
+}
+
+.secondary-link {
+    text-decoration: none;
+    color: gray;
+    font-weight: 500;
+    padding-left: 2px;
 }
 
 #addBill {
@@ -124,10 +158,13 @@ th {
 #col1 {
     width: 60%;
 }
-#delete {
-    background-color: transparent;
+
+#deleteButton {
     border: none;
     font-size: 14px;
+    background: none;
+    height: 100%;
+    color: black;
 }
 
 #due {
@@ -160,17 +197,32 @@ th {
     width:12%;
 }
 
+#link {
+    text-decoration: none;
+    color: white;
+    position: relative;
+}
+
+#link:after {
+    display:block;
+    content: '';
+    border-bottom: solid 1px red;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+}
+
+#link:hover:after {
+    transform: scaleX(1);
+}
+
 #monthlyPayment {
     vertical-align: middle;
+    width: 10%;
 }
 
 #payee {
     width: 28%;
     vertical-align: middle;
-}
-
-#monthlyPayment {
-    width: 10%;
 }
 
 #status {
@@ -210,6 +262,7 @@ th {
     font-weight: 200;
     padding-bottom: 5px;
     padding-top: 5px;
+    margin-top: 75px;
 }
 
 
