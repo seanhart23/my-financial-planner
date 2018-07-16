@@ -64,7 +64,7 @@
                                             <td id='website'><a href="<%= debt.website %>" target="_blank" class="btn btn-primary btn-xs" id='goButton'>Go</a></td>
                                             <td>
                                             <form action="/debt/<%= debt._id %>?_method=DELETE" method="POST" class="delete-form">
-                                                <button id='delete'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                                                <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                                             </form>
                                             </td>
                                         <% } %>

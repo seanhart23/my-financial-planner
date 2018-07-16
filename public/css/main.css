@@ -1,18 +1,23 @@
 body {
     font-size: 13px;
+    color: #202031;
 }
 
 h1 {
-    font-weight: bold;
+    font-size: 30px;
+    font-weight: 200;
 }
 
 h4 {
     margin-top: 0px;
 }
 
+select {
+    border-radius: 0px;
+}
+
 strong {
     font-weight: 400;
-    letter-spacing: 3px;
 }
 
 table {
@@ -30,6 +35,7 @@ tr {
     border-right: none;
     border-left: none;
 }
+
 th {
     text-transform: uppercase;
 }
@@ -40,6 +46,11 @@ th {
 
 .btn-xs {
     width: 100px;
+    background-color: #7D98A1;
+}
+
+.btn-sm {
+    background-color: #7D98A1;
 }
 
 .chiclet {
@@ -59,12 +70,20 @@ th {
     color: white;
 }
 
+.form-control {
+    border-radius: 0px;
+}
+
+.form-group {
+    border-radius: 0px;
+}
+
 .glyphicon {
     line-height: 15px;
 }
 
-.index-form {
-    margin-top: 50px;
+.inputForm {
+    margin-top: 40px;
 }
 
 .itemLabel {
@@ -81,19 +100,20 @@ th {
 }
 
 .navbar-inverse .navbar-nav>li>a {
-    color: white;
+    color: #EEF1EF;
 }
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-    color: white;
+    color: #EEF1EF;
+    background-color: #202031;
 }
 
 .navbar {
     border-radius: 0;
-    box-shadow: 0px 0px 8px 4px #222222;
     position: fixed;
     width: 100%;
     z-index: 2;
+    background-color: #202031;
 }
 
 .negative-header {
@@ -101,20 +121,23 @@ th {
 }
 
 .panel {
-    text-transform: uppercase;
     margin-bottom: 10px;
+    border: 0px;
 }
 
 .panel-heading {
-    font-size: 14px;
-    text-align: left;
-    background-color: #222222!important;
+    font-size: 16px;
+    text-align: center;
+    background-color: #202031!important;
     color: #FEF6EB!important;
     border-radius: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .panel-default {
     margin-bottom: 0px;
+    border: 0px;
 }
 
 .positive-header {
@@ -143,6 +166,11 @@ th {
     vertical-align: middle;
 }
 
+#balance {
+    box-shadow: none;
+    border: none;
+    border-bottom: .5px solid #202031;
+}
 #bills {
     text-transform: uppercase;
 }
@@ -165,6 +193,10 @@ th {
     background: none;
     height: 100%;
     color: black;
+}
+
+#description {
+    margin-bottom: 20px;
 }
 
 #due {
@@ -255,11 +287,8 @@ th {
 }
 
 #welcome {
-    text-align: center;
-    border-top: 1px solid slategray;
-    border-bottom: 1px solid slategray;
-    margin-bottom: 20px;
-    font-weight: 200;
+    text-align: left;
+    font-weight: 400;
     padding-bottom: 5px;
     padding-top: 5px;
     margin-top: 75px;

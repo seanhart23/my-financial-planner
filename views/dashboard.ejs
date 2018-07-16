@@ -3,6 +3,8 @@
 <div class='container'>
     <div class='col-lg-12 col-md-12'>
         <h1 id='welcome'>Bill Allocator</h1>
+        <div id='description'>The Bill Allocator is used to track monthly bills and how much money you will have left over after each paycheck.
+        Add all of you bills to the list and then enter the paycheck amount into the Bank Account Balance field.</div>
     <p></p>
 </div>
 
@@ -14,9 +16,9 @@
             </form>
         </div>
         <div class="btn-group pull-right" role="group" id='group' aria-label="...">
-            <button type="button" id='one' class="btn btn-default btn-sm">1st Half</button>
-            <button type="button" id='full' class="btn btn-default btn-sm">Full Month</button>
-            <button type="button" id='two' class="btn btn-default btn-sm">2nd Half</button>
+            <button type="button" id='one' class="btn btn-primary btn-sm">1st Half</button>
+            <button type="button" id='full' class="btn btn-primary btn-sm">Full Month</button>
+            <button type="button" id='two' class="btn btn-primary btn-sm">2nd Half</button>
         </div>
     </div>
 </div>
@@ -26,7 +28,7 @@
     <div class='row'>
         <div class='col-lg-3 col-md-12'>
             <div class='chiclet'>
-                <div class="panel panel-default panel-default">
+                <div class="panel panel-default">
                     <div class="panel-heading"><strong>Snapshot</strong></div>
                         <table class="table">
                             <tr>
@@ -54,7 +56,7 @@
                 <div class='chiclet'>
                     <div class="panel panel-default panel-danger">
                         <div class="panel-heading"><strong>Bills</strong>
-                            <a href="/bills/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton'><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                        <a href="/bills/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
                         </div>
                             <table class="table" id="bills">
                                 <thead>
@@ -73,7 +75,7 @@
                                     <tr>
                                         <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
                                             <td id='due'><%= bill.dueDate %></td>
-                                            <td id='payee'><a href="/bills/<%= bill._id %>/edit"><%= bill.payee %></a></td>
+                                            <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
                                             <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                                             <td id='auto'><%= bill.autoPay %></td>
                                             <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs">Pay Bill</a></td>
@@ -102,6 +104,25 @@
         </div>
     </div>
 </div>    
+
+
+<!--NEW MODAL-->
+
+<div class="modal fade" id="addItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
+</div>
+
+<!--EDIT MODAL-->
+<div class="modal fade" id="editItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
 
 <script type="text/javascript" src='/js/bills.js'></script>
 <% include ./partials/footer %>
