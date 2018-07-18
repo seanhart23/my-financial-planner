@@ -129,7 +129,7 @@ th {
     font-size: 16px;
     text-align: center;
     background-color: #202031!important;
-    color: #FEF6EB!important;
+    color: White!important;
     border-radius: 0px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -170,6 +170,9 @@ th {
     box-shadow: none;
     border: none;
     border-bottom: .5px solid #202031;
+    font-size: 20px;
+    font-weight: 350;
+    letter-spacing: 1px;
 }
 #bills {
     text-transform: uppercase;
@@ -181,6 +184,10 @@ th {
 
 #billWebsite {
     text-align: center;
+}
+
+#BOAimage {
+    width: 100%;
 }
 
 #col1 {
@@ -197,6 +204,9 @@ th {
 
 #description {
     margin-bottom: 20px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    padding-right: 0px;
 }
 
 #due {
@@ -238,13 +248,17 @@ th {
 #link:after {
     display:block;
     content: '';
-    border-bottom: solid 1px red;  
+    border-bottom: solid 1px #4A94BA;  
     transform: scaleX(0);  
     transition: transform 250ms ease-in-out;
 }
 
 #link:hover:after {
     transform: scaleX(1);
+}
+
+#login {
+    margin-top: 100px;
 }
 
 #monthlyPayment {

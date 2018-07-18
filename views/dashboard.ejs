@@ -1,10 +1,9 @@
 <% include ./partials/header %>
 
 <div class='container'>
-    <div class='col-lg-12 col-md-12'>
-        <h1 id='welcome'>Bill Allocator</h1>
-        <div id='description'>The Bill Allocator is used to track monthly bills and how much money you will have left over after each paycheck.
-        Add all of you bills to the list and then enter the paycheck amount into the Bank Account Balance field.</div>
+        <h1 id='welcome'>Paycheck Allocator</h1>
+        <div id='description'>The Paycheck Allocator is used to track monthly bills and how much money you will have left over after each paycheck.
+        Add all of your bills to the list and then enter the paycheck amount into the Bank Account Balance field.</div>
     <p></p>
 </div>
 
@@ -37,21 +36,88 @@
                             </tr>
                             <tr>
                                 <td>Balance</td>
-                                <td>$ <span id='accountBalance'>0.00</span></td>
+                                <td>$<span id='accountBalance'>0.00</span></td>
                             </tr>
                             <tr>
                                 <td>Bills</td>
-                                <td>$ <span id="totalBill">0.00</span></td>
+                                <td>$<span id="totalBill">0.00</span></td>
                             </tr>                          
                             <tr>
                                 <td>Remaining</td>
-                                <td>$ <span id="remaining">0.00</span></td>
+                                <td>$<span id="remaining">0.00</span></td>
                             </tr>
                         </table>
                     </div>
                 </div>
-                <a href='http://www.bankofamerica.com' target="_blank" class="secondary-link">Go to Bankofamerica.com</a>    
+                <p>
+            <div class='chiclet'>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>Totals By Type</strong></div>
+                        <table class="table">
+                            <tr>
+                                <th>Type</th>
+                                <th>Total</th>
+                            </tr>
+                            <tr>
+                                <% var totalCredit = 0 %>
+                                <% bills.forEach(function(bill){ %>
+                                    <tr>
+                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Credit Card"){ %>
+                                        <% totalCredit = totalCredit + bill.amountDue %>
+                                        <% } %>
+                                        <% }) %>
+                                <td>Credit Card</td>
+                                <td><span id='totalCredit'><%= totalCredit.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                            </tr>
+                            <tr>
+                                <% var totalSL = 0 %>
+                                <% bills.forEach(function(bill){ %>
+                                    <tr>
+                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Student Loan"){ %>
+                                        <% totalSL = totalSL + bill.amountDue %>
+                                        <% } %>
+                                        <% }) %>
+                                <td>Student Loan</td>
+                                <td><span id='totalSL'><%= totalSL.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                            </tr>
+                            <tr>
+                                <% var totalLoan = 0 %>
+                                <% bills.forEach(function(bill){ %>
+                                    <tr>
+                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Loan"){ %>
+                                        <% totalLoan = totalLoan + bill.amountDue %>
+                                        <% } %>
+                                        <% }) %>
+                                <td>Loan</td>
+                                <td><span id='totalLoan'><%= totalLoan.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                            </tr>
+                            <tr>
+                                <% var totalUtility = 0 %>
+                                <% bills.forEach(function(bill){ %>
+                                    <tr>
+                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Utility"){ %>
+                                        <% totalUtility = totalUtility + bill.amountDue %>
+                                        <% } %>
+                                        <% }) %>
+                                <td>Utility</td>
+                                <td><span id='totalUtility'><%= totalUtility.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                            </tr>                            <tr>
+                                <% var totalOther = 0 %>
+                                <% bills.forEach(function(bill){ %>
+                                    <tr>
+                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Other"){ %>
+                                        <% totalOther = totalOther + bill.amountDue %>
+                                        <% } %>
+                                        <% }) %>
+                                <td>Other</td>
+                                <td><span id='totalOther'><%= totalOther.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <p><a href='http://www.bankofamerica.com' target="_blank" class="secondary-link"><img src="https://static.seekingalpha.com/uploads/2017/5/27/31557165-14959228416802626_origin.png" id="BOAimage"></a> 
             </div>
+            
             <div class='col-lg-9 col-md-12'>
                 <div class='chiclet'>
                     <div class="panel panel-default panel-danger">
