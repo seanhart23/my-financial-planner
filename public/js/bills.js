@@ -86,14 +86,14 @@ $(document).ready(function (event, previousText) {
       var income = document.getElementById("accountBalance").innerHTML;
       var bills = document.getElementById("totalBill").innerHTML;
       var value = +income - +bills;
-      document.getElementById("remaining").innerHTML = value;
+      document.getElementById("remaining").innerHTML = value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 });
 
 $('#one, #two, #three, #full, #balance, #bills, #status').bind('keydown keyup click change', function (event, previousText) {
       var income = document.getElementById("accountBalance").innerHTML;
       var bills = document.getElementById("totalBill").innerHTML;
       var value = +income - +bills;
-      document.getElementById("remaining").innerHTML = value.toFixed(2);
+      document.getElementById("remaining").innerHTML = value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 });
 
 //DELETE ROW FROM DROPDOWN
