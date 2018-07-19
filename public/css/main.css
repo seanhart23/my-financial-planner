@@ -119,6 +119,8 @@ th {
     width: 100%;
     z-index: 2;
     background-color: #2D5386;
+    border: 0px solid #2D5386;
+    box-shadow: 0px 1px 4px #000000;
 }
 
 .negative-header {
@@ -138,6 +140,8 @@ th {
     border-radius: 0px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    border: 0px;
+    box-shadow: 0px 1px 2px #000000;
 }
 
 .panel-default {
@@ -272,6 +276,10 @@ th {
 
 #login {
     margin-top: 100px;
+    border: 1px solid black;
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #monthlyPayment {
