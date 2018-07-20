@@ -149,6 +149,10 @@ th {
     border: 0px;
 }
 
+.payBillbtn {
+    width: 100%;
+}
+
 .positive-header {
     color: green!important;
 }
@@ -201,10 +205,7 @@ th {
 
 #BOAimage {
     width: 95%;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    
+    margin: 20px auto;
 }
 
 #col1 {
@@ -329,5 +330,44 @@ th {
     margin-top: 75px;
 }
 
+/*MOBILE SETTINGS*/
 
+@media screen and (max-width: 640px) {
 
+table {
+    font-size: 10px;
+}
+
+.payBillbtn {
+    font-size: 10px;
+}
+
+#auto {
+    width: 10%;
+}
+
+#billWebsite {
+    width: 15%;
+}
+
+#delete {
+    width: 10%;    
+}
+
+#deleteButton {
+    padding: 0px;
+    margin: 0px;
+}
+
+#login {
+    width: 50%;
+}
+
+#statusdd {
+    display: none;
+}
+#payee {
+    width: 40%;
+}
+     
+}

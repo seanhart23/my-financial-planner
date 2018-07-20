@@ -144,7 +144,7 @@
                                             <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
                                             <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                                             <td id='auto'><%= bill.autoPay %></td>
-                                            <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs">Pay Bill</a></td>
+                                            <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Goto</a></td>
                                             <td id='statusdd'>
                                                  <select class='form-control' id='status' name="status">
                                                     <option value="unpaid">Unpaid</option>
@@ -154,9 +154,9 @@
                                                     <option value="remove">Remove</option>
                                                 </select>
                                             </td>
-                                            <td><span id='delete'><form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
+                                            <td id='delete'><form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
                                                <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                                            </form></span>
+                                            </form>
                                             </td>
                                         <% } %>
                                     <% }) %>
