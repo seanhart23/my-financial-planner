@@ -1,5 +1,6 @@
 <% include ./partials/header %>
 
+<div id='paMobileHeader'>
 <div class='container'>
         <h1 id='welcome'>Paycheck Allocator</h1>
         <div id='description'>The Paycheck Allocator is used to track monthly expenses and how much money you will have left over after each paycheck.
@@ -23,6 +24,7 @@
 </div>
 <br>
 
+</div>
 <div class='container'>
     <div class='row'>
         <div class='col-lg-3 col-md-12'>
@@ -115,7 +117,7 @@
                         </table>
                     </div>
                 </div>
-                <div id='BOA'><a href='http://www.bankofamerica.com' target="_blank" class="secondary-link"><img src="https://static.seekingalpha.com/uploads/2017/5/27/31557165-14959228416802626_origin.png" id="BOAimage"></a></div> 
+                <!--<div id='BOA'><a href='http://www.bankofamerica.com' target="_blank" class="secondary-link"><img src="https://static.seekingalpha.com/uploads/2017/5/27/31557165-14959228416802626_origin.png" id="BOAimage"></a></div> -->
             </div>
             
             <div class='col-lg-9 col-md-12'>
@@ -144,7 +146,7 @@
                                             <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
                                             <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                                             <td id='auto'><%= bill.autoPay %></td>
-                                            <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Goto</a></td>
+                                            <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Go</a></td>
                                             <td id='statusdd'>
                                                  <select class='form-control' id='status' name="status">
                                                     <option value="unpaid">Unpaid</option>

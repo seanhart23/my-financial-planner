@@ -1,13 +1,17 @@
 <% include ./partials/header %>
 
+<div id='paMobileHeader'>
 <div class='container'>
-    <div class='col-lg-12 col-md-12'>
         <h1 id='welcome'>Budget</h1>
+        <div id='description'>The Budget Tool is used to track your montlhy income and expense.  
+        Enter all of you income and expense to ensure you allocate properly.</div>
     <p></p>
+</div>
 </div>
 
 <div class='container'>
-    <div class='container col-lg-8 col-md-12'>
+    <div class='row'>
+    <div class='col-lg-8 col-md-12'>
 <!--INCOME TABLE -->
         <h3>Income</h3>
         <hr>
@@ -17,7 +21,7 @@
                 <table class='table' id='income'>
                     <thead>
                         <tr>
-                            <th>Item Label</th>
+                            <th class='itemLabelIncome'>Name</th>
                             <th class='dollarAmount'>Planned</th>
                             <th class='dollarAmount'>Actual</th>
                             <th class='dollarAmount'>Variance</th>
@@ -52,7 +56,7 @@
                 <table class="table" id='FixedExpense'>
                     <thead>
                             <th onclick='sortTable(0)'>Due Date</th>
-                            <th>Item Label</th>
+                            <th>Name</th>
                             <th class='dollarAmount'>Planned</th>
                             <th class='dollarAmount'>Actual</th>
                             <th class='dollarAmount'>Variance</th>
@@ -85,7 +89,7 @@
                 <table class="table" id='VariableExpense'>
                     <thead>
                             <th onclick='sortTable(0)'>Due Date</th>
-                            <th>Item Label</th>
+                            <th>Name</th>
                             <th class='dollarAmount'>Planned</th>
                             <th class='dollarAmount'>Actual</th>
                             <th class='dollarAmount'>Variance</th>
@@ -119,7 +123,7 @@
                 <table class="table" id='Debt'>
                     <thead>
                             <th onclick='sortTable(0)'>Due Date</th>
-                            <th>Item Label</th>
+                            <th>Name</th>
                             <th class='dollarAmount'>Planned</th>
                             <th class='dollarAmount'>Actual</th>
                             <th class='dollarAmount'>Variance</th>
@@ -152,7 +156,7 @@
                 <table class="table" id='OtherExpense'>
                     <thead>
                             <th onclick='sortTable(0)'>Due Date</th>
-                            <th>Item Label</th>
+                            <th>Name</th>
                             <th class='dollarAmount'>Planned</th>
                             <th class='dollarAmount'>Actual</th>
                             <th class='dollarAmount'>Variance</th>
@@ -181,7 +185,7 @@
             </div>
     </div>
 <!-- TOTALS TABLE -->
-    <div class='container col-lg-4 col-xs-12'>
+    <div class='col-lg-4 col-xs-12'>
         <h3>Totals</h3>
         <hr>
         <div class="panel panel-default panel-default">

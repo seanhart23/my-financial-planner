@@ -29,11 +29,16 @@ table {
 td {
     width: 11.5%;
     text-transform: uppercase;
+    padding: 0px;
 }
 
 tr {
     border-right: none;
     border-left: none;
+}
+
+tr:nth-child(even) {
+    background-color: AliceBlue;
 }
 
 th {
@@ -42,6 +47,7 @@ th {
 
 .actions{
     text-align: center;
+    padding: 500px;
 }
 
 .btn-xs {
@@ -58,6 +64,9 @@ th {
     font-size: 12px;
 }
 
+.container {
+    padding: 0px;
+}
 .dollarAmount {
   text-align: right;
 }
@@ -87,11 +96,17 @@ th {
 }
 
 .itemLabel {
-    width: 30%;    
+    width: 30%;   
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .itemLabelIncome {
-    width: 41.5%;    
+    width: 33%; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .leftButton {
@@ -121,6 +136,10 @@ th {
     background-color: #2D5386;
     border: 0px solid #2D5386;
     box-shadow: 0px 1px 4px #000000;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #2D5386;
 }
 
 .negative-header {
@@ -162,6 +181,11 @@ th {
     color: gray;
     font-weight: 500;
     padding-left: 2px;
+}
+
+.table>tbody>tr>td.actions {
+    padding: 0px;
+    vertical-align: middle;
 }
 
 #addBill {
@@ -291,6 +315,9 @@ th {
 #payee {
     width: 28%;
     vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #status {
@@ -334,8 +361,34 @@ th {
 
 @media screen and (max-width: 640px) {
 
+h3 {
+    padding: 5px 0px;
+    background-color: #202031;
+    color: white;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: none;
+}
+
+hr {
+    display: none;
+}
 table {
     font-size: 10px;
+}
+
+th {
+    font-size: 10px;
+}
+
+.container {
+    padding: 0px;
+}
+
+.panel-heading {
+    border-radius: 0px;
+    background-color: #759094!important;
 }
 
 .payBillbtn {
@@ -366,8 +419,26 @@ table {
 #statusdd {
     display: none;
 }
-#payee {
-    width: 40%;
+
+#paMobileHeader {
+    padding: 0px 10px;
 }
-     
+
+#payee {
+    width: 25%;
+}
+
+#website {
+    display: none;
+}
+
+#type {
+    display: none;
+}
+
+#welcome {
+    text-align: center;
+    padding-bottom: 0px;
+    margin-top: 60px;
+}
 }
