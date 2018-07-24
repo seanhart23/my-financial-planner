@@ -2,7 +2,7 @@
 
 <div id='paMobileHeader'>
 <div class='container'>
-        <h1 id='welcome'>Budget</h1>
+        <h1 id='welcome'>Budget Tool</h1>
         <div id='description'>The Budget Tool is used to track your montlhy income and expense.  
         Enter all of you income and expense to ensure you allocate properly.</div>
     <p></p>
@@ -11,7 +11,42 @@
 
 <div class='container'>
     <div class='row'>
-    <div class='col-lg-8 col-md-12'>
+<div id='budgetMobileTotal'>
+        <div class='col-lg-4 col-xs-12 order-1'>
+        <h3>Totals</h3>
+        <hr>
+        <div class="panel panel-default panel-default">
+            <div class="panel-heading"><strong>Totals</strong></div>
+                <table class='table'>
+                    <thead>
+                        <th></th>
+                        <th class='dollarAmount'>Planned</th>
+                        <th class='dollarAmount'>Actual</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Income:</td>
+                            <td class='dollarAmount'><span id='totalPlannedIncome'>0.00</span></td>
+                            <td class='dollarAmount'><span id='totalActualIncome'>0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Expense:</td>
+                            <td class='dollarAmount'><span id='totalPlannedExpense'>0.00</span></td>
+                            <td class='dollarAmount'><span id='totalActualExpense'>0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td>Variance:</td>
+                            <td class='dollarAmount'><span id='totalPlannedVariance'>0.00</span></td>
+                            <td class='dollarAmount'><span id='totalActualVariance'>0.00</span></td>
+                        </tr>
+                    </tbody>
+                </table>  
+        </div>
+    </div>
+</div>
+
+    
+    <div class='col-lg-8 col-md-12 order-2'>
 <!--INCOME TABLE -->
         <h3>Income</h3>
         <hr>
@@ -185,7 +220,7 @@
             </div>
     </div>
 <!-- TOTALS TABLE -->
-    <div class='col-lg-4 col-xs-12'>
+    <div class='col-lg-4 col-xs-12 order-1' id='budgetTotals'>
         <h3>Totals</h3>
         <hr>
         <div class="panel panel-default panel-default">

@@ -7,6 +7,7 @@ var methodOverride = require('method-override'),
     request        = require("express"),
     router         = express.Router(),
     User           = require('./models/user'),
+    sb             = require('./models/sb'),
     budgetItem     = require('./models/budgetItem'),
     middleware     = require('./middleware'),
     app            = express();
@@ -46,9 +47,11 @@ var dashboardRoutes    = require('./routes/dashboard');
 var indexRoutes        = require('./routes/index');
 var budgetItemRoutes   = require('./routes/budgetItem');
 var debtRoutes         = require('./routes/debt');
+var sbRoutes           = require('./routes/sb');
 
 //REQUIRING ROUTE FILES USING EXPRESS ROUTER
 app.use('/budgetItem', budgetItemRoutes);
+app.use('/sb', sbRoutes);
 app.use('/bills', billRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/debt', debtRoutes);

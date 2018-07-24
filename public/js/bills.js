@@ -100,12 +100,8 @@ $('#one, #two, #three, #full, #balance, #bills, #status').bind('keydown keyup cl
 
 function deleteRow(btndel) {
     if (typeof(btndel) == "object") {
-        if(confirm('Are you sure you want to delete this row?')){
           $(btndel).closest("tr").remove();
           billCalculate();
-        } else {
-          return false;
-        }
     } else {
         return false;
     }
