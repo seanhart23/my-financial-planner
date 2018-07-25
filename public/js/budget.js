@@ -72,3 +72,13 @@ sortTable(0, 'FixedExpense');
 sortTable(0, 'VariableExpense');
 sortTable(0, 'Debt');
 sortTable(0, 'OtherExpense');
+
+var x = document.getElementById("income").rows.length;
+
+function emptyTable(){
+  if (x < 3) {
+    document.getElementById("emptyMessageIncome").innerHTML = 'There is currently no data entered.';
+  } 
+}
+
+emptyTable();
