@@ -74,11 +74,25 @@ sortTable(0, 'Debt');
 sortTable(0, 'OtherExpense');
 
 var x = document.getElementById("income").rows.length;
+var y = document.getElementById("FixedExpense").rows.length;
+var z = document.getElementById("VariableExpense").rows.length;
+var w = document.getElementById("Debt").rows.length;
+var t = document.getElementById("OtherExpense").rows.length;
 
-function emptyTable(){
-  if (x < 3) {
-    document.getElementById("emptyMessageIncome").innerHTML = 'There is currently no data entered.';
+function emptyTable5(a, n){
+  if (a < 3) {
+    document.getElementById(n).innerHTML = "<td colspan='5' class='emptyMessage'>There is currently no data entered.</td>";
   } 
 }
 
-emptyTable();
+function emptyTable6(a, n){
+  if (a < 3) {
+    document.getElementById(n).innerHTML = "<td colspan='6' class='emptyMessage'>There is currently no data entered.</td>";
+  } 
+}
+
+emptyTable5(x, 'emptyMessageIncome');
+emptyTable6(y, 'emptyMessageFixedExpense');
+emptyTable6(z, 'emptyMessageVariableExpense');
+emptyTable6(w, 'emptyMessageDebt');
+emptyTable6(t, 'emptyMessageOtherExpense');

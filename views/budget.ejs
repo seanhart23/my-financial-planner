@@ -9,6 +9,7 @@
 </div>
 </div>
 
+<div id='test'></div>
 <div class='container'>
     <div class='row'>
 <div id='budgetMobileTotal'>
@@ -64,7 +65,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td colspan='5' id ='emptyMessageIncome'></td></tr>
                         <% budgetItem.forEach(function(budgetItem){ %>
                             <% if(budgetItem.type === 'Income' && currentUser.username === budgetItem.author.username){ %>
                         <tr>
@@ -80,6 +80,7 @@
                             <% } %>
                         <% }) %>
                         </tr>
+                        <tr id ='emptyMessageIncome'></tr>
                     </tbody>
                 </table>
         </div>
@@ -99,7 +100,6 @@
                             <th class='actions'>Delete</th>
                     </thead>
                     <tbody>               
-                    <tr><td colspan='5' id ='emptyMessageFixedExpense'></td></tr>
                         <% budgetItem.forEach(function(budgetItem){ %>
                             <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Fixed' && currentUser.username === budgetItem.author.username){ %>
                         <tr>
@@ -116,6 +116,7 @@
                             <% } %>
                         <% }) %>
                         </tr>
+                        <tr id='emptyMessageFixedExpense'></tr>
                     </tbody>
                 </table>
             </div>
@@ -133,7 +134,6 @@
                             <th class='actions'>Delete</th>
                     </thead>
                     <tbody>                        
-                    <tr><td colspan='5' id ='emptyMessageFixedExpense'></td></tr>
                         <% budgetItem.forEach(function(budgetItem){ %>
                             <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Variable'  && currentUser.username === budgetItem.author.username){ %>
                         <tr>
@@ -151,6 +151,7 @@
                             <% } %>
                         <% }) %>
                         </tr>
+                        <tr id ='emptyMessageVariableExpense'></tr>
                     </tbody>
                 </table>
             </div>
@@ -168,7 +169,6 @@
                             <th class='actions'>Delete</th>
                     </thead>
                     <tbody>
-                        <tr><td colspan='5' id ='emptyMessageDebt'></td></tr>
                         <% budgetItem.forEach(function(budgetItem){ %>
                             <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Debt' && currentUser.username === budgetItem.author.username){ %>
                         <tr>
@@ -185,6 +185,7 @@
                             <% } %>
                         <% }) %>
                         </tr>
+                        <tr id ='emptyMessageDebt'></tr>
                     </tbody>
                 </table>
             </div>
@@ -219,6 +220,7 @@
                             <% } %>
                         <% }) %>
                         </tr>
+                        <tr id ='emptyMessageOtherExpense'></tr>
                     </tbody>
                 </table>
             </div>
