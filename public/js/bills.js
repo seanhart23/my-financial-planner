@@ -16,6 +16,17 @@ function billCalculate() {
 
 billCalculate();
 
+//COUNT OF TABLE ROWS
+
+function UpdateCount() {
+    var t = $('#bills').find('tbody tr #payee').length;
+    if (t < 1) {
+    document.getElementById('emptyMessageBills').innerHTML = "<td colspan='7' class='emptyMessage'>There is currently no data entered.</td>";
+  } 
+}
+
+UpdateCount()
+
 //CALCULATE BILLS FOR EACH PART OF THE MONTH BASED ON BUTTON GROUP
 
 function first() {
@@ -155,4 +166,3 @@ function sortTable(n, name) {
 
 sortTable(0, 'bills');
 
-//EMPTY TABLE MESSAGE
