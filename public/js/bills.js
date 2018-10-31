@@ -165,4 +165,3 @@ function sortTable(n, name) {
 }
 
 sortTable(0, 'bills');
-

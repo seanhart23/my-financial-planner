@@ -31,6 +31,9 @@ document.getElementById('totalActualExpense').innerHTML = sumActualExpense.toLoc
 document.getElementById('totalPlannedVariance').innerHTML = (sumPlannedIncome - sumPlannedExpense).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 document.getElementById('totalActualVariance').innerHTML = (sumActualIncome - sumActualExpense).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
+
+//SORT TABLE
+
 function sortTable(n, name) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById(name);
@@ -68,31 +71,18 @@ function sortTable(n, name) {
   }
 }
 
-sortTable(0, 'FixedExpense');
-sortTable(0, 'VariableExpense');
-sortTable(0, 'Debt');
-sortTable(0, 'OtherExpense');
+//DISPLAY EMPTY TABLE MESSAGE
 
-var x = document.getElementById("income").rows.length;
-var y = document.getElementById("FixedExpense").rows.length;
-var z = document.getElementById("VariableExpense").rows.length;
-var w = document.getElementById("Debt").rows.length;
-var t = document.getElementById("OtherExpense").rows.length;
-
-function emptyTable5(a, n){
-  if (a < 3) {
-    document.getElementById(n).innerHTML = "<td colspan='5' class='emptyMessage'>There is currently no data entered.</td>";
+function UpdateCount(tableID, message, colCount) {
+    var rowCount = $('#' + tableID + ' tr').length;
+    if (rowCount < 3) {
+    document.getElementById(message).innerHTML = "<td colspan='" + colCount +  "' class='emptyMessage'>There is currently no data entered.</td>";
   } 
 }
 
-function emptyTable6(a, n){
-  if (a < 3) {
-    document.getElementById(n).innerHTML = "<td colspan='6' class='emptyMessage'>There is currently no data entered.</td>";
-  } 
-}
+UpdateCount('income', 'emptyMessageIncome', 5);
+UpdateCount('FixedExpense', 'emptyMessageFixedExpense', 6);
+UpdateCount('VariableExpense', 'emptyMessageVariableExpense', 6);
+UpdateCount('Debt', 'emptyMessageDebt', 6);
+UpdateCount('OtherExpense', 'emptyMessageOtherExpense', 6);
 
-emptyTable5(x, 'emptyMessageIncome');
-emptyTable6(y, 'emptyMessageFixedExpense');
-emptyTable6(z, 'emptyMessageVariableExpense');
-emptyTable6(w, 'emptyMessageDebt');
-emptyTable6(t, 'emptyMessageOtherExpense');
