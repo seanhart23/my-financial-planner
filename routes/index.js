@@ -4,7 +4,7 @@ var passport = require('passport');
 var User = require('../models/user');
 
 router.get('/', function(req, res){
-    res.render('landing');
+    res.render('login');
 });
 
 router.get('/register', function(req, res){
@@ -12,7 +12,7 @@ router.get('/register', function(req, res){
 });
 
 router.post('/register', function(req, res){
-    var newUser = new User({username: req.body.username});
+    var newUser = new User({username: req.body.username, name:req.body.name});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             console.log(err);
@@ -37,7 +37,7 @@ router.post('/login', passport.authenticate('local',
 
 router.get('/logout', function(req, res){
     req.logout();
-    res.redirect('/');
+    res.redirect('/login');
 });
 
 module.exports = router;

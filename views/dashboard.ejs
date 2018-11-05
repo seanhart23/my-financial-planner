@@ -1,10 +1,19 @@
 <% include ./partials/header %>
 
+<style>
+    @media screen and (max-width: 640px) {
+        body {
+        overflow-x: hidden;
+        }
+    }
+</style>
+
 <div id='paMobileHeader'>
 <div class='container'>
-        <h1 id='welcome'>Paycheck Allocator</h1>
-        <div id='description'>The Paycheck Allocator is used to track monthly expenses and how much money you will have left over after each paycheck.
-        Add all of your expenses to the list and then enter the paycheck amount.</div>
+        <h3 id='welcome'></h3>
+        <h1>Monthly Expense Tracker</h1>
+        <div id='description'>The Monthly Expense Tracker is used to track monthly expenses and how much money you will have left over.
+        Add all of your expenses to the list and then enter the money you have to pay them.</div>
     <p></p>
 </div>
 
@@ -12,9 +21,12 @@
 <div class='container'>
     <div class='row'>
         <div class='col-lg-3 col-md-12'>
-            <form>
-                <h4>Paycheck Amount:</h4><input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>
-            </form>
+            <span>
+                <form>
+                    <span><h4>Available Balance:</h4><input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>
+                    <button id='save' class='btn btn-primary btn-sm'>Save</button></span>
+                </form>
+            </span>
         </div>
         <div class="btn-group pull-right" role="group" id='group' aria-label="...">
             <button type="button" id='one' class="btn btn-primary btn-sm">1st Half</button>
@@ -28,26 +40,22 @@
 </div>
 <div class='container'>
     <div class='row'>
-        <div class='col-lg-3 col-md-12'>
+        <div class='col-lg-3 col-md-12' id='mobile-card'>
             <div class='chiclet'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Snapshot</strong></div>
                         <table class="table">
                             <tr>
-                                <th>Type</th>
-                                <th>Total</th>
-                            </tr>
-                            <tr>
                                 <td>Balance</td>
-                                <td>$<span id='accountBalance'>0.00</span></td>
+                                <td class='td-right'>$<span id='accountBalance'>0.00</span></td>
                             </tr>
                             <tr>
                                 <td>Bills</td>
-                                <td>$<span id="totalBill">0.00</span></td>
+                                <td class='td-right'>$<span id="totalBill">0.00</span></td>
                             </tr>                          
                             <tr>
                                 <td>Remaining</td>
-                                <td><span id="remaining">0.00</span></td>
+                                <td class='td-right'><span id="remaining">0.00</span></td>
                             </tr>
                         </table>
                     </div>
@@ -57,11 +65,6 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Totals By Type</strong></div>
                         <table class="table">
-                            <tr>
-                                <th>Type</th>
-                                <th>Total</th>
-                            </tr>
-                            <tr>
                                 <% var totalCredit = 0 %>
                                 <% bills.forEach(function(bill){ %>
                                     <tr>
@@ -69,8 +72,8 @@
                                         <% totalCredit = totalCredit + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td>Credit Card</td>
-                                <td><span id='totalCredit'><%= totalCredit.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td><a href="#" id='credit'>Credit Card</a></td>
+                                <td class='td-right'><span id='totalCredit'><%= totalCredit.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                             </tr>
                             <tr>
                                 <% var totalSL = 0 %>
@@ -80,8 +83,8 @@
                                         <% totalSL = totalSL + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td>Student Loan</td>
-                                <td><span id='totalSL'><%= totalSL.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td><a href="#" id='studentLoan'>Student Loan</a></td>
+                                <td class='td-right'><span id='totalSL'><%= totalSL.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                             </tr>
                             <tr>
                                 <% var totalLoan = 0 %>
@@ -91,8 +94,8 @@
                                         <% totalLoan = totalLoan + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td>Loan</td>
-                                <td><span id='totalLoan'><%= totalLoan.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td><a href="#" id='loan'>Loan</a></td>
+                                <td class='td-right'><span id='totalLoan'><%= totalLoan.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                             </tr>
                             <tr>
                                 <% var totalUtility = 0 %>
@@ -102,8 +105,8 @@
                                         <% totalUtility = totalUtility + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td>Utility</td>
-                                <td><span id='totalUtility'><%= totalUtility.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td><a href="#" id='utility'>Utility</a></td>
+                                <td class='td-right'><span id='totalUtility'><%= totalUtility.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                             </tr>                            <tr>
                                 <% var totalOther = 0 %>
                                 <% bills.forEach(function(bill){ %>
@@ -112,8 +115,8 @@
                                         <% totalOther = totalOther + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td>Other</td>
-                                <td><span id='totalOther'><%= totalOther.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td><a href="#" id='other'>Other</a></td>
+                                <td class='td-right'><span id='totalOther'><%= totalOther.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                             </tr>
                         </table>
                     </div>
@@ -121,10 +124,10 @@
                 <!--<div id='BOA'><a href='http://www.bankofamerica.com' target="_blank" class="secondary-link"><img src="https://static.seekingalpha.com/uploads/2017/5/27/31557165-14959228416802626_origin.png" id="BOAimage"></a></div> -->
             </div>
             
-            <div class='col-lg-9 col-md-12'>
-                <div class='chiclet'>
+            <div class='col-lg-9 col-md-12' id='mobile-card'>
+                <div class='chiclet' id='main-table'>
                     <div class="panel panel-default panel-danger">
-                        <div class="panel-heading"><strong>Expenses</strong>
+                        <div class="panel-heading"><strong>Monthly Expenses</strong>
                         <a href="/bills/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
                         </div>
                             <table class="table" id="bills">
@@ -132,6 +135,7 @@
                                     <tr>
                                         <th onclick='sortTable(0)' id='due'>Due Date</th>
                                         <th id='payee'>Payee</th>
+                                        <th id='type'>Type</th>
                                         <th id='amount'>Amount Due</th>
                                         <th id='auto'>Auto Pay</th>
                                         <th id='billWebsite'>Website</th>
@@ -145,6 +149,7 @@
                                         <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
                                             <td id='due'><%= bill.dueDate %></td>
                                             <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
+                                            <td id='type'><%= bill.type %></td>
                                             <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                                             <td id='auto'><%= bill.autoPay %></td>
                                             <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Go</a></td>
@@ -175,6 +180,7 @@
     </div>
 </div>    
 
+<% include ./partials/footer %>
 
 <!--NEW MODAL-->
 
@@ -195,6 +201,5 @@
 </div>
 
 <script type="text/javascript" src='/js/bills.js'></script>
-<% include ./partials/footer %>
 
 

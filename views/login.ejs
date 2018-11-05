@@ -1,24 +1,51 @@
 <% include ./partials/header %>
 
+<style>
+    body {
+    background-image: url("/images/Landing.jpg");
+    background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+    overflow: auto;
+    }
+    
+    @media screen and (max-width: 640px) {
+        body {
+        background-image: url("/images/Landing.jpg");
+        background-size: cover;
+	    background-position: center;
+	    background-repeat: no-repeat;
+        overflow: hidden;
+        }
+    }
+</style>
 <div class="container">
-    <div class="row index-form" id='login'>
-        <h1 style="text-align: center">Login</h1>
-        <div style="width: 80%; margin: 25px auto;">
+    <div class="row">
+        <div class='col-lg-3 index-form' id='login'>
+        <div id='login-input'>
             <form action='/login' method='POST'>
+                <h3>Login</h3>
                 <div class="form-group">
                     <input class='form-control' type='text' name='username' placeholder='username'>
                 </div>
                 <div class='form-group'>
                     <input class='form-control' type='password' name='password' placeholder='password'>
                 </div>        
-                <div class='form-group'>
+                <div class='form-group' id='login-button'>
                     <button class='form-control btn-primary'>Login</button>
                 </div>
             </form>
+            <a href='/register'>Register</a>
+            </div>
+        </div>
+        <div class='col-lg-1'></div>
+        <div class='col-lg-8' id='main-banner'>
+            <h1>Welcome to My Financial Planner</h1>
+            <h4>This web application is a tool developed to help you with your day to day finances.  This is the beta version
+            so if you have any feedback or would like to see additional functionality, please send me a message at Seanhart23@gmail.com.</h4>
         </div>
     </div>
 </div>
 
 <script type="text/javascript" src='/js/budget.js'></script>
 
-<% include ./partials/footer %>

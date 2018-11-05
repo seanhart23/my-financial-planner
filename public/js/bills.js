@@ -2,6 +2,20 @@ var total = 0;
 var debttotal = 0;
 var $;
 
+//BROWSER CACHE
+function savePaycheckAmount(){
+  var savedAmount = document.getElementById("accountBalance").innerHTML;
+  localStorage.setItem("lastname", savedAmount);
+}
+
+document.getElementById("save").addEventListener("click", savePaycheckAmount, false);
+
+function bankBalance() {
+  document.getElementById("accountBalance").innerHTML = localStorage.getItem("lastname");
+}
+
+bankBalance();
+
 //CALCULATE BILL TOTAL
 
 function billCalculate() {
@@ -80,9 +94,102 @@ function full() {
   billCalculate();
 }
 
+function credit() {
+  var table, tr, td, i;
+  table = document.getElementById("bills");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML === "Credit Card") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  billCalculate();
+}
+
+
+function studentLoan() {
+  var table, tr, td, i;
+  table = document.getElementById("bills");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML === "Student Loan") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  billCalculate();
+}
+
+
+function loan() {
+  var table, tr, td, i;
+  table = document.getElementById("bills");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML === "Loan") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  billCalculate();
+}
+
+
+function utility() {
+  var table, tr, td, i;
+  table = document.getElementById("bills");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML === "Utility") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  billCalculate();
+}
+
+function other() {
+  var table, tr, td, i;
+  table = document.getElementById("bills");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML === "Other") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  billCalculate();
+}
+
 document.getElementById("one").addEventListener("click", first, false);
 document.getElementById("two").addEventListener("click", second, false);
 document.getElementById("full").addEventListener("click", full, false);
+document.getElementById("credit").addEventListener("click", credit, false);
+document.getElementById("studentLoan").addEventListener("click", studentLoan, false);
+document.getElementById("loan").addEventListener("click", loan, false);
+document.getElementById("utility").addEventListener("click", utility, false);
+document.getElementById("other").addEventListener("click", other, false);
 // document.getElementById("billCalculate").addEventListener("click", billCalculate, false);
 
 //UPDATE OVERALL TABLE REALTIME AS BALANCE IS ENTERED
@@ -165,3 +272,5 @@ function sortTable(n, name) {
 }
 
 sortTable(0, 'bills');
+    
+

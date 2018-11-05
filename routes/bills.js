@@ -23,7 +23,8 @@ router.post('/', middleware.isLoggedIn, function(req, res){
     var authUser = req.body.authUser;
     var author = {
         id: req.user._id,
-        username: req.user.username
+        username: req.user.username,
+        name: req.user.name
     };
     var newBill = {payee: payee, type: type, amountDue: amountDue, dueDate: dueDate, autoPay: autoPay, website: website, author: author, authUser: authUser};
     bill.create(newBill, function(err, newlyCreated){

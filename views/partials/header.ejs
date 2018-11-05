@@ -27,15 +27,12 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <!--<li id='output'></li>-->
         <% if(!currentUser){ %>
-        <li><a href="/register" id='link'>Sign Up</a></li>
-        <li><a href="/login" id='link'>Login</a></li>
         <% } else { %>
-        <!--<li><a href='#' id='signedIn'>Signed in as <%= currentUser.username %></a></li>-->
-        <li><a href="/budget" id='link'>Budget</a></li>
-        <li><a href="/dashboard" id='link'>Paycheck Allocator</a></li>
-        <li><a href="/debt" id='link'>Debt Tracker</a></li>
+        <!--<li><a href="/budget" id='link'>Budget</a></li>-->
+        <li><a href="#" id='link' style="margin-right: 100px">Welcome <%= currentUser.name %>!</a></li>
+        <li><a href="/dashboard" id='link'>Monthly Expense Tracker</a></li>
+        <!--<li><a href="/debt" id='link'>Debt Tracker</a></li>-->
         <li><a href="/logout" id='link'>Logout</a></li>
         <% } %>
       </ul>
