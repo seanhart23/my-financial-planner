@@ -66,7 +66,7 @@
 <div class='chiclet'>
     <div class="panel panel-default panel-danger">
         <div class="panel-heading"><strong>Debts</strong>
-            <a href="/debt/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton'><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+            <a href="/debt/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addDebt"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
         </div>
             <table class="table" id="debts">
                 <thead>
@@ -85,7 +85,7 @@
                     <tr>
                         <% if(currentUser.username === debt.author.username){ %>
                             <td id='payee'>
-                                <a href="/debt/<%= debt._id %>/edit"><%= debt.itemLabel %></a></span></td>
+                                <a href="/debt/<%= debt._id %>/edit" data-toggle="modal" data-target="#editDebt"><%= debt.itemLabel %></a></span></td>
                             <td id='type'><%= debt.type %></td>
                             <td id='amount'><span class='b'><%= debt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
                             <td id='interestRate'><%= debt.interestRate.toFixed(3)%>%</td>
@@ -106,6 +106,23 @@
 </div>
 </div>
 
+<!--NEW MODAL-->
+
+<div class="modal fade" id="addDebt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
+</div>
+
+<!--EDIT MODAL-->
+<div class="modal fade" id="editDebt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
 
 <script type="text/javascript" src='/js/debt.js'></script>
 <% include ./partials/footer %>
