@@ -1,5 +1,13 @@
 <% include ./partials/header %>
 
+<style>
+    @media screen and (max-width: 640px) {
+        body {
+        overflow-x: hidden;
+        }
+    }
+</style>
+
 <div id='paMobileHeader'>
 <div class='container'>
         <h1 id='welcome'>Debt Tracker</h1>
@@ -8,9 +16,24 @@
     <p></p>
     </div>
 </div>
+
 <div class='container'>
     <div class='row'>
-<div class='col-lg-3 col-md-12'>
+        <div class='col-lg-3 col-md-12'>
+            <span>
+                <form>
+                    <span><h4>Starting Debt Balance:</h4><input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>
+                    <button id='save' class='btn btn-primary btn-sm'>Save</button></span>
+                </form>
+            </span>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class='container'>
+    <div class='row'>
+<div class='col-lg-3 col-md-12' id='mobile-card'>
     <div class='chiclet'>
         <div class="panel panel-default panel-default">
             <div class="panel-heading"><strong>Debt Snapshot</strong></div>
@@ -19,27 +42,27 @@
                         <th id='col1'>Type</th>
                         <th>Total</th>
                     </tr>
-                    <!--<tr>-->
-                    <!--    <td>Starting Balance</td>-->
-                    <!--    <td id='startingBalance'>$121,012.54</td>-->
-                    <!--</tr>-->
+                    <tr>
+                        <td>Starting Balance</td>
+                        <td class='td-right'>$<span id='startingBalance'>0.00</span></td>
+                    </tr>
                     <tr>
                         <td>Total Debt</td>
-                        <td id='totalDebt'>0.00</td>
+                        <td class='td-right'>$<span id="totalDebt">0.00</span></td>
                     </tr>  
                     <tr>
                         <td>Paid Off</td>
-                        <td id='paidOff'>0.00</td>
+                        <td class='td-right'><span id="paidOff">0.00</span></td>
                     </tr>
                     <tr>
                         <td> % Paid Off</td>
-                        <td><span id='%paidOff'>00</span>%</td>
+                        <td class='td-right'><span id="paidOff">0.00</span>%</td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
-<div class='col-lg-9 col-md-12'>
+<div class='col-lg-9 col-md-12' id='mobile-card'>
 <div class='chiclet'>
     <div class="panel panel-default panel-danger">
         <div class="panel-heading"><strong>Debts</strong>

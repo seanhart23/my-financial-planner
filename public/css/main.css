@@ -5,12 +5,14 @@ html,body
     margin: 0px;
     padding: 0px;
     overflow-x: auto; 
+
 }
 
 body {
     font-size: 13px;
     color: #202031;
     width: 100%;
+    position: relative;
 }
 
 h1 {
@@ -64,11 +66,13 @@ th {
 
 .btn-xs {
     width: 100px;
-    background-color: #7D98A1;
+    background-color: #7EA186;
+    border: none;
 }
 
 .btn-sm {
-    background-color: #7D98A1;
+    background-color: #7EA186;
+    border: none;
 }
 
 .chiclet {
@@ -144,7 +148,7 @@ th {
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
     color: #EEF1EF;
-    background-color: #2D5386;
+    background-color: #2E392B;
 }
 
 .navbar {
@@ -152,7 +156,7 @@ th {
     position: fixed;
     width: 100%;
     z-index: 2;
-    background-color: #2D5386;
+    background-color: #2E392B;
     border: none;
     box-shadow: 0px 1px 4px #000000;
 }
@@ -173,7 +177,7 @@ th {
 .panel-heading {
     font-size: 16px;
     text-align: left;
-    background-color: #2D5386!important;
+    background-color: #2E392B!important;
     color: White!important;
     border-radius: 0px;
     border: 0px;
@@ -281,8 +285,9 @@ th {
 
 #footer {
     height: 100px;
-    background-color: #2D5386;
+    background-color: #2E392B;
     bottom: 0;
+    margin-top: 150px;
 }
 
 #goButton {
@@ -334,6 +339,7 @@ th {
     padding-bottom: 10px;
     background-color: white;
     box-shadow: 1px 1px 1px #000000;
+    height: auto;
 }
 
 #login-button {
@@ -344,13 +350,14 @@ th {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
 }
 
 #main-banner {
-    background-color: black;
+    background-color: #2E392B;
     height: 300px;
     margin-top: 100px;
-    opacity: .6;
+    opacity: .8;
     color: white;
     box-shadow: 1px 1px 1px #000000;
     padding: 25px;
@@ -432,6 +439,10 @@ th {
 
 @media screen and (max-width: 640px) {
 
+body {
+        overflow-y: scroll;
+   -webkit-overflow-scrolling: touch;
+}
 /*h3 {*/
 /*    padding: 5px 0px;*/
 /*    background-color: #202031;*/

@@ -67,7 +67,6 @@
                         <table class="table">
                                 <% var totalCredit = 0 %>
                                 <% bills.forEach(function(bill){ %>
-                                    <tr>
                                         <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Credit Card"){ %>
                                         <% totalCredit = totalCredit + bill.amountDue %>
                                         <% } %>
@@ -75,7 +74,6 @@
                                 <td><a href="#" id='credit'>Credit Card</a></td>
                                 <td class='td-right'><span id='totalCredit'><%= totalCredit.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
                             </tr>
-                            <tr>
                                 <% var totalSL = 0 %>
                                 <% bills.forEach(function(bill){ %>
                                     <tr>

@@ -5,13 +5,13 @@ var $;
 //BROWSER CACHE
 function savePaycheckAmount(){
   var savedAmount = document.getElementById("accountBalance").innerHTML;
-  localStorage.setItem("lastname", savedAmount);
+  localStorage.setItem("accountBalance", savedAmount);
 }
 
 document.getElementById("save").addEventListener("click", savePaycheckAmount, false);
 
 function bankBalance() {
-  document.getElementById("accountBalance").innerHTML = localStorage.getItem("lastname");
+  document.getElementById("accountBalance").innerHTML = localStorage.getItem("accountBalance");
 }
 
 bankBalance();

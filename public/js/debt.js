@@ -1,6 +1,20 @@
 var debttotal = 0;
 var $;
 
+//BROWSER CACHE
+function saveTotalDebt(){
+  var debtAmount = document.getElementById("startingBalance").innerHTML;
+  localStorage.setItem("startingBalance", debtAmount);
+}
+
+document.getElementById("save").addEventListener("click", saveTotalDebt, false);
+
+function debtBalance() {
+  document.getElementById("startingBalance").innerHTML = localStorage.getItem("startingBalance");
+}
+
+debtBalance();
+
 //CALCULATE BILL TOTAL
 
 function debtCalculate() {
@@ -10,7 +24,7 @@ function debtCalculate() {
         debttotal += parseFloat($(this).text().slice(1).replace(/,/g,''));
     });
     $("#totalDebt").val(debttotal);
-    document.getElementById('totalDebt').innerHTML = debttotal.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    document.getElementById('totalDebt').innerHTML = debttotal;
 }
 
 debtCalculate();
@@ -29,9 +43,29 @@ function sortTable(table_id, sortColumn){
 
 sortTable('debts', 2);
 
-var variance = document.getElementById('startingBalance').innerHTML.replace(/[^0-9\.]+/g, "") - document.getElementById('totalDebt').innerHTML.replace(/[^0-9\.]+/g, "");
+//UPDATE OVERALL TABLE REALTIME AS BALANCE IS ENTERED
 
-document.getElementById('paidOff').innerHTML = variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-document.getElementById('%paidOff').innerHTML = ((variance / document.getElementById('startingBalance').innerHTML.replace(/[^0-9\.]+/g, "")) * 100).toFixed(0);
+$('#balance').bind('keydown keyup click', function (event, previousText) {
+    $('#startingBalance').html($(this).val());
+});
+
+$(document).ready(function (event, previousText) {
+      var startingBalance = document.getElementById("startingBalance").innerHTML;
+      var totalDebt = document.getElementById("totalDebt").innerHTML;
+      var paidOff = +startingBalance - +totalDebt;
+      document.getElementById("paidOff").innerHTML = paidOff.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+});
+
+$('#balance').bind('keydown keyup click change', function (event, previousText) {
+      var startingBalance = document.getElementById("startingBalance").innerHTML;
+      var totalDebt = document.getElementById("totalDebt").innerHTML;
+      var paidOff = +startingBalance - +totalDebt;
+      document.getElementById("paidOff").innerHTML = paidOff.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+      var variance = document.getElementById('paidOff').innerHTML / document.getElementById("totalDebt").innerHTML;
+      document.getElementById('%paidOff').innerHTML = variance.toFixed(2) * 100;
+});
+
+
+
 
 
