@@ -11,7 +11,7 @@ function savePaycheckAmount(){
 document.getElementById("save").addEventListener("click", savePaycheckAmount, false);
 
 function bankBalance() {
-  document.getElementById("accountBalance").innerHTML = localStorage.getItem("accountBalance");
+  document.getElementById("accountBalance").innerHTML = localStorage.getItem("accountBalanc");
 }
 
 bankBalance();

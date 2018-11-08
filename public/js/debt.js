@@ -24,7 +24,7 @@ function debtCalculate() {
         debttotal += parseFloat($(this).text().slice(1).replace(/,/g,''));
     });
     $("#totalDebt").val(debttotal);
-    document.getElementById('totalDebt').innerHTML = debttotal;
+    document.getElementById('totalDebt').innerHTML = debttotal.toFixed(2);
 }
 
 debtCalculate();
@@ -64,8 +64,3 @@ $('#balance').bind('keydown keyup click change', function (event, previousText) 
       var variance = document.getElementById('paidOff').innerHTML / document.getElementById("totalDebt").innerHTML;
       document.getElementById('%paidOff').innerHTML = variance.toFixed(2) * 100;
 });
-
-
-
-
-

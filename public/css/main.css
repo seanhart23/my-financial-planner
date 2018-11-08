@@ -37,7 +37,7 @@ strong {
 table {
     table-layout: fixed;
     width: auto;
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 
 td {
@@ -67,12 +67,12 @@ th {
 .btn-xs {
     width: 100px;
     background-color: #7EA186;
-    border: none;
+    border: 1px solid green;
 }
 
 .btn-sm {
     background-color: #7EA186;
-    border: none;
+    border: 1px solid green;
 }
 
 .chiclet {
@@ -206,6 +206,9 @@ th {
     padding-left: 2px;
 }
 
+.table {
+    margin-bottom: 0px;
+}
 .table>tbody>tr>td.actions {
     padding: 0px;
     vertical-align: middle;
@@ -283,11 +286,15 @@ th {
     vertical-align: middle;
 }
 
+/*#emptyMessageBills {*/
+/*    display: none;*/
+/*}*/
+
 #footer {
     height: 100px;
     background-color: #2E392B;
     bottom: 0;
-    margin-top: 150px;
+    margin-top: 100px;
 }
 
 #goButton {
@@ -362,6 +369,7 @@ th {
     box-shadow: 1px 1px 1px #000000;
     padding: 25px;
     letter-spacing: 1px;
+    margin-left: 10px;
 }
 
 #main-table {
@@ -387,7 +395,7 @@ th {
 }
 
 #payee {
-    width: 20%;
+    width: 30%;
     vertical-align: middle;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -416,6 +424,7 @@ th {
 #type {
     vertical-align: middle;
     width: 15%;
+    display: none;
 }
 
 #userID {
