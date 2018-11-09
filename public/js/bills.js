@@ -191,7 +191,7 @@ document.getElementById("loan").addEventListener("click", loan, false);
 document.getElementById("utility").addEventListener("click", utility, false);
 document.getElementById("other").addEventListener("click", other, false);
 // document.getElementById("billCalculate").addEventListener("click", billCalculate, false);
-
+  
 //UPDATE OVERALL TABLE REALTIME AS BALANCE IS ENTERED
 
 $('#balance').bind('keydown keyup click', function (event, previousText) {
@@ -272,5 +272,5 @@ function sortTable(n, name) {
 }
 
 sortTable(0, 'bills');
-    
+
 

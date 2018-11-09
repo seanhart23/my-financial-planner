@@ -1,4 +1,4 @@
-<% include ./partials/header %>
+<% include ./partials/header.ejs %>
 
 <style>
     @media screen and (max-width: 640px) {
@@ -11,15 +11,24 @@
 <div id='paMobileHeader'>
 <div class='container'>
         <h3 id='welcome'></h3>
+        <div class='pull-right' id='date'></div>
         <h1>Monthly Expense Tracker</h1>
-        <div id='description'>The Monthly Expense Tracker is used to track monthly expenses and how much money you will have left over.
-        Add all of your expenses to the list and then enter the money you have to pay them.</div>
-    <p></p>
+        <!--<div id='description'>The Monthly Expense Tracker is used to track monthly expenses and how much money you will have left over.-->
+        <!--Add all of your expenses to the list and then enter the money you have to pay them.</div>-->
+        <hr>
 </div>
+</div>
+<script>
+        
+//DATE
 
+var d = new Date();
+document.getElementById("date").innerHTML = d.toDateString();
+
+</script>
 
 <div class='container'>
-    <div class='row'>
+    <div class='row' id='mobile-card'>
         <div class='col-lg-3 col-md-12'>
             <span>
                 <form>
@@ -37,7 +46,6 @@
 </div>
 <br>
 
-</div>
 <div class='container'>
     <div class='row'>
         <div class='col-lg-3 col-md-12' id='mobile-card'>
@@ -126,7 +134,7 @@
                 <div class='chiclet' id='main-table'>
                     <div class="panel panel-default panel-danger">
                         <div class="panel-heading"><strong>Monthly Expenses</strong>
-                        <a href="/bills/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                        <!--<a href="/bills/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem"><i class="fa fa-plus" aria-hidden="true"></i></a></div>-->
                         </div>
                             <table class="table" id="bills">
                                 <thead>
@@ -174,10 +182,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>    
-
+</div>
 <% include ./partials/footer %>
 
 <!--NEW MODAL-->

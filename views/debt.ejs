@@ -10,15 +10,25 @@
 
 <div id='paMobileHeader'>
 <div class='container'>
+        <h3 id='welcome'></h3><div class='pull-right' id='date'></div>
         <h1 id='welcome'>Debt Tracker</h1>
-        <div id='description'>The Debt Tracker is used to keep track of all the debts you currently have.  Add your
-        starting balance to the table and then track your progress.</div>
-    <p></p>
+        <!--<div id='description'>The Debt Tracker is used to keep track of all the debts you currently have.  Add your-->
+        <!--starting balance to the table and then track your progress.</div>-->
+        <hr>
     </div>
 </div>
 
+<script>
+        
+//DATE
+
+var d = new Date();
+document.getElementById("date").innerHTML = d.toDateString();
+
+</script>
+
 <div class='container'>
-    <div class='row'>
+    <div class='row' id='mobile-card'>
         <div class='col-lg-3 col-md-12'>
             <span>
                 <form>
@@ -38,12 +48,12 @@
         <div class="panel panel-default panel-default">
             <div class="panel-heading"><strong>Debt Snapshot</strong></div>
                 <table class="table">
+                    <!--<tr>-->
+                    <!--    <th id='col1'></th>-->
+                    <!--    <th></th>-->
+                    <!--</tr>-->
                     <tr>
-                        <th id='col1'>Type</th>
-                        <th>Total</th>
-                    </tr>
-                    <tr>
-                        <td>Starting Balance</td>
+                        <td id='col1'>Starting Balance</td>
                         <td class='td-right'>$<span id='startingBalance'>0.00</span></td>
                     </tr>
                     <tr>
@@ -82,8 +92,50 @@
                 </thead>
                 <tbody>
                     <% debt.forEach(function(debt){ %>
+                        <% if(debt.amount > 0){ %>
+                        <tr>
+                            <% if(currentUser.username === debt.author.username){ %>
+                                <td id='payee'>
+                                    <a href="/debt/<%= debt._id %>/edit" data-toggle="modal" data-target="#editDebt"><%= debt.itemLabel %></a></span></td>
+                                <td id='type'><%= debt.type %></td>
+                                <td id='amount'><span class='b'><%= debt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
+                                <td id='interestRate'><%= debt.interestRate.toFixed(3)%>%</td>
+                                <td id='monthlyPayment'><%= debt.monthlyPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></td>
+                                <td id='website'><a href="<%= debt.website %>" target="_blank" class="btn btn-primary btn-xs" id='goButton'>Go</a></td>
+                                <td>
+                                <form action="/debt/<%= debt._id %>?_method=DELETE" method="POST" class="delete-form">
+                                    <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                                </form>
+                                </td>
+                            <% } %>
+                        <% } %>
+                    <% }) %>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+<div class='chiclet' id='paid-off'>
+    <div class="panel panel-default panel-danger">
+        <div class="panel-heading"><strong>Paid Off Debts</strong>
+            <!--<a href="/debt/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addDebt"><i class="fa fa-plus" aria-hidden="true"></i></a></div>-->
+        </div>
+            <table class="table" id="paid-off-debts">
+                <thead>
                     <tr>
-                        <% if(currentUser.username === debt.author.username){ %>
+                        <th id='payee'>Payee</th>
+                        <th id='type'>Type</th>
+                        <th id='amount'>Amount</th>
+                        <th id='interestRate'>%</th>
+                        <th id='monthlyPayment'>Payment</th>
+                        <th id='website'>Website</th>
+                        <th id='trash'></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% debt.forEach(function(debt){ %>
+                    <tr>
+                        <% if(currentUser.username === debt.author.username && debt.amount < 1){ %>
                             <td id='payee'>
                                 <a href="/debt/<%= debt._id %>/edit" data-toggle="modal" data-target="#editDebt"><%= debt.itemLabel %></a></span></td>
                             <td id='type'><%= debt.type %></td>
@@ -105,6 +157,8 @@
     </div>
 </div>
 </div>
+</div>
+
 
 <% include ./partials/footer %>
 
@@ -124,6 +178,7 @@
         <div class="modal-content">
         <div class="modal-body"></div>
     </div>
+</div>
 </div>
 
 <script type="text/javascript" src='/js/debt.js'></script>

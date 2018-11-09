@@ -29,8 +29,8 @@ function debtCalculate() {
 
 debtCalculate();
 
-function sortTable(table_id, sortColumn){
-    var tableData = document.getElementById(table_id).getElementsByTagName('tbody').item(0);
+function sortTable(debts, sortColumn){
+    var tableData = document.getElementById(debts).getElementsByTagName('tbody').item(0);
     var rowData = tableData.getElementsByTagName('tr');            
     for(var i = 0; i < rowData.length - 1; i++){
         for(var j = 0; j < rowData.length - (i + 1); j++){
@@ -43,6 +43,15 @@ function sortTable(table_id, sortColumn){
 
 sortTable('debts', 2);
 
+function hidePaidOff() {
+    var divs = document.getElementsByTagName('div');
+    for(var i = divs.length; i-- ;) {
+        var div = divs[i];
+        if(div.className === 'response') {
+            div.style.display = 'none';
+        }
+    }
+}
 //UPDATE OVERALL TABLE REALTIME AS BALANCE IS ENTERED
 
 $('#balance').bind('keydown keyup click', function (event, previousText) {
