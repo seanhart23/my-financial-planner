@@ -11,9 +11,6 @@ html,body
     color: #202031;
 }
 
-body {
-}
-
 h1 {
     font-size: 30px;
     font-weight: 200;
@@ -37,7 +34,6 @@ strong {
 table {
     table-layout: fixed;
     width: auto;
-    /*margin-bottom: 50px;*/
 }
 
 td {
@@ -154,6 +150,29 @@ th {
     margin-top: 50px;
 }
 
+.modal {
+    height: 95%;
+    width: auto;
+}
+
+.modal-btn {
+    font-size: 13px;
+}
+
+.modal-content {
+    width: 60%;
+    margin: 0px auto;
+}
+
+.modal-body {
+    width: auto;
+    padding-bottom: 0px;
+}
+
+.modal-input {
+    height: 25px;
+}
+
 .modal-header {
     background-color: navy;
     color: white;
@@ -168,8 +187,8 @@ th {
     border-radius: 0;
     position: fixed;
     width: 100%;
-    z-index: 1;
-    background-color: navy;
+    z-index: 2;
+    background-color: Navy;
     border: none;
     box-shadow: 0px 1px 4px #000000;
 }
@@ -335,11 +354,11 @@ th {
 
 #hiddenButton {
     background-color: transparent;
-    color: black;
+    /*color: Navy;*/
     border: 0px;
-    font-size: 14px;
+    font-size: 12px;
     padding-top: 0px;
-    width: 15px;
+    width: auto;
 }
 
 #interestRate {
@@ -377,10 +396,12 @@ th {
 
 #login-button {
     margin-bottom: 5px;
+    background-color: white;
+    color: gray;
 }
 
 #login-input {
-    width: 80%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
@@ -480,18 +501,9 @@ th {
 @media screen and (max-width: 640px) {
 
 body {
-        overflow-y: scroll;
+    overflow-y: scroll;
    -webkit-overflow-scrolling: touch;
 }
-/*h3 {*/
-/*    padding: 5px 0px;*/
-/*    background-color: #202031;*/
-/*    color: white;*/
-/*    text-align: center;*/
-/*    margin-top: 0px;*/
-/*    margin-bottom: 0px;*/
-    /*display: none;*/
-/*}*/
 
 hr {
     display: none;
@@ -512,6 +524,11 @@ th {
 
 .dollarAmount {
     text-align: left;
+}
+
+.modal-content {
+    width: 90%;
+    margin: 0px auto;
 }
 
 .panel {

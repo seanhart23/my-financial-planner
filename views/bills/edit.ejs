@@ -4,7 +4,7 @@
 <div class="modal-body">
             <form action="/bills/<%= bill._id %>?_method=PUT" method="post">
                 <div class="form-group">
-                    Payee: <input class='form-control' type='text' name='bill[payee]' value="<%= bill.payee %>">
+                    Payee: <input class='form-control modal-input' type='text' name='bill[payee]' value="<%= bill.payee %>">
                 </div>
                 <div class='form-group'>
                     Type:
@@ -18,28 +18,28 @@
                     </select>
                 </div>        
                 <div class='form-group'>
-                    Amount Due: <input class='form-control' type='number' name='bill[amountDue]' value='<%= bill.amountDue.toFixed(2) %>' min='0.00' step='0.01'>
+                    Amount Due: <input class='form-control modal-input' type='number' name='bill[amountDue]' value='<%= bill.amountDue.toFixed(2) %>' min='0.00' step='0.01'>
                 </div>
                 <div class='form-group'>
-                    Due Date (Day of the month): <input class='form-control' type='text' name='bill[dueDate]' value='<%= bill.dueDate %>'>    
+                    Due Date (Day of the month): <input class='form-control modal-input' type='text' name='bill[dueDate]' value='<%= bill.dueDate %>'>    
                 </div>           
                 <div class='form-group'>
-                    Website: <input class='form-control' type='text' name='bill[website]' value='<%= bill.website %>'>    
+                    Website: <input class='form-control modal-input' type='text' name='bill[website]' value='<%= bill.website %>'>    
                 </div>        
                 <div class='form-group'>
                     Auto Pay:
-                    <select class='form-control' name="bill[autoPay]">
+                    <select class='form-control modal-input' name="bill[autoPay]">
                         <option value="<%= bill.autoPay %>"><%= bill.autoPay %></option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
                 </div>
                 <div class='form-group'>
-                    Share with Username: <input class='form-control' type='text' name='bill[authUser]' value='<%= bill.authUser %>'>    
+                    Share with Username: <input class='form-control modal-input' type='text' name='bill[authUser]' value='<%= bill.authUser %>'>    
                 </div>
                 <div class='form-group'>
-                    <button class="btn btn-lg btn-default btn-block btn-primary">Submit</button>
-                    <a href='/dashboard' class='btn btn-lg bt-warning btn-block'>Go Back</a>
+                    <button class="btn btn-lg btn-default btn-block btn-primary modal-btn">Submit</button>
+                    <a href='/dashboard' class='btn btn-lg bt-warning btn-block modal-btn'>Go Back</a>
                 </div>
             </form>
         </div>

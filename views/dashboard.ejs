@@ -134,55 +134,57 @@ document.getElementById("date").innerHTML = d.toDateString();
                 <div class='chiclet' id='main-table'>
                     <div class="panel panel-default panel-danger">
                         <div class="panel-heading"><strong>Monthly Expenses</strong>
-                        <a href="/bills/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                        <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense<!--<i class="fa fa-plus" aria-hidden="true"></i>--></a></div>
                         </div>
-                            <table class="table" id="bills">
-                                <thead>
-                                    <tr>
-                                        <th onclick='sortTable(0)' id='due'>Due Date</th>
-                                        <th id='payee'>Payee</th>
-                                        <th id='type'>Type</th>
-                                        <th id='amount'>Amount Due</th>
-                                        <th id='auto'>Auto Pay</th>
-                                        <th id='statusdd'>Status</th>
-                                        <th id='billWebsite'>Website</th>
-                                        <th id='trash'></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% bills.forEach(function(bill){ %>
-                                    <tr>
-                                        <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
-                                            <td id='due'><%= bill.dueDate %></td>
-                                            <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
-                                            <td id='type'><%= bill.type %></td>
-                                            <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                            <td id='auto'><%= bill.autoPay %></td>
-                                            <td id='statusdd'>
-                                                 <select class='form-control' id='status' name="status">
-                                                    <option value="unpaid">Unpaid</option>
-                                                    <option value="paid">Paid</option>
-                                                    <option value="leave">Leave</option>
-                                                    <option value="move">Move</option>
-                                                    <option value="remove">Remove</option>
-                                                </select>
-                                            </td>
-                                            <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Go</a></td>
-                                            <td id='delete'><form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
+                        <table class="table" id="bills">
+                            <thead>
+                                <tr>
+                                    <th onclick='sortTable(0)' id='due'>Due Date</th>
+                                    <th id='payee'>Payee</th>
+                                    <th id='type'>Type</th>
+                                    <th id='amount'>Amount Due</th>
+                                    <th id='auto'>Auto Pay</th>
+                                    <th id='statusdd'>Status</th>
+                                    <th id='billWebsite'>Website</th>
+                                    <th id='trash'></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% bills.forEach(function(bill){ %>
+                                <tr>
+                                    <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
+                                        <td id='due'><%= bill.dueDate %></td>
+                                        <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
+                                        <td id='type'><%= bill.type %></td>
+                                        <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                        <td id='auto'><%= bill.autoPay %></td>
+                                        <td id='statusdd'>
+                                             <select class='form-control' id='status' name="status">
+                                                <option value="unpaid">Unpaid</option>
+                                                <option value="paid">Paid</option>
+                                                <option value="leave">Leave</option>
+                                                <option value="move">Move</option>
+                                                <option value="remove">Remove</option>
+                                            </select>
+                                        </td>
+                                        <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Go</a></td>
+                                        <td id='delete'>
+                                            <form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
                                                <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                                             </form>
-                                            </td>
-                                        <% } %>
-                                    <% }) %>
-                                    </tr>
-                                    <tr id='emptyMessageBills'></tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                        </td>
+                                    <% } %>
+                                <% }) %>
+                            </tr>
+                            <tr id='emptyMessageBills'></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-</div>
+        </div>
+    </div>
+    
 <% include ./partials/footer %>
 
 <!--NEW MODAL-->
