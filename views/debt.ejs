@@ -81,7 +81,7 @@ document.getElementById("date").innerHTML = d.toDateString();
             <table class="table" id="debts">
                 <thead>
                     <tr>
-                        <th id='payee'>Payee</th>
+                        <th id='payeeDebt'>Payee</th>
                         <th id='type'>Type</th>
                         <th id='amount'>Amount</th>
                         <th id='interestRate'>%</th>
@@ -95,7 +95,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                         <% if(debt.amount > 0){ %>
                         <tr>
                             <% if(currentUser.username === debt.author.username){ %>
-                                <td id='payee'>
+                                <td id='payeeDebt'>
                                     <a href="/debt/<%= debt._id %>/edit" data-toggle="modal" data-target="#editDebt"><%= debt.itemLabel %></a></span></td>
                                 <td id='type'><%= debt.type %></td>
                                 <td id='amount'><span class='b'><%= debt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
@@ -123,7 +123,7 @@ document.getElementById("date").innerHTML = d.toDateString();
             <table class="table" id="paid-off-debts">
                 <thead>
                     <tr>
-                        <th id='payee'>Payee</th>
+                        <th id='payeeDebt'>Payee</th>
                         <th id='type'>Type</th>
                         <th id='amount'>Amount</th>
                         <th id='interestRate'>%</th>

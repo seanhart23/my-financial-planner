@@ -15,6 +15,7 @@ h1 {
     font-size: 30px;
     font-weight: 200;
     margin-top: 5px;
+    margin-bottom: 0px;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -454,6 +455,14 @@ th {
     overflow: hidden;
 }
 
+#payeeDebt {
+    width: 30%;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 #save {
     display: inline-block;
     width: 23%;
@@ -577,6 +586,10 @@ th {
     width: 5%;
 }
 
+#interestRate {
+    display: none;
+}
+
 #main-banner {
     display: none;
 }
@@ -601,11 +614,16 @@ th {
 
 #paMobileHeader {
     padding: 20px 10px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 #payee {
-    width: 10%;
+    width: 15%;
+}
+
+#payeeDebt {
+    width: 30%;
 }
 
 #website {
