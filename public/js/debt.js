@@ -3,14 +3,14 @@ var $;
 
 //BROWSER CACHE
 function saveTotalDebt(){
-  var debtAmount = document.getElementById("startingBalance").innerHTML;
+  var debtAmount = document.getElementById("balance").value;
   localStorage.setItem("startingBalance", debtAmount);
 }
 
-document.getElementById("save").addEventListener("click", saveTotalDebt, false);
+// document.getElementById("save").addEventListener("click", saveTotalDebt, false);
 
 function debtBalance() {
-  document.getElementById("startingBalance").innerHTML = localStorage.getItem("startingBalance");
+  document.getElementById("balance").value = localStorage.getItem("startingBalance");
 }
 
 debtBalance();
@@ -54,22 +54,23 @@ function hidePaidOff() {
 }
 //UPDATE OVERALL TABLE REALTIME AS BALANCE IS ENTERED
 
-$('#balance').bind('keydown keyup click', function (event, previousText) {
-    $('#startingBalance').html($(this).val());
+$('#balance').bind('focusout', function (event, previousText) {
+    $('#balance').html($(this).val());
+    saveTotalDebt();
 });
 
 $(document).ready(function (event, previousText) {
-      var startingBalance = document.getElementById("startingBalance").innerHTML;
+      var startingBalance = document.getElementById("balance").value;
       var totalDebt = document.getElementById("totalDebt").innerHTML;
       var paidOff = +startingBalance - +totalDebt;
-      document.getElementById("paidOff").innerHTML = paidOff.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+      document.getElementById("paidOff").innerHTML = paidOff;
 });
 
 $('#balance').bind('keydown keyup click change', function (event, previousText) {
-      var startingBalance = document.getElementById("startingBalance").innerHTML;
+      var startingBalance = document.getElementById("balance").value;
       var totalDebt = document.getElementById("totalDebt").innerHTML;
       var paidOff = +startingBalance - +totalDebt;
-      document.getElementById("paidOff").innerHTML = paidOff.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+      document.getElementById("paidOff").innerHTML = paidOff
       var variance = document.getElementById('paidOff').innerHTML / document.getElementById("totalDebt").innerHTML;
       document.getElementById('%paidOff').innerHTML = variance.toFixed(2) * 100;
 });

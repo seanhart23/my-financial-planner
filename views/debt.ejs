@@ -29,13 +29,13 @@ document.getElementById("date").innerHTML = d.toDateString();
 
 <div class='container'>
     <div class='row' id='mobile-card'>
-        <div class='col-lg-3 col-md-12'>
-            <span>
-                <form>
-                    <span><h4>Starting Debt Balance:</h4><input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>
-                    <button id='save' class='btn btn-primary btn-sm'>Save</button></span>
-                </form>
-            </span>
+        <div class='col-lg-3 col-sm-12'>
+            <!--<span>-->
+            <!--    <form>-->
+            <!--        <span><h4>Starting Debt Balance:</h4><input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>-->
+            <!--        <button id='save' class='btn btn-primary btn-sm'>Save</button></span>-->
+            <!--    </form>-->
+            <!--</span>-->
         </div>
     </div>
 </div>
@@ -43,36 +43,36 @@ document.getElementById("date").innerHTML = d.toDateString();
 
 <div class='container'>
     <div class='row'>
-<div class='col-lg-3 col-md-12' id='mobile-card'>
+<div class='col-lg-3 col-sm-12' id='mobile-card'>
     <div class='chiclet'>
         <div class="panel panel-default panel-default">
             <div class="panel-heading"><strong>Debt Snapshot</strong></div>
                 <table class="table">
-                    <!--<tr>-->
-                    <!--    <th id='col1'></th>-->
-                    <!--    <th></th>-->
-                    <!--</tr>-->
                     <tr>
-                        <td id='col1'>Starting Balance</td>
-                        <td class='td-right'>$<span id='startingBalance'>0.00</span></td>
+                        <td>Starting Debt</td>
+                        <form>
+                            <td class='td-right'>
+                                <span id='dollarSign'>$</span><input class='form-control table-number' type='number'  id="balance" name='balance' value='0.00' min='0.00' maxLength='9'step='0.01' oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            </td>
+                        </form>
                     </tr>
                     <tr>
                         <td>Total Debt</td>
-                        <td class='td-right'>$<span id="totalDebt">0.00</span></td>
+                        <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="totalDebt">0.00</div></td>
                     </tr>  
                     <tr>
                         <td>Paid Off</td>
-                        <td class='td-right'><span id="paidOff">0.00</span></td>
+                        <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="paidOff">0.00</div></td>
                     </tr>
                     <tr>
                         <td> % Paid Off</td>
-                        <td class='td-right'><span id="paidOff">0.00</span>%</td>
+                        <td class='td-right'><span id="%paidOff">0.00</span>%</td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
-<div class='col-lg-9 col-md-12' id='mobile-card'>
+<div class='col-lg-9 col-sm-12' id='mobile-card'>
 <div class='chiclet'>
     <div class="panel panel-default panel-danger">
         <div class="panel-heading"><strong>Debts</strong>

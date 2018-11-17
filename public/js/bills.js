@@ -2,16 +2,16 @@ var total = 0;
 var debttotal = 0;
 var $;
 
+
 //BROWSER CACHE
 function savePaycheckAmount(){
-  var savedAmount = document.getElementById("accountBalance").innerHTML;
+  var savedAmount = document.getElementById("balance").value;
   localStorage.setItem("accountBalance", savedAmount);
 }
 
-document.getElementById("save").addEventListener("click", savePaycheckAmount, false);
-
 function bankBalance() {
-  document.getElementById("accountBalance").innerHTML = localStorage.getItem("accountBalanc");
+  var balance = localStorage.getItem("accountBalance");
+  document.getElementById("balance").value = balance;
 }
 
 bankBalance();
@@ -194,24 +194,39 @@ document.getElementById("other").addEventListener("click", other, false);
   
 //UPDATE OVERALL TABLE REALTIME AS BALANCE IS ENTERED
 
-$('#balance').bind('keydown keyup click', function (event, previousText) {
-    $('#accountBalance').html($(this).val());
+$('#balance').bind('focusout', function (event, previousText) {
+    $('#balance').html($(this).val());
+    savePaycheckAmount();
 });
     
 //CALCULATE REMAINING VALUE
 
 $(document).ready(function (event, previousText) {
-      var income = document.getElementById("accountBalance").innerHTML;
+      var income = document.getElementById("balance").value;
       var bills = document.getElementById("totalBill").innerHTML;
       var value = +income - +bills;
-      document.getElementById("remaining").innerHTML = value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+      document.getElementById("remaining").innerHTML = value.toFixed(2);
+      if (value < 0){
+      document.getElementById("remaining").style.color = "red";
+} else if (value >0) {
+      document.getElementById("remaining").style.color = "green";
+} else {
+      document.getElementById("remaining").style.color = "black";
+}
 });
 
 $('#one, #two, #three, #full, #balance, #bills, #status').bind('keydown keyup click change', function (event, previousText) {
-      var income = document.getElementById("accountBalance").innerHTML;
+      var income = document.getElementById("balance").value;
       var bills = document.getElementById("totalBill").innerHTML;
       var value = +income - +bills;
-      document.getElementById("remaining").innerHTML = value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+      document.getElementById("remaining").innerHTML = value.toFixed(2);
+      if (value < 0){
+      document.getElementById("remaining").style.color = "red";
+} else if (value >0) {
+      document.getElementById("remaining").style.color = "green";
+} else {
+      document.getElementById("remaining").style.color = "black";
+}
 });
 
 //DELETE ROW FROM DROPDOWN
@@ -272,5 +287,6 @@ function sortTable(n, name) {
 }
 
 sortTable(0, 'bills');
+
 
 

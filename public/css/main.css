@@ -22,6 +22,26 @@ h1 {
 h4 {
     margin-top: 0px;
     font-weight: 300;
+    font-size: 16px;
+}
+
+hr {
+    margin-top: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 
 select {
@@ -243,9 +263,16 @@ th {
 .table {
     margin-bottom: 0px;
 }
+
 .table>tbody>tr>td.actions {
     padding: 0px;
     vertical-align: middle;
+}
+
+.table-number {
+    width: 119px;
+    float: right;
+    letter-spacing: 1px;
 }
 
 .td-right {
@@ -270,13 +297,16 @@ th {
 #balance {
     box-shadow: none;
     border: none;
-    border-bottom: .5px solid #202031;
-    font-size: 20px;
+    font-size: 12px;
     font-weight: 350;
-    letter-spacing: 1px;
-    width: 75%;
-    margin-right: 0px;
-    display: inline-block;
+    padding: 0px;
+    height: 16px;
+    text-align: right;
+    color: green;
+}
+
+#balanceInput {
+    font-size: 16px;
 }
 
 #bills {
@@ -321,6 +351,11 @@ th {
     letter-spacing: 1px;
     font-weight: 400;
     padding-right: 0px;
+}
+
+#dollarSign {
+  position:relative;
+  margin-right:-40px
 }
 
 #due {
@@ -425,13 +460,21 @@ th {
     margin-bottom: 50px;
 }
 
+#mobile-card {
+    margin-bottom: 10px;
+}
+
 #monthlyPayment {
     vertical-align: middle;
     width: 10%;
 }
 
-#paid-off {
-    margin-top: 50px;
+#paidOff {
+    /*margin-top: 50px;*/
+    display: inline;
+    float: right;
+    width: 119px;
+    letter-spacing: 1px;
 }
 
 #output {
@@ -461,6 +504,12 @@ th {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+#remaining {
+    width: 119px;
+    float: right;
+    letter-spacing: 1px;
 }
 
 #save {

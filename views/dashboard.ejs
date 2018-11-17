@@ -29,13 +29,13 @@ document.getElementById("date").innerHTML = d.toDateString();
 
 <div class='container'>
     <div class='row' id='mobile-card'>
-        <div class='col-lg-3 col-md-12'>
-            <span>
-                <form>
-                    <span><h4>Available Balance:</h4><input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>
-                    <button id='save' class='btn btn-primary btn-sm'>Save</button></span>
-                </form>
-            </span>
+        <div class='col-lg-3 col-sm-12'>
+            <!--<span>-->
+            <!--    <form>-->
+                    <!--<span id='balanceInput'><h4 class='panel-heading'>Available Balance:</h4><input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>-->
+            <!--        <button id='save' class='btn btn-primary btn-sm'>Save</button></span>-->
+            <!--    </form>-->
+            <!--</span>-->
         </div>
         <div class="btn-group pull-right" role="group" id='group' aria-label="...">
             <button type="button" id='one' class="btn btn-primary btn-sm">1st Half</button>
@@ -48,27 +48,30 @@ document.getElementById("date").innerHTML = d.toDateString();
 
 <div class='container'>
     <div class='row'>
-        <div class='col-lg-3 col-md-12' id='mobile-card'>
+        <div class='col-lg-3 col-sm-12' id='mobile-card'>
             <div class='chiclet'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Snapshot</strong></div>
                         <table class="table">
                             <tr>
                                 <td>Balance</td>
-                                <td class='td-right'>$<span id='accountBalance'>0.00</span></td>
+                                <form>
+                                <td class='td-right'><span id='dollarSign'>$</span><input class='form-control table-number' type='number'  id="balance" name='balance' value='0.00' min='0.00' maxLength='9'step='0.01' oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
+                                </form>
                             </tr>
                             <tr>
                                 <td>Bills</td>
-                                <td class='td-right'>$<span id="totalBill">0.00</span></td>
+                                <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="totalBill">0.00</div></td>
                             </tr>                          
                             <tr>
                                 <td>Remaining</td>
-                                <td class='td-right'><span id="remaining">0.00</span></td>
+                                <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="remaining">0.00</div></td>
                             </tr>
                         </table>
                     </div>
                 </div>
                 <p>
+                    
             <div class='chiclet'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Totals By Type</strong></div>
@@ -130,9 +133,9 @@ document.getElementById("date").innerHTML = d.toDateString();
                 <!--<div id='BOA'><a href='http://www.bankofamerica.com' target="_blank" class="secondary-link"><img src="https://static.seekingalpha.com/uploads/2017/5/27/31557165-14959228416802626_origin.png" id="BOAimage"></a></div> -->
             </div>
             
-            <div class='col-lg-9 col-md-12' id='mobile-card'>
+            <div class='col-lg-9 col-sm-12' id='mobile-card'>
                 <div class='chiclet' id='main-table'>
-                    <div class="panel panel-default panel-danger">
+                    <div class="panel panel-default">
                         <div class="panel-heading"><strong>Monthly Expenses</strong>
                         <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense<!--<i class="fa fa-plus" aria-hidden="true"></i>--></a></div>
                         </div>
