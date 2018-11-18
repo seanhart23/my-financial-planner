@@ -64,13 +64,21 @@ document.getElementById("date").innerHTML = d.toDateString();
                         <td>Paid Off</td>
                         <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="paidOff">0.00</div></td>
                     </tr>
-                    <tr>
+                    <tr style="display: none;">
                         <td> % Paid Off</td>
-                        <td class='td-right'><span id="%paidOff">0.00</span>%</td>
+                        <td class='td-right'><span id="%paidOff">0.00</span> %</td>
                     </tr>
                 </table>
             </div>
         </div>
+            <div class='panel' id="outerChart">
+                <div class="panel-heading"><strong>Payoff Chart</strong></div>
+                <br>
+                    <div id='chartOutline'>
+                        <div id='chart'>
+                    </div>
+                </div>
+            </div>
     </div>
 <div class='col-lg-9 col-sm-12' id='mobile-card'>
 <div class='chiclet'>

@@ -102,6 +102,7 @@ th {
 .chiclet {
     width: 100%;
     font-size: 12px;
+    margin-bottom: 20px;
     /*border: 1px solid black;*/
     /*box-shadow: 1px 1px 1px #000000;*/
 }
@@ -325,6 +326,29 @@ th {
     display: none;
 }
 
+#chart {
+    background-color: lightgreen;
+    bottom: 0px;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    padding-top: 10px;
+}
+
+#chartOutline {
+    border: 1px solid lightgray;
+    height: 225px;
+    background-color: #ffe6e6;
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    width: 65px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #col1 {
     width: 25%;
 }
@@ -373,7 +397,7 @@ th {
     background-color: Navy;
     bottom: 0;
     position: relative;
-    margin-top: 150px;
+    margin-top: 300px;
     color: white;
     width: 100%;
 }
@@ -475,6 +499,10 @@ th {
     float: right;
     width: 119px;
     letter-spacing: 1px;
+}
+
+#outerChart.panel {
+    padding-bottom: 10px;
 }
 
 #output {

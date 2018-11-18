@@ -7,8 +7,6 @@ function saveTotalDebt(){
   localStorage.setItem("startingBalance", debtAmount);
 }
 
-// document.getElementById("save").addEventListener("click", saveTotalDebt, false);
-
 function debtBalance() {
   document.getElementById("balance").value = localStorage.getItem("startingBalance");
 }
@@ -63,14 +61,23 @@ $(document).ready(function (event, previousText) {
       var startingBalance = document.getElementById("balance").value;
       var totalDebt = document.getElementById("totalDebt").innerHTML;
       var paidOff = +startingBalance - +totalDebt;
-      document.getElementById("paidOff").innerHTML = paidOff;
+      document.getElementById("paidOff").innerHTML = paidOff.toFixed(2);
+      var variance = paidOff / startingBalance * 100;
+      document.getElementById('%paidOff').innerHTML = variance.toFixed(2);
+      document.getElementById('chart').style.height = variance + "%";
+      document.getElementById('chart').innerHTML = variance.toFixed(2) + " %";
 });
 
 $('#balance').bind('keydown keyup click change', function (event, previousText) {
       var startingBalance = document.getElementById("balance").value;
       var totalDebt = document.getElementById("totalDebt").innerHTML;
       var paidOff = +startingBalance - +totalDebt;
-      document.getElementById("paidOff").innerHTML = paidOff
-      var variance = document.getElementById('paidOff').innerHTML / document.getElementById("totalDebt").innerHTML;
-      document.getElementById('%paidOff').innerHTML = variance.toFixed(2) * 100;
+      document.getElementById("paidOff").innerHTML = paidOff.toFixed(2)
+      var variance = paidOff / startingBalance * 100;
+      document.getElementById('%paidOff').innerHTML = variance.toFixed(2);
+      document.getElementById('chart').style.height = variance + "%";
+      document.getElementById('chart').innerHTML = variance.toFixed(2) + " %";
 });
+
+
+

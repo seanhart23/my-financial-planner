@@ -84,7 +84,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% } %>
                                         <% }) %>
                                 <td><a href="#" id='credit'>Credit Card</a></td>
-                                <td class='td-right'><span id='totalCredit'><%= totalCredit.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
                             </tr>
                             <tr>
                                 <% var totalSL = 0 %>
@@ -95,7 +95,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% } %>
                                         <% }) %>
                                 <td><a href="#" id='studentLoan'>Student Loan</a></td>
-                                <td class='td-right'><span id='totalSL'><%= totalSL.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
                             </tr>
                             <tr>
                                 <% var totalLoan = 0 %>
@@ -105,7 +105,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% } %>
                                         <% }) %>
                                 <td><a href="#" id='loan'>Loan</a></td>
-                                <td class='td-right'><span id='totalLoan'><%= totalLoan.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
                             </tr>
                             <tr>
                                 <% var totalUtility = 0 %>
@@ -115,7 +115,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% } %>
                                         <% }) %>
                                 <td><a href="#" id='utility'>Utility</a></td>
-                                <td class='td-right'><span id='totalUtility'><%= totalUtility.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalUtility.toFixed(2) %></span></td>
                             </tr> 
                             <tr>
                                 <% var totalOther = 0 %>
@@ -125,7 +125,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% } %>
                                         <% }) %>
                                 <td><a href="#" id='other'>Other</a></td>
-                                <td class='td-right'><span id='totalOther'><%= totalOther.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
                             </tr>
                         </table>
                     </div>
