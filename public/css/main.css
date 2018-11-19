@@ -172,6 +172,10 @@ th {
     margin-top: 50px;
 }
 
+.main-table {
+    margin-bottom: 200px;
+}
+
 .modal {
     height: 95%;
     width: auto;
@@ -280,6 +284,13 @@ th {
     text-align: right;
 }
 
+.wrapper {
+        min-height: calc(100% - 100px);
+        margin: 0;
+        position: relative;
+        bottom: 0px;
+}
+
 #addBill {
     margin-top: 20px;
 }
@@ -337,12 +348,22 @@ th {
     padding-top: 10px;
 }
 
+#chartLine {
+    border-bottom: .5px solid lightgray;
+    height: 100%;
+    bottom: 0px;
+    width: 125%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 #chartOutline {
     border: 1px solid lightgray;
     height: 225px;
     background-color: #ffe6e6;
-    border-radius: 50px;
-    overflow: hidden;
+    /*border-top-left-radius: 50px;*/
+    /*border-top-right-radius: 50px;*/
+    /*overflow: hidden;*/
     position: relative;
     width: 65px;
     margin-left: auto;
@@ -397,9 +418,8 @@ th {
     background-color: Navy;
     bottom: 0;
     position: relative;
-    margin-top: 300px;
+    /*margin-top: 50px;*/
     color: white;
-    width: 100%;
 }
 
 #goButton {
@@ -478,10 +498,6 @@ th {
     letter-spacing: 1px;
     margin-left: 10px;
     display: none;
-}
-
-#main-table {
-    margin-bottom: 50px;
 }
 
 #mobile-card {

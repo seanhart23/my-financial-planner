@@ -14,7 +14,7 @@
       <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     </head>
     <body>
-
+<div class='wrapper'>
 <nav class="navbar navbar-inverse bg-success">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -24,7 +24,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> </span>  My Financial Planner</a>
+      <a class="navbar-brand" href="/dashboard"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"> </span>  My Financial Planner</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
@@ -32,7 +32,7 @@
         <% } else { %>
         <!--<li><a href="/budget" id='link'>Budget</a></li>-->
         <li><a href="#" id='link' style="margin-right: 100px">Welcome <%= currentUser.name %>!</a></li>
-        <li><a href="/dashboard" id='link'>Monthly Expense Tracker</a></li>
+        <li><a href="/expense" id='link'>Monthly Expense Tracker</a></li>
         <li><a href="/debt" id='link'>Debt Tracker</a></li>
         <li><a href="/logout" id='link'>Logout</a></li>
         <% } %>

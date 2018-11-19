@@ -31,7 +31,7 @@ router.post('/', middleware.isLoggedIn, function(req, res){
         if(err){
             console.log(err);
         } else{
-            res.redirect("/dashboard");
+            res.redirect("expense");
         }
     });
 });
@@ -45,7 +45,7 @@ router.get("/:id", middleware.isLoggedIn, function(req, res){
       if(err){
           console.log(err);
       } else {
-          res.render("dashboard", {bill: foundBill});
+          res.render("expense", {bill: foundBill});
       }
   });
 });
@@ -53,9 +53,9 @@ router.get("/:id", middleware.isLoggedIn, function(req, res){
 router.delete('/:id', middleware.isLoggedIn, function(req, res){
    bill.findByIdAndRemove(req.params.id, function(err){
         if(err){
-            res.redirect('/dashboard');
+            res.redirect('/expense');
         } else {
-            res.redirect('/dashboard');
+            res.redirect('/expense');
         }
     });    
 }); 
@@ -73,9 +73,9 @@ router.get('/:id/edit', middleware.isLoggedIn, function(req, res){
 router.put('/:id', middleware.isLoggedIn, function(req, res){
     bill.findByIdAndUpdate(req.params.id, req.body.bill, function(err, updatedBill){
         if(err){
-            res.redirect('/dashboard');
+            res.redirect('/expense');
         } else {
-            res.redirect('/dashboard');
+            res.redirect('/expense');
         }
     });    
 });

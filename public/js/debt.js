@@ -3,12 +3,17 @@ var $;
 
 //BROWSER CACHE
 function saveTotalDebt(){
-  var debtAmount = document.getElementById("balance").value;
-  localStorage.setItem("startingBalance", debtAmount);
+    var debtAmount = document.getElementById("balance").value;
+    localStorage.setItem("startingBalance", debtAmount);
+}
+
+function saveVariance(){
+    var variance = document.getElementById("%paidOff").innerHTML;
+    localStorage.setItem("variance", variance);
 }
 
 function debtBalance() {
-  document.getElementById("balance").value = localStorage.getItem("startingBalance");
+    document.getElementById("balance").value = localStorage.getItem("startingBalance");
 }
 
 debtBalance();
@@ -66,6 +71,8 @@ $(document).ready(function (event, previousText) {
       document.getElementById('%paidOff').innerHTML = variance.toFixed(2);
       document.getElementById('chart').style.height = variance + "%";
       document.getElementById('chart').innerHTML = variance.toFixed(2) + " %";
+      document.getElementById('chartLine').style.height = (100 - variance) + "%";
+      saveVariance();
 });
 
 $('#balance').bind('keydown keyup click change', function (event, previousText) {
@@ -77,7 +84,7 @@ $('#balance').bind('keydown keyup click change', function (event, previousText) 
       document.getElementById('%paidOff').innerHTML = variance.toFixed(2);
       document.getElementById('chart').style.height = variance + "%";
       document.getElementById('chart').innerHTML = variance.toFixed(2) + " %";
+      document.getElementById('chartLine').style.height = (100 - variance) + "%";
+      saveVariance();
 });
-
-
 

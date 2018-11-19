@@ -12,8 +12,6 @@
 <div class='container'>
         <h3 id='welcome'></h3><div class='pull-right' id='date'></div>
         <h1 id='welcome'>Debt Tracker</h1>
-        <!--<div id='description'>The Debt Tracker is used to keep track of all the debts you currently have.  Add your-->
-        <!--starting balance to the table and then track your progress.</div>-->
         <hr>
     </div>
 </div>
@@ -30,12 +28,6 @@ document.getElementById("date").innerHTML = d.toDateString();
 <div class='container'>
     <div class='row' id='mobile-card'>
         <div class='col-lg-3 col-sm-12'>
-            <!--<span>-->
-            <!--    <form>-->
-            <!--        <span><h4>Starting Debt Balance:</h4><input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>-->
-            <!--        <button id='save' class='btn btn-primary btn-sm'>Save</button></span>-->
-            <!--    </form>-->
-            <!--</span>-->
         </div>
     </div>
 </div>
@@ -75,7 +67,9 @@ document.getElementById("date").innerHTML = d.toDateString();
                 <div class="panel-heading"><strong>Payoff Chart</strong></div>
                 <br>
                     <div id='chartOutline'>
-                        <div id='chart'>
+                        <div id='chartLine'>
+                            <div id='chart'>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,7 +117,7 @@ document.getElementById("date").innerHTML = d.toDateString();
             </table>
         </div>
 
-<div class='chiclet' id='paid-off'>
+<div class='chiclet main-table' id='paid-off'>
     <div class="panel panel-default panel-danger">
         <div class="panel-heading"><strong>Paid Off Debts</strong>
             <!--<a href="/debt/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addDebt"><i class="fa fa-plus" aria-hidden="true"></i></a></div>-->

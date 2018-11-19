@@ -43,6 +43,7 @@ app.use(function(req, res, next){
 
 var billRoutes         = require('./routes/bills');
 var dashboardRoutes    = require('./routes/dashboard');
+var expenseRoutes    = require('./routes/expense');
 var indexRoutes        = require('./routes/index');
 var budgetItemRoutes   = require('./routes/budgetItem');
 var debtRoutes         = require('./routes/debt');
@@ -51,6 +52,7 @@ var debtRoutes         = require('./routes/debt');
 app.use('/budgetItem', budgetItemRoutes);
 app.use('/bills', billRoutes);
 app.use('/dashboard', dashboardRoutes);
+app.use('/expense', expenseRoutes);
 app.use('/debt', debtRoutes);
 app.use('/', indexRoutes);
 
