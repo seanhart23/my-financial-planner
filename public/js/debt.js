@@ -32,19 +32,13 @@ function debtCalculate() {
 
 debtCalculate();
 
-function sortTable(debts, sortColumn){
-    var tableData = document.getElementById(debts).getElementsByTagName('tbody').item(0);
-    var rowData = tableData.getElementsByTagName('tr');            
-    for(var i = 0; i < rowData.length - 1; i++){
-        for(var j = 0; j < rowData.length - (i + 1); j++){
-            if(Number(rowData.item(j).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, "")) > Number(rowData.item(j+1).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, ""))){
-                tableData.insertBefore(rowData.item(j+1),rowData.item(j));
-            }
-        }
-    }
-}
 
-sortTable('debts', 2);
+var d = new Date();
+document.getElementById("date").innerHTML = d.toDateString();
+
+$(document).ready(function(){
+ $("#amount").trigger('click');
+});
 
 function hidePaidOff() {
     var divs = document.getElementsByTagName('div');
@@ -88,3 +82,96 @@ $('#balance').bind('keydown keyup click change', function (event, previousText) 
       saveVariance();
 });
 
+function credit() {
+  var table, tr, td, i;
+  table = document.getElementById("debts");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML === "Credit Card") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  debtCalculate();
+}
+
+
+function studentLoan() {
+  var table, tr, td, i;
+  table = document.getElementById("debts");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML === "Student Loan") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  debtCalculate();
+}
+
+
+function loan() {
+  var table, tr, td, i;
+  table = document.getElementById("debts");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML === "Loan") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  debtCalculate();
+}
+
+
+function bill() {
+  var table, tr, td, i;
+  table = document.getElementById("debts");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML === "Bill") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  debtCalculate();
+}
+
+function other() {
+  var table, tr, td, i;
+  table = document.getElementById("debts");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML === "Other") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  debtCalculate();
+}
+
+document.getElementById("credit").addEventListener("click", credit, false);
+document.getElementById("SL").addEventListener("click", studentLoan, false);
+document.getElementById("loan").addEventListener("click", loan, false);
+document.getElementById("bill").addEventListener("click", bill, false);
+document.getElementById("other").addEventListener("click", other, false);

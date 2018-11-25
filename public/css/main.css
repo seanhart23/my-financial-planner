@@ -269,6 +269,11 @@ th {
     margin-bottom: 0px;
 }
 
+table.sortable thead {
+    font-weight: bold;
+    cursor: default;
+}
+
 .table>tbody>tr>td.actions {
     padding: 0px;
     vertical-align: middle;
@@ -296,7 +301,7 @@ th {
 }
 
 #amount {
-    width: 12%;
+    width: 15%;
     vertical-align: middle;
 }
 
@@ -405,7 +410,7 @@ th {
 }
 
 #due {
-    width: 10%;
+    width: 12%;
     text-align: center;
     vertical-align: middle;
 }
@@ -579,7 +584,7 @@ th {
 #type {
     vertical-align: middle;
     width: 15%;
-    /*display: none;*/
+    display: none;
 }
 
 #userID {

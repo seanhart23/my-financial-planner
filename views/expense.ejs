@@ -9,32 +9,17 @@
 </style>
 
 <div id='paMobileHeader'>
-<div class='container'>
-        <h3 id='welcome'></h3>
+    <div class='container'>
+    <h3 id='welcome'></h3>
         <div class='pull-right' id='date'></div>
-        <h1>Monthly Expense Tracker</h1>
-        <!--<div id='description'>The Monthly Expense Tracker is used to track monthly expenses and how much money you will have left over.-->
-        <!--Add all of your expenses to the list and then enter the money you have to pay them.</div>-->
-        <hr>
+    <h1>Monthly Expense Tracker</h1>
+    <hr>
 </div>
 </div>
-<script>
-        
-//DATE
-var d = new Date();
-document.getElementById("date").innerHTML = d.toDateString();
-</script>
 
 <div class='container'>
     <div class='row' id='mobile-card'>
-        <div class='col-lg-3 col-sm-12'>
-            <!--<span>-->
-            <!--    <form>-->
-                    <!--<span id='balanceInput'><h4 class='panel-heading'>Available Balance:</h4><input class='form-control' type='number' id="balance" name='balance' value='0.00' min='0.00' step='0.01'>-->
-            <!--        <button id='save' class='btn btn-primary btn-sm'>Save</button></span>-->
-            <!--    </form>-->
-            <!--</span>-->
-        </div>
+        <div class='col-lg-3 col-sm-12'></div>
         <div class="btn-group pull-right" role="group" id='group' aria-label="...">
             <button type="button" id='one' class="btn btn-primary btn-sm">1st Half</button>
             <button type="button" id='full' class="btn btn-primary btn-sm">Full Month</button>
@@ -128,7 +113,6 @@ document.getElementById("date").innerHTML = d.toDateString();
                         </table>
                     </div>
                 </div>
-                <!--<div id='BOA'><a href='http://www.bankofamerica.com' target="_blank" class="secondary-link"><img src="https://static.seekingalpha.com/uploads/2017/5/27/31557165-14959228416802626_origin.png" id="BOAimage"></a></div> -->
             </div>
             
             <div class='col-lg-9 col-sm-12' id='mobile-card'>
@@ -137,10 +121,10 @@ document.getElementById("date").innerHTML = d.toDateString();
                         <div class="panel-heading"><strong>Monthly Expenses</strong>
                         <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense<!--<i class="fa fa-plus" aria-hidden="true"></i>--></a></div>
                         </div>
-                        <table class="table" id="bills">
+                        <table class="table sortable" id="bills">
                             <thead>
                                 <tr>
-                                    <th onclick='sortTable(0)' id='due'>Due Date</th>
+                                    <th id='due'>Due Date</th>
                                     <th id='payee'>Payee</th>
                                     <th id='type'>Type</th>
                                     <th id='amount'>Amount Due</th>
@@ -185,7 +169,10 @@ document.getElementById("date").innerHTML = d.toDateString();
             </div>
         </div>
     </div>
-    
+
+<script>
+
+</script>
 <% include ./partials/footer %>
 
 <!--NEW MODAL-->
