@@ -2,7 +2,6 @@ var total = 0;
 var debttotal = 0;
 var $;
 
-
 //BROWSER CACHE
 function savePaycheckAmount(){
   var savedAmount = document.getElementById("balance").value;
@@ -287,6 +286,5 @@ function sortTable(n, name) {
 }
 
 sortTable(0, 'bills');
-
 
 
