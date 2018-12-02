@@ -115,7 +115,7 @@
                 <div class="panel-heading"><strong>Payoff Chart</strong></div>
                 <br>
                     <div id='chartOutline'>
-                        <div id='chartLine'>
+                        <div id='chartLine'><div id='percent'></div>
                             <div id='chart'>
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                                 <td id='interestRate'><%= debt.interestRate.toFixed(3)%>%</td>
                                 <td id='monthlyPayment'><%= debt.monthlyPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></td>
                                 <td id='website'><a href="<%= debt.website %>" target="_blank" class="btn btn-primary btn-xs" id='goButton'>Go</a></td>
-                                <td>
+                                <td id='delete'>
                                 <form action="/debt/<%= debt._id %>?_method=DELETE" method="POST" class="delete-form">
                                     <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                                 </form>
