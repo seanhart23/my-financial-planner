@@ -24,9 +24,9 @@ document.getElementById("date").innerHTML = d.toDateString();
 
 </script>
 
-<div class='container'>
+<div class='container dashboard-table'>
     <div class='row'>
-        <div class='col-lg-3 col-sm-12' id='mobile-card'>
+        <div class='col-lg-4 col-sm-12' id='mobile-card'>
             <div class='chiclet'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Monthly Bills</strong></div>
@@ -103,7 +103,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                 </div>
                     </div>
                     </div>
-                    <div class='col-lg-3 col-sm-12' id='mobile-card'>
+                    <div class='col-lg-4 col-sm-12' id='mobile-card'>
                         <div class='chiclet'>
                             <div class="panel panel-default">
                                 <div class="panel-heading"><strong>Debt Snapshot</strong></div>
@@ -121,6 +121,16 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <tr>
                                             <td>Paid Off</td>
                                             <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="paidOff">0.00</div></td>
+                                        </tr>
+                                        <tr>
+                                            <td># of Debts Paid Off</td>
+                                            <% var numberOfDebts = 0 %>
+                                                <% debt.forEach(function(debt){ %>
+                                                    <% if((currentUser.username === debt.author.username  || currentUser.username === debt.authUser) && debt.amount === 0.00){ %>
+                                                    <% numberOfDebts = numberOfDebts +1 %>
+                                                    <% } %>
+                                                    <% }) %>
+                                            <td class='td-right'><div class='table-number'><%= numberOfDebts %></div></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -182,7 +192,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                         </table>
                     </div></div>
                     </div>  
-                    <div class='col-lg-3 col-sm-12' id='mobile-card'>
+                    <div class='col-lg-4 col-sm-12' id='mobile-card'>
                         <div class='chiclet'>
                             <div class='panel' id="outerChart">
                                 <div class="panel-heading"><strong>Payoff Chart</strong></div>

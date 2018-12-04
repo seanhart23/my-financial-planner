@@ -7,7 +7,7 @@ function saveTotalDebt(){
     localStorage.setItem("startingBalance", debtAmount);
 }
 
-function saveVariance(){
+function saveVarianceP(){
     var variance = document.getElementById("%paidOff").innerHTML;
     localStorage.setItem("variance", variance);
 }
@@ -22,7 +22,6 @@ function debtBalance() {
 }
 
 debtBalance();
-
 //CALCULATE BILL TOTAL
 
 function debtCalculate() {
@@ -72,6 +71,7 @@ $(document).ready(function (event, previousText) {
       document.getElementById('percent').innerHTML = variance.toFixed(2) + " %";
       document.getElementById('chartLine').style.height = (100 - variance) + "%";
       saveVariance();
+      saveVarianceP();
 });
 
 $('#balance').bind('keydown keyup click change', function (event, previousText) {
@@ -85,6 +85,7 @@ $('#balance').bind('keydown keyup click change', function (event, previousText) 
       document.getElementById('percent').innerHTML = variance.toFixed(2) + " %";
       document.getElementById('chartLine').style.height = (100 - variance) + "%";
       saveVariance();
+      saveVarianceP();
 });
 
 function credit() {
