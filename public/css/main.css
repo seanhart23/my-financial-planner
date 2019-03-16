@@ -386,6 +386,10 @@ table.sortable thead {
     margin-right: auto;
 }
 
+#color {
+    width: .75%;
+}
+
 #col1 {
     width: 25%;
 }

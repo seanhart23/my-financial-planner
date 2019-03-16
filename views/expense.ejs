@@ -58,7 +58,7 @@
             <div class='chiclet'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Totals By Type</strong></div>
-                        <table class="table">
+                        <table class="table" id='totalsByType'>
                             <tr>
                                 <% var totalCredit = 0 %>
                                 <% bills.forEach(function(bill){ %>
@@ -66,6 +66,7 @@
                                         <% totalCredit = totalCredit + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
+                                <td id='color' style='background-Color:red'></td>
                                 <td><a href="#" id='credit'>Credit Card</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
                             </tr>
@@ -77,6 +78,7 @@
                                         <% totalSL = totalSL + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
+                                <td id='color' style='background-Color:yellow'></td>
                                 <td><a href="#" id='studentLoan'>Student Loan</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
                             </tr>
@@ -87,6 +89,7 @@
                                         <% totalLoan = totalLoan + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
+                                <td id='color' style='background-Color:orange'></td>
                                 <td><a href="#" id='loan'>Loan</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
                             </tr>
@@ -97,6 +100,7 @@
                                         <% totalUtility = totalUtility + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
+                                <td id='color' style='background-Color:green'></td>
                                 <td><a href="#" id='utility'>Utility</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalUtility.toFixed(2) %></span></td>
                             </tr> 
@@ -107,6 +111,7 @@
                                         <% totalOther = totalOther + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
+                                <td id='color' style='background-Color:blue'></td>
                                 <td><a href="#" id='other'>Other</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
                             </tr>
@@ -124,6 +129,7 @@
                         <table class="table sortable" id="bills">
                             <thead>
                                 <tr>
+                                    <th id='color'></th>
                                     <th id='due'>Due Date</th>
                                     <th id='payee'>Payee</th>
                                     <th id='type'>Type</th>
@@ -138,6 +144,9 @@
                                 <% bills.forEach(function(bill){ %>
                                 <tr>
                                     <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
+                             
+                                        <td id='color'> 
+                                        </td>
                                         <td id='due'><%= bill.dueDate %></td>
                                         <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
                                         <td id='type'><%= bill.type %></td>

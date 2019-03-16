@@ -2,6 +2,9 @@ var total = 0;
 var debttotal = 0;
 var $;
 
+var n = document.getElementById("color")
+
+
 var d = new Date();
 document.getElementById("date").innerHTML = d.toDateString();
 
@@ -50,7 +53,7 @@ function first() {
   table = document.getElementById("bills");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[1];
     if (td) {
       if (td.innerHTML < 15) {
         tr[i].style.display = "";
@@ -67,7 +70,7 @@ function second() {
   table = document.getElementById("bills");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[1];
     if (td) {
       if (td.innerHTML > 14) {
         tr[i].style.display = "";
@@ -84,7 +87,7 @@ function full() {
   table = document.getElementById("bills");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[1];
     if (td) {
       if (td.innerHTML) {
         tr[i].style.display = "";
@@ -101,7 +104,7 @@ function credit() {
   table = document.getElementById("bills");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
+    td = tr[i].getElementsByTagName("td")[3];
     if (td) {
       if (td.innerHTML === "Credit Card") {
         tr[i].style.display = "";
@@ -119,7 +122,7 @@ function studentLoan() {
   table = document.getElementById("bills");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
+    td = tr[i].getElementsByTagName("td")[3];
     if (td) {
       if (td.innerHTML === "Student Loan") {
         tr[i].style.display = "";
@@ -137,7 +140,7 @@ function loan() {
   table = document.getElementById("bills");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
+    td = tr[i].getElementsByTagName("td")[3];
     if (td) {
       if (td.innerHTML === "Loan") {
         tr[i].style.display = "";
@@ -155,7 +158,7 @@ function utility() {
   table = document.getElementById("bills");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
+    td = tr[i].getElementsByTagName("td")[3];
     if (td) {
       if (td.innerHTML === "Utility") {
         tr[i].style.display = "";
@@ -172,7 +175,7 @@ function other() {
   table = document.getElementById("bills");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
+    td = tr[i].getElementsByTagName("td")[3];
     if (td) {
       if (td.innerHTML === "Other") {
         tr[i].style.display = "";
@@ -253,3 +256,28 @@ $('select').on("change",function(){
 $(document).ready(function(){
  $("#due").trigger('click');
 });
+
+function color(table, billType) {
+  var table, tr, td, i;
+  table = document.getElementById(table);
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[billType];
+    if (td) {
+      if (td.innerHTML === "Utility") {
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "LawnGreen";
+      } else if (td.innerHTML === "Other"){
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "blue";
+      } else if (td.innerHTML === "Credit Card") {
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "red";
+      } else if (td.innerHTML === "Student Loan"){
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Yellow";
+      } else if (td.innerHTML === "Loan"){
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Orange";
+      }
+    }
+  }
+}
+
+color('bills', 3)
+color('totalsByType', 1)
