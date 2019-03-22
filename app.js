@@ -43,10 +43,11 @@ app.use(function(req, res, next){
 
 var billRoutes         = require('./routes/bills');
 var dashboardRoutes    = require('./routes/dashboard');
-var expenseRoutes    = require('./routes/expense');
+var expenseRoutes      = require('./routes/expense');
 var indexRoutes        = require('./routes/index');
 var budgetItemRoutes   = require('./routes/budgetItem');
 var debtRoutes         = require('./routes/debt');
+var startingDebtRoutes = require('./routes/startingDebt');
 
 //REQUIRING ROUTE FILES USING EXPRESS ROUTER
 app.use('/budgetItem', budgetItemRoutes);
@@ -54,6 +55,7 @@ app.use('/bills', billRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/expense', expenseRoutes);
 app.use('/debt', debtRoutes);
+app.use('/startingDebt', startingDebtRoutes);
 app.use('/', indexRoutes);
 
 app.get('/budget',  middleware.isLoggedIn, function(req, res){

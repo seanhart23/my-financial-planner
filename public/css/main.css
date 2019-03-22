@@ -607,6 +607,10 @@ table.sortable thead {
     width: 63px;
 }
 
+#percentage {
+    display: none;
+}
+
 #remaining {
     width: 119px;
     float: right;

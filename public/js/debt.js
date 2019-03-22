@@ -1,28 +1,8 @@
 var debttotal = 0;
 var $;
 
-//BROWSER CACHE
-function saveTotalDebt(){
-    var debtAmount = document.getElementById("balance").value;
-    localStorage.setItem("startingBalance", debtAmount);
-}
-
-function saveVarianceP(){
-    var variance = document.getElementById("%paidOff").innerHTML;
-    localStorage.setItem("variance", variance);
-}
-
-function saveVariance(){
-    var paidOff = document.getElementById("paidOff").innerHTML;
-    localStorage.setItem("paidOff", paidOff);
-}
-
-function debtBalance() {
-    document.getElementById("balance").value = localStorage.getItem("startingBalance");
-}
-
-debtBalance();
-//CALCULATE BILL TOTAL
+var d = new Date();
+document.getElementById("date").innerHTML = d.toDateString();
 
 function debtCalculate() {
     debttotal = 0;
@@ -31,14 +11,23 @@ function debtCalculate() {
         debttotal += parseFloat($(this).text().slice(1).replace(/,/g,''));
     });
     $("#totalDebt").val(debttotal);
-    document.getElementById('totalDebt').innerHTML = debttotal.toFixed(2);
+      document.getElementById('totalDebt').innerHTML = debttotal.toFixed(2);
+    
+    var sb = document.getElementById('startingBalance').innerHTML;
+    var sdb = parseFloat(sb, 10).toFixed(2);
+    var po = document.getElementById('totalDebt').innerHTML;
+    var tpo = parseFloat(po, 10).toFixed(2);
+    var g = +sdb - +tpo;
+      document.getElementById('paidOff').innerHTML = g.toFixed(2);
+    
+    var variance = g / sdb * 100;
+      document.getElementById('%paidOff').innerHTML = variance.toFixed(2);
+      document.getElementById('chart').style.height = variance + "%";
+      document.getElementById('percent').innerHTML = variance.toFixed(2) + " %";
+      document.getElementById('chartLine').style.height = (100 - variance) + "%";
 }
 
 debtCalculate();
-
-
-var d = new Date();
-document.getElementById("date").innerHTML = d.toDateString();
 
 $(document).ready(function(){
  $("#amount").trigger('click');
@@ -53,40 +42,7 @@ function hidePaidOff() {
         }
     }
 }
-//UPDATE OVERALL TABLE REALTIME AS BALANCE IS ENTERED
 
-$('#balance').bind('focusout', function (event, previousText) {
-    $('#balance').html($(this).val());
-    saveTotalDebt();
-});
-
-$(document).ready(function (event, previousText) {
-      var startingBalance = document.getElementById("balance").value;
-      var totalDebt = document.getElementById("totalDebt").innerHTML;
-      var paidOff = +startingBalance - +totalDebt;
-      document.getElementById("paidOff").innerHTML = paidOff.toFixed(2);
-      var variance = paidOff / startingBalance * 100;
-      document.getElementById('%paidOff').innerHTML = variance.toFixed(2);
-      document.getElementById('chart').style.height = variance + "%";
-      document.getElementById('percent').innerHTML = variance.toFixed(2) + " %";
-      document.getElementById('chartLine').style.height = (100 - variance) + "%";
-      saveVariance();
-      saveVarianceP();
-});
-
-$('#balance').bind('keydown keyup click change', function (event, previousText) {
-      var startingBalance = document.getElementById("balance").value;
-      var totalDebt = document.getElementById("totalDebt").innerHTML;
-      var paidOff = +startingBalance - +totalDebt;
-      document.getElementById("paidOff").innerHTML = paidOff.toFixed(2)
-      var variance = paidOff / startingBalance * 100;
-      document.getElementById('%paidOff').innerHTML = variance.toFixed(2);
-      document.getElementById('chart').style.height = variance + "%";
-      document.getElementById('percent').innerHTML = variance.toFixed(2) + " %";
-      document.getElementById('chartLine').style.height = (100 - variance) + "%";
-      saveVariance();
-      saveVarianceP();
-});
 
 function credit() {
   var table, tr, td, i;
@@ -176,8 +132,18 @@ function other() {
   debtCalculate();
 }
 
+function showStartingDebt(){
+  if(document.getElementById('startingBalance').innerHTML !== "0"){
+    document.getElementById('hiddenButton').style.display = "none";
+  }
+}
+
+showStartingDebt();
+
 document.getElementById("credit").addEventListener("click", credit, false);
 document.getElementById("SL").addEventListener("click", studentLoan, false);
 document.getElementById("loan").addEventListener("click", loan, false);
 document.getElementById("bill").addEventListener("click", bill, false);
 document.getElementById("other").addEventListener("click", other, false);
+
+

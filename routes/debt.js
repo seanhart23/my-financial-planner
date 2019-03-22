@@ -1,17 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var debt = require('../models/debt');
+var startingDebt = require('../models/startingDebt');
 var middleware = require('../middleware');
 
 router.get('/', middleware.isLoggedIn, function(req, res){
-        debt.find({}, function(err, allDebts){
-        if(err){
-            console.log(err);
-        } else {
-            res.render("debt", {debt: allDebts});      
-        }
+    debt.find({}, function(err, allDebts){
+        startingDebt.find({}, function(err, allstartingDebts){
+            if(err){
+                console.log(err);
+            } else {
+                res.render("debt", {debt: allDebts, startingDebt: allstartingDebts});
+            }
+        });
     });
 });
+
 
 router.post('/', middleware.isLoggedIn, function(req, res){
     var itemLabel = req.body.itemLabel;
@@ -70,8 +74,28 @@ router.get('/:id/edit', middleware.isLoggedIn, function(req, res){
     });
 });
 
+router.get('/:id/edit', middleware.isLoggedIn, function(req, res){
+    startingDebt.findById(req.params.id, function(err, foundstartingDebt){
+        if(err) {
+            console.log(err);
+        } else {
+        res.render('debt/edit', {startingDebt: foundstartingDebt});
+        }
+    });
+});
+
 router.put('/:id', middleware.isLoggedIn, function(req, res){
     debt.findByIdAndUpdate(req.params.id, req.body, function(err, updatedDebt){
+        if(err){
+            res.redirect('err');
+        } else {
+            res.redirect('/debt');
+        }
+    });    
+});
+
+router.put('/:id', middleware.isLoggedIn, function(req, res){
+    startingDebt.findByIdAndUpdate(req.params.id, req.body, function(err, updatedstartingDebt){
         if(err){
             res.redirect('err');
         } else {

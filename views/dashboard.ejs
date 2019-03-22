@@ -106,6 +106,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                     <div class='col-lg-4 col-sm-12' id='mobile-card'>
                         <div class='chiclet'>
                             <div class="panel panel-default">
+                                
                                 <div class="panel-heading"><strong>Debt Snapshot</strong></div>
                                     <table class="table">
                                         <tr>
@@ -116,13 +117,18 @@ document.getElementById("date").innerHTML = d.toDateString();
                                                     <% totalDebts = totalDebts + debt.amount %>
                                                     <% } %>
                                                     <% }) %>
-                                            <td class='td-right'><span id='dollarSign'>$</span><div class='table-number'><%= totalDebts.toFixed(2) %></div></td>
+                                            <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id='totalDebt'><%= totalDebts.toFixed(2) %></div></td>
                                         </tr>
                                         <tr>
                                             <td>Paid Off</td>
-                                            <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="paidOff">0.00</div></td>
+                                            <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="paidOff">
+                                                <% var variance = startingDebt[0].amount - totalDebts %>
+                                                <%= variance.toFixed(2) %></div>
+                                            </td>
                                         </tr>
                                         <tr>
+                                            <% var percentage = (variance/startingDebt[0].amount * 100).toFixed(2) %>
+                                            <div id="percentage"><%= percentage %></div>
                                             <td># of Debts Paid Off</td>
                                             <% var numberOfDebts = 0 %>
                                                 <% debt.forEach(function(debt){ %>

@@ -23,21 +23,29 @@
     </div>
 </div>
 <br>
-
 <div class='container'>
     <div class='row'>
 <div class='col-lg-3 col-sm-12' id='mobile-card'>
     <div class='chiclet'>
         <div class="panel panel-default panel-default">
-            <div class="panel-heading"><strong>Debt Snapshot</strong></div>
+            <div class="panel-heading"><strong>Debt Snapshot</strong>
+                <a href="/startingDebt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addstartingDebt">Add Starting Debt</a>
+            </div>
                 <table class="table">
                     <tr>
                         <td>Starting Debt</td>
-                        <form>
                             <td class='td-right'>
-                                <span id='dollarSign'><i class="fa fa-info-circle" id='info' aria-hidden="true"><span class='tooltiptext'>Click on the debt amount field and type to edit the amount</span></i>$</span><input class='form-control table-number' type='number'  id="balance" name='balance' value='0.00' min='0.00' maxLength='9'step='0.01' oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                <span id='dollarSign'><i class="fa fa-info-circle" id='info' aria-hidden="true"><span class='tooltiptext'>Click on the debt amount field and type to edit the amount</span></i>$</span>
+                                <span class='table-number'>
+                                    <% var totalDebt = 0 %>
+                                    <% startingDebt.forEach(function(startingDebt){ %>
+                                    <% if(currentUser.username === startingDebt.author.username){ %>
+                                    <% totalDebt = totalDebt + startingDebt.amount %>
+                                    <a href="/startingDebt/<%= startingDebt._id %>/edit" data-toggle="modal" data-target="#editstartingDebt" id='startingBalance'><%= totalDebt %></a>
+                                    <% } %>
+                                    <% }) %>
+                                </span>
                             </td>
-                        </form>
                     </tr>
                     <tr>
                         <td>Total Debt</td>
@@ -47,7 +55,7 @@
                         <td>Paid Off</td>
                         <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="paidOff">0.00</div></td>
                     </tr>
-                    <tr style="display: none;">
+                    <tr>
                         <td> % Paid Off</td>
                         <td class='td-right'><span id="%paidOff">0.00</span> %</td>
                     </tr>
@@ -223,8 +231,24 @@
 </div>
 </div>
 
-<!--EDIT MODAL-->
+<div class="modal fade" id="addstartingDebt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
+</div>
+
+EDIT MODAL
 <div class="modal fade" id="editDebt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="editstartingDebt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-body"></div>
