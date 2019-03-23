@@ -1,25 +1,14 @@
 var total = 0;
-var debttotal = 0;
 var $;
 
-var n = document.getElementById("color")
+$(document).ready(function(){
+ $("#due").trigger('click');
+});
+// var n = document.getElementById("color")
 
 
 var d = new Date();
 document.getElementById("date").innerHTML = d.toDateString();
-
-//BROWSER CACHE
-function savePaycheckAmount(){
-  var savedAmount = document.getElementById("balance").value;
-  localStorage.setItem("accountBalance", savedAmount);
-}
-
-function bankBalance() {
-  var balance = localStorage.getItem("accountBalance");
-  document.getElementById("balance").value = balance;
-}
-
-bankBalance();
 
 //CALCULATE BILL TOTAL
 
@@ -44,7 +33,7 @@ function UpdateCount() {
   } 
 }
 
-UpdateCount()
+UpdateCount();
 
 //CALCULATE BILLS FOR EACH PART OF THE MONTH BASED ON BUTTON GROUP
 
@@ -197,42 +186,42 @@ document.getElementById("utility").addEventListener("click", utility, false);
 document.getElementById("other").addEventListener("click", other, false);
 // document.getElementById("billCalculate").addEventListener("click", billCalculate, false);
   
-//UPDATE OVERALL TABLE REALTIME AS BALANCE IS ENTERED
-
-$('#balance').bind('focusout', function (event, previousText) {
-    $('#balance').html($(this).val());
-    savePaycheckAmount();
-});
     
 //CALCULATE REMAINING VALUE
 
-$(document).ready(function (event, previousText) {
-      var income = document.getElementById("balance").value;
-      var bills = document.getElementById("totalBill").innerHTML;
-      var value = +income - +bills;
-      document.getElementById("remaining").innerHTML = value.toFixed(2);
-      if (value < 0){
+// $(document).ready(function (event, previousText) {
+//       var income = document.getElementById("balance").value;
+//       var bills = document.getElementById("totalBill").innerHTML;
+//       var value = +income - +bills;
+//       document.getElementById("remaining").innerHTML = value.toFixed(2);
+//       if (value < 0){
+//       document.getElementById("remaining").style.color = "red";
+// } else if (value >0) {
+//       document.getElementById("remaining").style.color = "green";
+// } else {
+//       document.getElementById("remaining").style.color = "black";
+// }
+// });
+
+$('#one, #two, #three, #full, #balance, #bills, #status').bind('keydown keyup click change', function (event, previousText) {
+      var remaining = document.getElementById("accountBalance").innerHTML - document.getElementById('totalBill').innerHTML
+      document.getElementById('remaining').innerHTML = remaining.toFixed(2)
+      if (remaining < 0){
       document.getElementById("remaining").style.color = "red";
-} else if (value >0) {
+} else if (remaining >0) {
       document.getElementById("remaining").style.color = "green";
 } else {
       document.getElementById("remaining").style.color = "black";
 }
 });
 
-$('#one, #two, #three, #full, #balance, #bills, #status').bind('keydown keyup click change', function (event, previousText) {
-      var income = document.getElementById("balance").value;
-      var bills = document.getElementById("totalBill").innerHTML;
-      var value = +income - +bills;
-      document.getElementById("remaining").innerHTML = value.toFixed(2);
-      if (value < 0){
-      document.getElementById("remaining").style.color = "red";
-} else if (value >0) {
-      document.getElementById("remaining").style.color = "green";
-} else {
-      document.getElementById("remaining").style.color = "black";
+function showStartingBalance(){
+  if(document.getElementById('accountBalance').innerHTML !== "0"){
+    document.getElementById('hiddenButton').style.display = "none";
+  }
 }
-});
+
+showStartingBalance();
 
 //DELETE ROW FROM DROPDOWN
 
@@ -253,9 +242,7 @@ $('select').on("change",function(){
       }
 });
 
-$(document).ready(function(){
- $("#due").trigger('click');
-});
+
 
 function color(table, billType) {
   var table, tr, td, i;
@@ -281,3 +268,5 @@ function color(table, billType) {
 
 color('bills', 3)
 color('totalsByType', 1)
+
+

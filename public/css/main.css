@@ -264,6 +264,10 @@ th {
     width: 50%;
 }
 
+.percentage {
+    display: none;
+}
+
 .positive-header {
     color: green!important;
 }
