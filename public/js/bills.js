@@ -159,6 +159,57 @@ function utility() {
   billCalculate();
 }
 
+function household() {
+  var table, tr, td, i;
+  table = document.getElementById("bills");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      if (td.innerHTML === "Household") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  billCalculate();
+}
+
+function membership() {
+  var table, tr, td, i;
+  table = document.getElementById("bills");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      if (td.innerHTML === "Membership") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  billCalculate();
+}
+
+function onetime() {
+  var table, tr, td, i;
+  table = document.getElementById("bills");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      if (td.innerHTML === "One Time") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+  billCalculate();
+}
+
 function other() {
   var table, tr, td, i;
   table = document.getElementById("bills");
@@ -183,6 +234,9 @@ document.getElementById("credit").addEventListener("click", credit, false);
 document.getElementById("studentLoan").addEventListener("click", studentLoan, false);
 document.getElementById("loan").addEventListener("click", loan, false);
 document.getElementById("utility").addEventListener("click", utility, false);
+document.getElementById("household").addEventListener("click", household, false);
+document.getElementById("membership").addEventListener("click", membership, false);
+document.getElementById("onetime").addEventListener("click", onetime, false);
 document.getElementById("other").addEventListener("click", other, false);
 // document.getElementById("billCalculate").addEventListener("click", billCalculate, false);
   
@@ -254,19 +308,25 @@ function color(table, billType) {
       if (td.innerHTML === "Utility") {
         tr[i].getElementsByTagName("td")[0].style.backgroundColor = "LawnGreen";
       } else if (td.innerHTML === "Other"){
-        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "blue";
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Deeppink";
       } else if (td.innerHTML === "Credit Card") {
         tr[i].getElementsByTagName("td")[0].style.backgroundColor = "red";
       } else if (td.innerHTML === "Student Loan"){
         tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Yellow";
       } else if (td.innerHTML === "Loan"){
         tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Orange";
+      } else if (td.innerHTML === "Membership"){
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Purple";
+      } else if (td.innerHTML === "Household"){
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Blue";
+      } else if (td.innerHTML === "One Time"){
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "MidnightBlue";
       }
     }
   }
 }
 
-color('bills', 3)
-color('totalsByType', 1)
+color('bills', 3);
+color('totalsByType', 1);
 
 
