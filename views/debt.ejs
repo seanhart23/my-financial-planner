@@ -7,7 +7,9 @@
         }
     }
 </style>
-
+<%
+   %>
+  
 <div id='paMobileHeader'>
 <div class='container'>
         <h3 id='welcome'></h3><div class='pull-right' id='date'></div>
@@ -24,7 +26,11 @@
 </div>
 <br>
 <div class='container'>
-    <div class='row'>
+
+    
+
+
+<div class='row'>
 <div class='col-lg-3 col-sm-12' id='mobile-card'>
     <div class='chiclet'>
         <div class="panel panel-default panel-default">
@@ -133,7 +139,10 @@
             </div>
         </div>
 
+
 <div class='col-lg-9 col-sm-12' id='mobile-card'>
+
+
 <div class='chiclet'>
     <div class="panel panel-default panel-danger">
         <div class="panel-heading"><strong>Debts</strong>
@@ -176,6 +185,7 @@
             </table>
         </div>
 
+
 <div class='chiclet main-table' id='paid-off'>
     <div class="panel panel-default panel-danger">
         <div class="panel-heading"><strong>Paid Off Debts</strong>
@@ -215,10 +225,190 @@
             </table>
         </div>
     </div>
+    
 </div>
+
+
+</div>
+<div class='chiclet'>
+    <div id='snowball'><%
+        var i = 0
+        var f = 0
+        var c = 0
+        var u = 0
+        var q = 0
+        var k = 0
+        var o = 0
+        var r = a
+        var add = 0
+        var year = 0
+        var ray = new Array();
+        var prevPay = new Array();
+        var remainder = new Array();
+        var prevMin = [0];
+        
+        debt.forEach(function(debt){
+            if(debt.amount > 0){
+                if(currentUser.username === debt.author.username){
+                    i++
+                }
+            }
+        }) %>
+        
+        <div class="panel-heading" id='snowballPanel'><strong>Debt Snowball  (<%= i %>)</strong></div>
+            <table><%
+                var a = [];
+                var interestA = 0;
+                debt.forEach(function(debt){
+                    if(debt.amount > 0){
+                        a.push({
+                            amount: debt.amount, 
+                            label: debt.itemLabel,
+                            interest: debt.interestRate,
+                            minimum: debt.monthlyPayment
+                        });
+                    }
+                })
+                a.sort(function(a, b){
+                    return a.amount == b.amount ? 0 : +(a.amount > b.amount) || -1;
+                    }); %>
+                <table class='test'>
+                    <table class='snowball'>
+                        <tr>
+                            <th class='snowball-header snowball-head'>
+                            </th>
+                        </tr>  
+                        <tbody id='months'>
+                        </tbody>
+                    </table>
+                    <% for(x = 0; x < a.length; x++){ %>
+
+                    <table class='snowball'>
+                        <tr>
+                            <th class='snowball-header snowball-head'>
+                                <%= a[x].label %>
+                            </th>
+                        </tr>  
+                           
+                            <% var b = Number(a[x].amount),
+                               debtAmount = Number(b.toFixed(2)),
+                               paymentAmount = Number(a[x].minimum),
+                               interestRate = a[x].interest * .01,
+                               extraPayment = 300,
+                               numberOfPayments = 12;
+                               
+                            function getSum(total, num) {
+                              return total + num;
+                            }
+                            
+                            function interestCalculate(debt) {
+                                if (interestRate > 0){
+                                    calcInterest = ((interestRate/365) * debt) * 30;
+                                    var interestA = calcInterest;
+                                } else {
+                                    var interestA = 0;
+                                }
+                            }
+
+                            function snowballCalculate(){
+                                add = remainder[remainder.length - 1];
+                                var w = Number(add)
+                                for(var p = 1; p < debtAmount.toFixed(2); p++){ %><tr><td class = 'snowballTD'><%
+                                if (interestRate > 0){
+                                    calcInterest = (debtAmount * (interestRate/365)) * 30;
+                                    var interestA = calcInterest;
+                                } else {
+                                    var interestA = 0;
+                                }
+                                    var oldRay = ray[ray.length - 1] - 1;
+                                    if (oldRay >= p && debtAmount >= paymentAmount){  
+                                        if (oldRay > p){
+                                            debtAmount = (debtAmount + interestA) - paymentAmount%>
+                                            $<%= paymentAmount.toFixed(2) %><% 
+                                        } else {
+                                            var n = prevMin[prevMin.length - 2]
+                                            o = w + n + paymentAmount
+                                            debtAmount = (debtAmount + interestA) - o %>
+                                            $<%= o.toFixed(2) %><%
+                                        }
+                                    } else if (oldRay < p && debtAmount > paymentAmount && (paymentAmount * 2) < debtAmount && (debtAmount - (paymentAmount + extraPayment + prevMin[prevMin.length -1])) > 0){
+                                        var d = paymentAmount + extraPayment + prevMin[prevMin.length - 1]
+                                        debtAmount = (debtAmount + interestA) - d %>
+                                        $<%= d.toFixed(2) %><%
+                                    } else { 
+				                        q = (paymentAmount + extraPayment) - (debtAmount + interestA);
+                                        remainder.push(q.toFixed(2));
+                                        prevPay.push(paymentAmount);
+                                        u = prevPay.reduce(getSum)
+                                        prevMin.push(u)
+                                        paymentAmount = debtAmount + interestA; 
+                                        debtAmount = (debtAmount + interestA) - paymentAmount %>
+                                        $<%= paymentAmount.toFixed(2) %><%
+                                    }
+                                } ray.push(p);  
+                            } snowballCalculate(); %>
+                        </tr>
+                    </table>
+                <% } %>
+                <table class='snowball' style="display: none;">
+                <tr>
+                            <th class='snowball-header snowball-head'>
+                                Payoff
+                            </th>
+                        </tr>  
+                        <tr>
+                            <td class = 'snowball-head'>
+                               Calendar
+                            </td>
+                        </tr>                           
+                        <tr>
+                            <td  class='snowball-head' id='head'>
+                                By Month
+                            </td>
+                        </tr id='head'><tbody id='orMonths'> <%
+                        var month = new Array();
+                            month[0] = "Jan";
+                            month[1] = "Feb";
+                            month[2] = "Mar";
+                            month[3] = "Apr";
+                            month[4] = "May";
+                            month[5] = "Jun";
+                            month[6] = "Jul";
+                            month[7] = "Aug";
+                            month[8] = "Sep";
+                            month[9] = "Oct";
+                            month[10] = "Nov";
+                            month[11] = "Dec";
+                            
+                        function months() {
+                            var d = new Date();
+                            r = month[d.getMonth()]; 
+                            year = 1900 + d.getYear();
+                        }
+                            
+                        months();
+                        var a = month.indexOf(r)
+                        console.log(a)
+                        var z = ray[ray.length - 1]
+                        for(i = a; i < z; i++){ 
+                            if(month[i%month.length] === "Jan"){
+                                year = year + 1 %>
+                                <tr><td><%= month[i%month.length] %> <%= year %></td></tr>
+                            <% } else { %>
+                                <tr><td><%= month[i%month.length] %> <%= year %></td></tr>
+                            <% } 
+                        } %>
+                </tbody>
+            </table>
+        </table>
+    </div>
 </div>
 </div>
 
+<script>
+
+ 
+</script>
 
 <% include ./partials/footer %>
 
@@ -257,4 +447,5 @@
 </div>
 </div>
 
-<script type="text/javascript" src='/js/debt.js'></script>
+<script type="text/javascript" src='/js/debt.js'>
+</script>

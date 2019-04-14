@@ -55,6 +55,7 @@ strong {
 table {
     table-layout: fixed;
     width: auto;
+    border: 0px;
 }
 
 td {
@@ -279,6 +280,34 @@ th {
     padding-left: 2px;
 }
 
+.snowball {
+    width: 140px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    padding: 0px;
+    font-size: 12px!important;
+}
+
+.snowball-head {
+    font-weight: 800;
+    background-color: Navy!important;
+    text-align: center;
+    color: white;
+    white-space: normal;
+}
+
+.snowball-header {
+    height: 50px;
+    vertical-align: middle;
+    padding: 0px 5px;
+    width: 140px;
+}
+
+.snowballTD {
+    
+}
+
 .table {
     margin-bottom: 0px;
 }
@@ -301,6 +330,10 @@ table.sortable thead {
 
 .td-right {
     text-align: right;
+}
+
+.test{
+    border: 1px solid red;
 }
 
 .wrapper {
@@ -454,6 +487,10 @@ table.sortable thead {
     padding-top: 30px;
     margin-right: 15px;
     margin-bottom: 0px;
+}
+
+#head {
+    border-bottom: 1px solid black;
 }
 
 #hiddenButton {
@@ -624,6 +661,17 @@ table.sortable thead {
 #save {
     display: inline-block;
     width: 23%;
+}
+
+#snowball {
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 100px;
+}
+
+#snowballPanel {
+    margin-bottom: 2px;
+    width: auto;
 }
 
 #status {

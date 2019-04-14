@@ -4,6 +4,8 @@ var $;
 var d = new Date();
 document.getElementById("date").innerHTML = d.toDateString();
 
+document.getElementById('months').innerHTML = document.getElementById('orMonths').innerHTML
+
 function debtCalculate() {
     debttotal = 0;
     $(".b").each(function() {
@@ -145,5 +147,3 @@ document.getElementById("SL").addEventListener("click", studentLoan, false);
 document.getElementById("loan").addEventListener("click", loan, false);
 document.getElementById("bill").addEventListener("click", bill, false);
 document.getElementById("other").addEventListener("click", other, false);
-
-
