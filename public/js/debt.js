@@ -147,3 +147,4 @@ document.getElementById("SL").addEventListener("click", studentLoan, false);
 document.getElementById("loan").addEventListener("click", loan, false);
 document.getElementById("bill").addEventListener("click", bill, false);
 document.getElementById("other").addEventListener("click", other, false);
+

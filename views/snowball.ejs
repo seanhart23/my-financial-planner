@@ -1,9 +1,5 @@
 <% include ./partials/header %>
 
-
-<%
-   %>
-  
 <div id='paMobileHeader'>
 <div class='container'>
         <h3 id='welcome'></h3><div class='pull-right' id='date'></div>
@@ -19,8 +15,27 @@
     </div>
 </div>
 <br>
+<% var z = 0 %>
 <div class='container'>
-
+    <div id='snowballInfo'>
+    <span class='infoTitle'>Number of Months to Payoff Debt:</span> <span id='totalMonths'></span><br>
+    <span class ='infoTitle'>Debts Remaining:</span> <span id='debtsRemaining'></span><br>
+    <% extraAmount.forEach(function(extraAmount){
+        if(currentUser.username === extraAmount.author.username){
+        if(extraAmount.amount > 0){ %>
+            <span class ='infoTitle'>Extra Monthly Payment:</span> $ <%= extraAmount.amount.toFixed(2) %><span><a href="/extraAmount/<%= extraAmount._id %>/edit" data-toggle="modal" data-target="#editextraPayment"> Edit</a>
+            <% z = extraAmount.amount.toFixed(2) %>
+            <% } else if (extraAmount.amount === 0){ %>
+            <span class ='infoTitle'>Extra Monthly Payment:</span> $ <%= extraAmount.amount %><span><a href="/extraAmount/<%= extraAmount._id %>/edit" data-toggle="modal" data-target="#editextraPayment"> Edit</a>
+            <% z = extraAmount.amount %>
+            <% } else { %>
+            <span class ='infoTitle'>Extra Monthly Payment:</span> <a href="/extraAmount/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addextraPayment">Add Extra Monthly Payment</a></span>
+            <% } }
+            }) %>
+      </div>
+    
+    <% extraPayment = Number(z) %>
+        
     <div id='snowball'><%
         var i = 0
         var f = 0
@@ -44,8 +59,8 @@
                 }
             }
         }) %>
-        
-        <div class="panel-heading" id='snowballPanel'><strong>Debt Snowball  (<%= i %> Debts Remaining)</strong></div>
+        <script>document.getElementById('debtsRemaining').innerHTML = <%= i %></script>
+        <div class="panel-heading" id='snowballPanel'><strong>Debt Snowball</strong></div>
             <table><%
                 var a = [];
                 var interestA = 0;
@@ -65,6 +80,7 @@
                 <table class='test'>
                     <table class='snowball'>
                         <tr><% if(a.length == 0) {
+                            %> <span><br>To see your debt snowball, add all of your debts to the debt tracker page </span> <%
                         } else { %>
                             <th class='snowball-header snowball-head'>
                                 Payoff Months
@@ -88,9 +104,8 @@
                                debtAmount = Number(b.toFixed(2)),
                                paymentAmount = Number(a[x].minimum),
                                interestRate = a[x].interest * .01,
-                               extraPayment = 300,
                                numberOfPayments = 12;
-                               
+
                             function getSum(total, num) {
                               return total + num;
                             }
@@ -107,7 +122,7 @@
                             function snowballCalculate(){
                                 add = remainder[remainder.length - 1];
                                 var w = Number(add)
-                                for(var p = 1; p < debtAmount.toFixed(2); p++){ %><tr><td class = 'snowballTD'><%
+                                for(var p = 0; (p/100) < debtAmount.toFixed(2); p++){ %><tr><td class = 'snowballTD'><%
                                 if (interestRate > 0){
                                     calcInterest = (debtAmount * (interestRate/365)) * 30;
                                     var interestA = calcInterest;
@@ -115,20 +130,33 @@
                                     var interestA = 0;
                                 }
                                     var oldRay = ray[ray.length - 1] - 1;
-                                    if (oldRay >= p && debtAmount >= paymentAmount){  
+                                    if (oldRay >= p && debtAmount >= paymentAmount){ 
+                                        var n = prevMin[prevMin.length - 2]
                                         if (oldRay > p){
                                             debtAmount = (debtAmount + interestA) - paymentAmount%>
                                             $<%= paymentAmount.toFixed(2) %><% 
+                                        } else if(oldRay = p && (paymentAmount + n + w) > debtAmount) {
+                                            q = (paymentAmount + extraPayment -u) - (debtAmount + interestA);
+                                            remainder.push(q.toFixed(2));
+                                            prevPay.push(paymentAmount);
+                                            u = prevPay.reduce(getSum)
+                                            prevMin.push(u)
+                                            paymentAmount = debtAmount + interestA; 
+                                            debtAmount = (debtAmount + interestA) - paymentAmount%>
+                                            $<%= paymentAmount.toFixed(2) %><%
                                         } else {
-                                            var n = prevMin[prevMin.length - 2]
                                             o = w + n + paymentAmount
                                             debtAmount = (debtAmount + interestA) - o %>
                                             $<%= o.toFixed(2) %><%
                                         }
-                                    } else if (oldRay < p && debtAmount > paymentAmount && (paymentAmount * 2) < debtAmount && (debtAmount - (paymentAmount + extraPayment + prevMin[prevMin.length -1])) > 0){
+                                    } else if (oldRay < p && debtAmount > paymentAmount && (paymentAmount * 2) < debtAmount && (debtAmount - (paymentAmount + extraPayment + prevMin[prevMin.length - 1])) > 0){
                                         var d = paymentAmount + extraPayment + prevMin[prevMin.length - 1]
                                         debtAmount = (debtAmount + interestA) - d %>
                                         $<%= d.toFixed(2) %><%
+                                    } else if (oldRay < p && debtAmount > paymentAmount && (debtAmount - (paymentAmount + extraPayment + prevMin[prevMin.length - 1])) > 0){ 
+				                        var j = paymentAmount + extraPayment + prevMin[prevMin.length - 1]
+                                        debtAmount = (debtAmount + interestA) - j %>
+                                        $<%= j.toFixed(2) %><%
                                     } else { 
 				                        q = (paymentAmount + extraPayment) - (debtAmount + interestA);
                                         remainder.push(q.toFixed(2));
@@ -140,7 +168,7 @@
                                         $<%= paymentAmount.toFixed(2) %><%
                                     }
                                 } ray.push(p);  
-                            } snowballCalculate(); %>
+                             } snowballCalculate(); %>
                         </tr>
                     </table>
                 <% } %>
@@ -191,6 +219,7 @@
                                 <tr><td><%= month[i%month.length] %> <%= year %></td></tr>
                             <% } 
                         } %>
+                        <script>document.getElementById('totalMonths').innerHTML = <%= z %></script>
                 </tbody>
             </table>
         </table>
@@ -201,3 +230,18 @@
 <% include ./partials/footer %>
 
 <script type="text/javascript" src='/js/debt.js'></script>
+
+<div class="modal fade" id="addextraPayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div></div>
+
+<div class="modal fade bg-dark" id="editextraPayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div></div>
+

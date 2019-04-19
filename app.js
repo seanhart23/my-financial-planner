@@ -50,6 +50,7 @@ var debtRoutes         = require('./routes/debt');
 var startingDebtRoutes = require('./routes/startingDebt');
 var accountBalanceRoutes = require('./routes/accountBalance');
 var snowballRoutes       = require('./routes/snowball');
+var extraAmountRoutes       = require('./routes/extraAmount');
 
 //REQUIRING ROUTE FILES USING EXPRESS ROUTER
 app.use('/budgetItem', budgetItemRoutes);
@@ -60,6 +61,7 @@ app.use('/debt', debtRoutes);
 app.use('/startingDebt', startingDebtRoutes);
 app.use('/accountBalance', accountBalanceRoutes);
 app.use('/snowball', snowballRoutes);
+app.use('/extraAmount', extraAmountRoutes);
 app.use('/', indexRoutes);
 
 app.get('/budget',  middleware.isLoggedIn, function(req, res){

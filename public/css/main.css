@@ -98,6 +98,7 @@ th {
     background-color: rgb(253, 253, 253);
     color: blue;
     border: 1px solid rgb(240, 240, 208);
+    z-index: 0;
 }
 
 .chiclet {
@@ -116,6 +117,29 @@ th {
     /*font-size: 14px;*/
 }
 
+.dropdown-divider {
+    margin: 10px 0px;
+}
+
+.dropdown-item {
+    padding: 10px 0px;
+    text-decoration: none;
+    color: #000080;
+    width: 100%;
+    font-size: 13px;
+}
+
+.dropdown-item:hover {
+    padding: 10px 0px;
+    text-decoration: none;
+    color: #000080;
+    width: 100%;
+}
+
+.dropdown-menu {
+    text-align: center;    
+}
+
 .dollarAmount {
   text-align: right;
 }
@@ -126,12 +150,6 @@ th {
 
 .emptyMessage {
     text-align: center;
-}
-
-#info {
-    font-size: 15px!important;
-    padding-right: 15px;
-    display: inline-block;
 }
 
 .fa-plus {
@@ -148,6 +166,11 @@ th {
 
 .glyphicon {
     line-height: 15px;
+}
+
+.infoTitle {
+    font-weight: bolder;
+    color: black
 }
 
 .inputForm {
@@ -224,10 +247,14 @@ th {
     border-radius: 0;
     position: fixed;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
     background-color: Navy;
     border: none;
     box-shadow: 0px 1px 4px #000000;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    background-color: #000080;
 }
 
 .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
@@ -507,6 +534,12 @@ table.sortable thead {
     display: inline-block;
 }
 
+#info {
+    font-size: 15px!important;
+    padding-right: 15px;
+    display: inline-block;
+}
+
 #info .tooltiptext {
     visibility: hidden;
     width: 500px;
@@ -579,6 +612,10 @@ table.sortable thead {
     margin-bottom: 20px;
 }
 
+#mailto {
+    text-decoration: none;
+    color: white;
+}
 #main-banner {
     background-color: gray;
     height: 300px;
@@ -669,6 +706,12 @@ table.sortable thead {
     margin-right: 100px;
 }
 
+#snowballInfo {
+    margin-bottom: 20px;
+    border: 1px solid #000080;
+    padding: 20px;
+    width: 30%;
+}
 #snowballPanel {
     margin-bottom: 2px;
     width: auto;
@@ -739,6 +782,20 @@ th {
 
 .dollarAmount {
     text-align: left;
+}
+
+.dropdown-item {
+    padding: 10px 0px;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
+
+.dropdown-item:hover {
+    padding: 10px 0px;
+    text-decoration: none;
+    color: white;
+    width: 100%;
 }
 
 .modal-content {

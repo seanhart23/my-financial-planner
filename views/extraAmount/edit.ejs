@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h5 class="modal-title">Edit Extra Monthly Payment</h5>
+</div>
+<div class="modal-body">
+
+<form action="/extraAmount/<%= extraAmount._id %>?_method=PUT" method="post">
+    <div class='form-group'>
+        Amount: <input class='form-control modal-input' type='number' name='amount' value='<%= extraAmount.amount.toFixed(2) %>' min='0.000' step='0.001'>
+    </div>
+    <div class='form-group'>
+        <button class="btn btn-lg btn-default btn-block btn-primary modal-btn">Submit</button>
+    <a href='/snowball' class='btn btn-lg bt-warning btn-block modal-btn'>Go Back</a>
+    </div>
+</form>
+</div>

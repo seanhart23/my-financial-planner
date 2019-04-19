@@ -35,8 +35,18 @@
         <!--<li><a href="/budget" id='link'>Budget</a></li>-->
         <li><a href="#" id='link' style="margin-right: 100px">Welcome <%= currentUser.name %>!</a></li>
         <li><a href="/expense" id='link'>Monthly Expense Tracker</a></li>
-        <li><a href="/debt" id='link'>Debt Tracker</a></li>
-        <li><a href="/snowball" id='link'>Debt Snowball</a></li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id='link' href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Debt
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/debt">Debt Tracker</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/snowball">Debt Snowball</a>
+          <div class="dropdown-divider"></div>
+        </div>
+      </li>
         <li><a href="/logout" id='link'>Logout</a></li>
         <% } %>
       </ul>
