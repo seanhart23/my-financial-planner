@@ -890,6 +890,10 @@ th {
     width: 30%;
 }
 
+#snowballInfo {
+    width: 100%;
+}
+
 #website {
     display: none;
 }
