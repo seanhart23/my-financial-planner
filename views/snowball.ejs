@@ -20,19 +20,18 @@
     <div id='snowballInfo'>
     <span class='infoTitle'>Number of Months to Payoff Debt:</span> <span id='totalMonths'></span><br>
     <span class ='infoTitle'>Debts Remaining:</span> <span id='debtsRemaining'></span><br>
+    <span class ='infoTitle'>Extra Monthly Payment:</span><a href="/extraAmount/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addextraPayment"><span id='emp'>Add Extra Monthly Payment</span></a></span>
     <% extraAmount.forEach(function(extraAmount){
-        if(currentUser.username === extraAmount.author.username){
-        if(extraAmount.amount > 0){ %>
-            <span class ='infoTitle'>Extra Monthly Payment:</span> $ <%= extraAmount.amount.toFixed(2) %><span><a href="/extraAmount/<%= extraAmount._id %>/edit" data-toggle="modal" data-target="#editextraPayment"> Edit</a>
-            <% z = extraAmount.amount.toFixed(2) %>
-            <% } else if (extraAmount.amount === 0){ %>
-            <span class ='infoTitle'>Extra Monthly Payment:</span> $ <%= extraAmount.amount %><span><a href="/extraAmount/<%= extraAmount._id %>/edit" data-toggle="modal" data-target="#editextraPayment"> Edit</a>
-            <% z = extraAmount.amount %>
+        if(currentUser.username === extraAmount.author.username){ %>
+            <script>document.getElementById('emp').innerHTML= ""</script>
+            <% if (extraAmount.amount > 0){ %>
+                $ <%= extraAmount.amount.toFixed(2) %><span><a href="/extraAmount/<%= extraAmount._id %>/edit" data-toggle="modal" data-target="#editextraPayment"> Edit</a>
+                <% z = extraAmount.amount.toFixed(2) %>
             <% } else { %>
-            <span class ='infoTitle'>Extra Monthly Payment:</span> <a href="/extraAmount/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addextraPayment">Add Extra Monthly Payment</a></span>
-            <% } }
-            }) %>
-      </div>
+                $ <%= extraAmount.amount %><span><a href="/extraAmount/<%= extraAmount._id %>/edit" data-toggle="modal" data-target="#editextraPayment"> Edit</a>
+                <% z = extraAmount.amount %>
+            <% } } } ) %>
+    </div>
     
     <% extraPayment = Number(z) %>
         
@@ -130,7 +129,7 @@
                                     var interestA = 0;
                                 }
                                     var oldRay = ray[ray.length - 1] - 1;
-                                    if (oldRay >= p && debtAmount >= paymentAmount){ 
+                                    if ((oldRay >= p) && debtAmount >= paymentAmount){ 
                                         var n = prevMin[prevMin.length - 2]
                                         if (oldRay > p){
                                             debtAmount = (debtAmount + interestA) - paymentAmount%>
@@ -140,7 +139,7 @@
                                             remainder.push(q.toFixed(2));
                                             prevPay.push(paymentAmount);
                                             u = prevPay.reduce(getSum)
-                                            prevMin.push(u)
+                                            prevMin.push(u)    
                                             paymentAmount = debtAmount + interestA; 
                                             debtAmount = (debtAmount + interestA) - paymentAmount%>
                                             $<%= paymentAmount.toFixed(2) %><%
@@ -149,11 +148,11 @@
                                             debtAmount = (debtAmount + interestA) - o %>
                                             $<%= o.toFixed(2) %><%
                                         }
-                                    } else if (oldRay < p && debtAmount > paymentAmount && (paymentAmount * 2) < debtAmount && (debtAmount - (paymentAmount + extraPayment + prevMin[prevMin.length - 1])) > 0){
+                                    } else if ((oldRay < p || Number.isNaN(oldRay) == true) && debtAmount > paymentAmount && (paymentAmount * 2) < debtAmount && (debtAmount - (paymentAmount + extraPayment + prevMin[prevMin.length - 1])) > 0){
                                         var d = paymentAmount + extraPayment + prevMin[prevMin.length - 1]
                                         debtAmount = (debtAmount + interestA) - d %>
                                         $<%= d.toFixed(2) %><%
-                                    } else if (oldRay < p && debtAmount > paymentAmount && (debtAmount - (paymentAmount + extraPayment + prevMin[prevMin.length - 1])) > 0){ 
+                                    } else if ((oldRay < p  || Number.isNaN(oldRay) == true) && debtAmount > paymentAmount && (debtAmount - (paymentAmount + extraPayment + prevMin[prevMin.length - 1])) > 0){ 
 				                        var j = paymentAmount + extraPayment + prevMin[prevMin.length - 1]
                                         debtAmount = (debtAmount + interestA) - j %>
                                         $<%= j.toFixed(2) %><%
@@ -211,7 +210,7 @@
                         months();
                         var a = month.indexOf(r)
                         var z = ray[ray.length - 1]
-                        for(i = a; i < z; i++){ 
+                        for(i = a; i < z + 3; i++){ 
                             if(month[i%month.length] === "Jan"){
                                 year = year + 1 %>
                                 <tr><td><%= month[i%month.length] %> <%= year %></td></tr>

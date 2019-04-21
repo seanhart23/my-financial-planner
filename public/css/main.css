@@ -314,6 +314,7 @@ th {
     vertical-align: top;
     padding: 0px;
     font-size: 12px!important;
+    margin-bottom: 50px;
 }
 
 .snowball-head {
@@ -710,7 +711,7 @@ table.sortable thead {
     margin-bottom: 20px;
     border: 1px solid #000080;
     padding: 20px;
-    width: 30%;
+    width: 40%;
 }
 #snowballPanel {
     margin-bottom: 2px;
