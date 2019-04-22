@@ -121,16 +121,16 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         </tr>
                                         <tr>
                                             <td>Paid Off</td>
-                                            <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="paidOff">
-                                                <% var variance = 0 %>
+                                            <% var variance = 0 %>
                                                 <% var percentage = 0 %>
                                                 <% startingDebt.forEach(function(startingDebt){ %>
                                                 <% if(currentUser.username === startingDebt.author.username){ %>
-                                                    <% var variance = startingDebt.amount - totalDebts %>
-                                                    <%= variance.toFixed(2) %>
+                                                    <% variance = startingDebt.amount - totalDebts %>
                                                     <% percentage = (variance/startingDebt.amount * 100).toFixed(2) %>
                                                 <% } %>
-                                            <% }) %></div></td>
+                                            <% }) %>
+                                            <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="paidOff"><%= variance.toFixed(2) %>
+                                                </div></td>
                                         </tr>
                                         <tr>
                                             <span id="percentage"><%= percentage %></span>

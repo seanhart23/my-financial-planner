@@ -251,6 +251,7 @@ th {
     background-color: Navy;
     border: none;
     box-shadow: 0px 1px 4px #000000;
+    /*height: 100px;*/
 }
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
@@ -592,18 +593,23 @@ table.sortable thead {
 
 #login {
     margin-top: 100px;
-    border: 1px solid black;
+    border: .5px solid black;
     text-align: left;
     padding-bottom: 10px;
     background-color: white;
-    box-shadow: 1px 1px 1px #000000;
+    /*box-shadow: 1px 1px 1px #000000;*/
     height: auto;
+}
+
+#login-header {
+    font-family: serif;
+    margin-bottom: 20px;
 }
 
 #login-button {
     margin-bottom: 5px;
-    background-color: white;
-    color: gray;
+    background-color: #000080;
+    color: white;
 }
 
 #login-input {
@@ -688,6 +694,11 @@ table.sortable thead {
 
 #percentage {
     display: none;
+}
+
+#register {
+    font-size: 14px;
+    margin-top: 50px;
 }
 
 #remaining {
