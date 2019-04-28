@@ -18,17 +18,17 @@
 <% var z = 0 %>
 <div class='container'>
     <div id='snowballInfo'>
-    <span class='infoTitle'>Number of Months to Payoff Debt:</span> <span id='totalMonths'></span><br>
-    <span class ='infoTitle'>Debts Remaining:</span> <span id='debtsRemaining'></span><br>
+    <span class='infoTitle'>Number of Months to Payoff Debt:</span><span id='totalMonths' class='pull-right'></span><br>
+    <span class ='infoTitle'>Debts Remaining:</span> <span id='debtsRemaining' class='pull-right'></span><br>
     <span class ='infoTitle'>Extra Monthly Payment:</span><a href="/extraAmount/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addextraPayment"><span id='emp'>Add Extra Monthly Payment</span></a></span>
     <% extraAmount.forEach(function(extraAmount){
         if(currentUser.username === extraAmount.author.username){ %>
             <script>document.getElementById('emp').innerHTML= ""</script>
             <% if (extraAmount.amount > 0){ %>
-                $ <%= extraAmount.amount.toFixed(2) %><span><a href="/extraAmount/<%= extraAmount._id %>/edit" data-toggle="modal" data-target="#editextraPayment"> Edit</a>
+                <span class='pull-right'><a href="/extraAmount/<%= extraAmount._id %>/edit" data-toggle="modal" data-target="#editextraPayment"> Edit</a>  $ <%= extraAmount.amount.toFixed(2) %>
                 <% z = extraAmount.amount.toFixed(2) %>
             <% } else { %>
-                $ <%= extraAmount.amount %><span><a href="/extraAmount/<%= extraAmount._id %>/edit" data-toggle="modal" data-target="#editextraPayment"> Edit</a>
+                <span class='pull-right'>$ <%= extraAmount.amount %><a href="/extraAmount/<%= extraAmount._id %>/edit" class='pull-right' data-toggle="modal" data-target="#editextraPayment"> Edit</a></span>
                 <% z = extraAmount.amount %>
             <% } } } ) %>
     </div>

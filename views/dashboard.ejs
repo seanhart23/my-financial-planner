@@ -191,6 +191,36 @@ document.getElementById("date").innerHTML = d.toDateString();
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalBill'><%= totalBill.toFixed(2) %></span></td>
                             </tr>
                             <tr>
+                                <% var totalHousehold = 0 %>
+                                <% bills.forEach(function(bill){ %>
+                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Household"){ %>
+                                        <% totalHousehold = totalHousehold + bill.amountDue %>
+                                        <% } %>
+                                        <% }) %>
+                                <td><divid='household'>Household</div></td>
+                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalHousehold.toFixed(2) %></span></td>
+                            </tr>                             
+                            <tr>
+                                <% var totalMembership = 0 %>
+                                <% bills.forEach(function(bill){ %>
+                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Membership"){ %>
+                                        <% totalMembership = totalMembership + bill.amountDue %>
+                                        <% } %>
+                                        <% }) %>
+                                <td><div id='membership'>Membership</div></td>
+                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalMembership.toFixed(2) %></span></td>
+                            </tr>                             
+                            <tr>
+                                <% var totalOnetime = 0 %>
+                                <% bills.forEach(function(bill){ %>
+                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "One Time"){ %>
+                                        <% totalOnetime = totalOnetime + bill.amountDue %>
+                                        <% } %>
+                                        <% }) %>
+                                <td><div id='onetime'>One Time</div></td>
+                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalOnetime.toFixed(2) %></span></td>
+                            </tr> 
+                            <tr>
                                 <% var totalOther = 0 %>
                                 <% debt.forEach(function(debt){ %>
                                         <% if((currentUser.username === debt.author.username  || currentUser.username === debt.authUser) && debt.type === "Other"){ %>

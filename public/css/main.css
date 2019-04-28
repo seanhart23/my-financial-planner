@@ -6,17 +6,19 @@ html,body
     margin: 0px;
     padding: 0px;
     overflow-x: auto; 
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
+    font-family: 'Merriweather', serif;
+    font-size: 13.5px;
     color: #202031;
+    
 }
 
 h1 {
-    font-size: 30px;
-    font-weight: 200;
+    font-size: 25px;
+    font-weight: 100;
     margin-top: 5px;
     margin-bottom: 0px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Merriweather', serif;
+    color: #000080;
 }
 
 h4 {
@@ -26,7 +28,7 @@ h4 {
 }
 
 hr {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 input::-webkit-outer-spin-button,
@@ -126,7 +128,7 @@ th {
     text-decoration: none;
     color: #000080;
     width: 100%;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .dropdown-item:hover {
@@ -170,7 +172,8 @@ th {
 
 .infoTitle {
     font-weight: bolder;
-    color: black
+    color: black;
+    font-size: 15px;
 }
 
 .inputForm {
@@ -210,6 +213,10 @@ th {
     margin-bottom: 200px;
 }
 
+.mobile {
+    display: none;
+}
+
 .modal {
     height: 95%;
     width: auto;
@@ -244,13 +251,16 @@ th {
 }
 
 .navbar {
+    height: 100px;
+    background-color: white;
+    box-shadow: 0px 0px 1px #000000;
     border-radius: 0;
     position: fixed;
     width: 100%;
     z-index: 3;
-    background-color: Navy;
+    /*background-color: Navy;*/
     border: none;
-    box-shadow: 0px 1px 4px #000000;
+    /*box-shadow: 0px 1px 4px #000000;*/
     /*height: 100px;*/
 }
 
@@ -260,6 +270,14 @@ th {
 
 .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
     background-color: #2D5386;
+}
+
+.header-link {
+    font-size: 18px;
+    text-decoration: none!important;
+    /*text-transform: uppercase;*/
+    color: #000080;
+    margin-right: 40px;
 }
 
 .negative-header {
@@ -301,6 +319,9 @@ th {
     color: green!important;
 }
 
+.row {
+    margin-left: 0px;
+}
 .secondary-link {
     text-decoration: none;
     color: gray;
@@ -314,7 +335,7 @@ th {
     text-align: center;
     vertical-align: top;
     padding: 0px;
-    font-size: 12px!important;
+    font-size: 13px!important;
     margin-bottom: 50px;
 }
 
@@ -419,7 +440,7 @@ table.sortable thead {
 }
 
 #chart {
-    background-color: lightgreen;
+    background-color: limegreen;
     bottom: 0px;
     position: absolute;
     overflow: hidden;
@@ -466,7 +487,7 @@ table.sortable thead {
 }
 
 #date {
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 #deleteButton {
@@ -490,7 +511,7 @@ table.sortable thead {
 }
 
 #due {
-    width: 12%;
+    width: 13%;
     text-align: center;
     vertical-align: middle;
 }
@@ -573,6 +594,16 @@ table.sortable thead {
     width:12%;
 }
 
+#landing-header {
+    height: 100px;
+    background-color: white;
+    box-shadow: 0px 2px 4px #000000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+}
+
 #link {
     text-decoration: none;
     color: white;
@@ -592,8 +623,8 @@ table.sortable thead {
 }
 
 #login {
-    margin-top: 100px;
-    border: .5px solid black;
+    margin-top: 150px;
+    border: .5px solid gray;
     text-align: left;
     padding-bottom: 10px;
     background-color: white;
@@ -603,20 +634,27 @@ table.sortable thead {
 
 #login-header {
     font-family: serif;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+    color: #000080;
+    /*border-bottom: 1px solid #000080;*/
+    padding-bottom: 5px;
 }
 
 #login-button {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     background-color: #000080;
     color: white;
+}
+
+#login-hr {
+    margin-top: 3px;
 }
 
 #login-input {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 #mailto {
@@ -640,6 +678,14 @@ table.sortable thead {
     margin-bottom: 10px;
 }
 
+#mobile-link {
+    display: none;
+}
+
+#mobile-link-bar {
+    display: none;
+}
+
 #monthlyPayment {
     vertical-align: middle;
     width: 10%;
@@ -655,6 +701,7 @@ table.sortable thead {
 
 #outerChart.panel {
     padding-bottom: 10px;
+    /*border: 1px solid #000080;*/
 }
 
 #output {
@@ -697,8 +744,11 @@ table.sortable thead {
 }
 
 #register {
-    font-size: 14px;
-    margin-top: 50px;
+    font-size: 18px;
+    text-decoration: none;
+    /*text-transform: uppercase;*/
+    color: #000080;
+    margin-right: 40px;
 }
 
 #remaining {
@@ -724,6 +774,7 @@ table.sortable thead {
     padding: 20px;
     width: 40%;
 }
+
 #snowballPanel {
     margin-bottom: 2px;
     width: auto;
@@ -737,6 +788,13 @@ table.sortable thead {
 
 #statusdd {
     text-align: center;
+}
+
+#title {
+    font-size: 33px;
+    padding-top: 25px;
+    font-family: 'Merriweather', serif;
+    color: #000080;
 }
 
 #trash {
@@ -760,7 +818,8 @@ table.sortable thead {
 }
 
 #welcome{
-    margin-top: 75px;
+    margin-top: 150px;
+    
 }
 
 #welcome-space {
@@ -775,8 +834,12 @@ body {
    -webkit-overflow-scrolling: touch;
 }
 
-hr {
-    display: none;
+/*hr {*/
+/*    display: none;*/
+/*}*/
+
+h1 {
+    margin-bottom: 10px;
 }
 
 table {
@@ -799,8 +862,9 @@ th {
 .dropdown-item {
     padding: 10px 0px;
     text-decoration: none;
-    color: white;
+    color: #000080;
     width: 100%;
+    font-size: 14px;
 }
 
 .dropdown-item:hover {
@@ -810,6 +874,11 @@ th {
     width: 100%;
 }
 
+.mobile-link {
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+}
 .modal-content {
     width: 90%;
     margin: 0px auto;
@@ -875,6 +944,26 @@ th {
     margin-top: 10px;
 }
 
+#mobile-link {
+    display: inline;
+    text-decoration: none;
+    color: #000080;
+    margin-top: 10px;
+    font-size: 14px;
+
+}
+
+#mobile-link-bar {
+    width: 100%;
+    display: inherit;
+    height: 25px;
+    background-color: #000080;
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    line-height: 1.75;
+}
+
 #login {
     width: 75%;
     margin-left: auto;
@@ -883,13 +972,22 @@ th {
     height: 50%!important;
 }
 
+#login-header {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+#login-hr {
+    display: inline!important;
+}
+
 #statusdd {
     display: none;
 }
 
 #paMobileHeader {
-    padding: 20px 10px;
-    margin-bottom: 10px;
+    padding: 40px 20px 0px 20px;
+    /*margin-bottom: 10px;*/
     text-align: center;
 }
 
@@ -901,8 +999,17 @@ th {
     width: 30%;
 }
 
+.header-link {
+    display: none;
+}
+
 #snowballInfo {
     width: 100%;
+}
+
+#title {
+    text-align: center;
+    padding-top: 10px;
 }
 
 #website {
@@ -916,6 +1023,6 @@ th {
 #welcome {
     text-align: center;
     padding-bottom: 0px;
-    margin-top: 60px;
+    margin-top: 100px;
 }
 }

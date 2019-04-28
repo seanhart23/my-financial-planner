@@ -1,7 +1,8 @@
-<% include ./partials/header %>
+<% include ./partials/header.ejs %>
 
 <style>
     body {
+    background:rgb(0,0,0);
     background-image: url("/images/Landing.jpg");
     background-size: cover;
 	background-position: center;
@@ -23,12 +24,18 @@
         }
     }
 </style>
+<!--<div id='landing-header'>-->
+<!--    <div class='container' id='title'>My Financial Planner-->
+<!--    <span class='pull-right'>-->
+<!--        <a href='/register' class='header-link'>Register</a> -->
+<!--        <a href=mailto:seanhart23@gmail.com class='header-link'>Send Feedback</a>-->
+<!--</span></div></div>-->
 <div class="container">
     <div class="row">
         <div class='col-lg-3 index-form' id='login'>
         <div id='login-input'>
             <form action='/login' method='POST'>
-                <h3 id='login-header'>Login</h3>
+                <h3 id='login-header'>Login</h3><hr id='login-hr'>
                 <div class="form-group">
                     <input class='form-control' type='text' name='username' placeholder='username'>
                 </div>
@@ -39,7 +46,8 @@
                     <button class='form-control btn-primary' id='login-button'>Login</button>
                 </div>
             </form>
-            <center><a href='/register' id='register'>Register</a></center>
+            <span id='mobile-login-links'><a href='/register' id='mobile-link'>Register</a></span><br>
+            <span id='mobile-login-links'><a href=mailto:seanhart23@gmail.com id='mobile-link'>Send Feedback</a></span>
             </div>
         </div>
         <div class='col-lg-9'>
