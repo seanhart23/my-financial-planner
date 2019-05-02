@@ -29,6 +29,7 @@
         <a href='/login' class='header-link'>Login</a> 
         <a href=mailto:seanhart23@gmail.com class='header-link'>Send Feedback</a>
         <% } else { %>
+        <a href="/dashboard" class='header-link'>Dashboard</a></a>
         <a href="/expense" class='header-link'>Monthly Expense Tracker</a>
         <span class="nav-item dropdown">
         <a class="dropdown-toggle header-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,7 +50,8 @@
    <div><% if(!currentUser){ %>
     <% } else { %>
            <div id='mobile-link-bar'>
-            <a href="/expense" class='mobile-link'>Expense Tracker</a> -
+            <a href="/dashboard" class='mobile-link'>Dashboard</a> -
+            <a href="/expense" class='mobile-link'>Expenses</a> -
             <span class="nav-item dropdown">
                 <a class="dropdown-toggle mobile-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Debt Tools</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
