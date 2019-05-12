@@ -108,15 +108,7 @@
                             function getSum(total, num) {
                               return total + num;
                             }
-                            
-                            function interestCalculate(debt) {
-                                if (interestRate > 0){
-                                    calcInterest = ((interestRate/365) * debt) * 30;
-                                    var interestA = calcInterest;
-                                } else {
-                                    var interestA = 0;
-                                }
-                            }
+                      
 
                             function snowballCalculate(){
                                 add = remainder[remainder.length - 1];
@@ -134,7 +126,16 @@
                                         if (oldRay > p){
                                             debtAmount = (debtAmount + interestA) - paymentAmount%>
                                             $<%= paymentAmount.toFixed(2) %><% 
-                                        } else if(oldRay = p && (paymentAmount + n + w) > debtAmount) {
+                                        } else if (oldRay = p && (paymentAmount + n + w) > debtAmount) {
+                                            q = (paymentAmount + extraPayment -u) - (debtAmount + interestA);
+                                            remainder.push(q.toFixed(2));
+                                            prevPay.push(paymentAmount);
+                                            u = prevPay.reduce(getSum)
+                                            prevMin.push(u)    
+                                            paymentAmount = debtAmount + interestA; 
+                                            debtAmount = (debtAmount + interestA) - paymentAmount%>
+                                            $<%= paymentAmount.toFixed(2) %><%
+                                        } else if ((p == 0) && (paymentAmount + n + w) > debtAmount) {
                                             q = (paymentAmount + extraPayment -u) - (debtAmount + interestA);
                                             remainder.push(q.toFixed(2));
                                             prevPay.push(paymentAmount);
