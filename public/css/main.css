@@ -341,6 +341,7 @@ th {
 .section {
     min-height: 88vh;
 }
+
 .snowball {
     width: 140px;
     display: inline-block;
@@ -368,6 +369,10 @@ th {
 
 .snowballTD {
     
+}
+
+.sub-head {
+    background-color: lightGray;    
 }
 
 .table {

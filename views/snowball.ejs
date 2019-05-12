@@ -98,6 +98,16 @@
                                 <%= a[x].label %>
                             </th>
                         </tr>  
+                        <tr>
+                            <td class='sub-head'>
+                                $<%= a[x].amount.toFixed(2) %>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td class='sub-head'>
+                                <%= a[x].interest.toFixed(2) %>%
+                            </td>
+                        </tr>                        
                            
                             <% var b = Number(a[x].amount),
                                debtAmount = Number(b.toFixed(2)),
@@ -108,7 +118,6 @@
                             function getSum(total, num) {
                               return total + num;
                             }
-                      
 
                             function snowballCalculate(){
                                 add = remainder[remainder.length - 1];
@@ -209,6 +218,8 @@
                         }
                             
                         months();
+                        %> <tr><td class='sub-head'>Starting Debt</td></tr><%
+                        %> <tr><td class='sub-head'>Interest Rate</td></tr><%
                         var a = month.indexOf(r)
                         var z = ray[ray.length - 1]
                         for(i = a; i < z + 3; i++){ 
