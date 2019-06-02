@@ -844,6 +844,7 @@ table.sortable thead {
 #welcome-space {
     width: 150px;
 }
+
 /*MOBILE SETTINGS*/
 
 @media screen and (max-width: 640px) {

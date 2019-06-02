@@ -20,6 +20,7 @@
     <div id='snowballInfo'>
     <span class='infoTitle'>Number of Months to Payoff Debt:</span><span id='totalMonths' class='pull-right'></span><br>
     <span class ='infoTitle'>Debts Remaining:</span> <span id='debtsRemaining' class='pull-right'></span><br>
+    <span class ='infoTitle'>Payoff Date:</span><span id='payoff-date' class='pull-right'></span><br>
     <span class ='infoTitle'>Extra Monthly Payment:</span><a href="/extraAmount/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addextraPayment"><span id='emp'>Add Extra Monthly Payment</span></a></span>
     <% extraAmount.forEach(function(extraAmount){
         if(currentUser.username === extraAmount.author.username){ %>
@@ -49,6 +50,7 @@
         var ray = new Array();
         var prevPay = new Array();
         var remainder = new Array();
+        var paymentLength = new Array();
         var prevMin = [0];
         
         debt.forEach(function(debt){
@@ -60,7 +62,7 @@
         }) %>
         <script>document.getElementById('debtsRemaining').innerHTML = <%= i %></script>
         <div class="panel-heading" id='snowballPanel'><strong>Debt Snowball</strong></div>
-            <table><%
+            <table id = 'wholeTable'><%
                 var a = [];
                 var interestA = 0;
                 debt.forEach(function(debt){
@@ -95,7 +97,7 @@
                     <table class='snowball'>
                         <tr>
                             <th class='snowball-header snowball-head'>
-                                <%= a[x].label %>
+                                <%= a[x].label.substring(0, 20) + "..."; %>
                             </th>
                         </tr>  
                         <tr>
@@ -176,11 +178,11 @@
                                         debtAmount = (debtAmount + interestA) - paymentAmount %>
                                         $<%= paymentAmount.toFixed(2) %><%
                                     }
-                                } ray.push(p);  
+                                } ray.push(p); paymentLength.push(p);
                              } snowballCalculate(); %>
                         </tr>
                     </table>
-                <% } %>
+                <% } %><% var payMonths = Math.max.apply( Math, paymentLength ) %>
                 <table class='snowball' style="display: none;">
                 <tr>
                             <th class='snowball-header snowball-head'>
@@ -221,16 +223,20 @@
                         %> <tr><td class='sub-head'>Starting Debt</td></tr><%
                         %> <tr><td class='sub-head'>Interest Rate</td></tr><%
                         var a = month.indexOf(r)
-                        var z = ray[ray.length - 1]
-                        for(i = a; i < z + 3; i++){ 
-                            if(month[i%month.length] === "Jan"){
+                        var z = payMonths 
+                        var t
+                        for(i = 0; i < z; i++){ 
+                            
+                            if(month[a%month.length] === "Jan"){
                                 year = year + 1 %>
-                                <tr><td><%= month[i%month.length] %> <%= year %></td></tr>
+                                <tr><td><%= month[a%month.length] %> <%= year %></td></tr>
                             <% } else { %>
-                                <tr><td><%= month[i%month.length] %> <%= year %></td></tr>
-                            <% } 
-                        } %>
-                        <script>document.getElementById('totalMonths').innerHTML = <%= z %></script>
+                                <% t = (month[a%month.length] + " " + year) %></td></tr>
+                                <tr><td><%= t %></td></tr>
+                            <% } a++;
+                        } %>                             
+                        <script>document.getElementById('totalMonths').innerHTML = <%= payMonths %></script>
+                        <script>document.getElementById('payoff-date').innerHTML = "<%= t %>"</script>
                 </tbody>
             </table>
         </table>

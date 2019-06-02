@@ -48,7 +48,7 @@
                                     <span id='dollarSign'>$</span>
                                 <span class='table-number'>
                                     <% totalDebt = totalDebt + startingDebt.amount %>
-                                    <a href="/startingDebt/<%= startingDebt._id %>/edit" data-toggle="modal" data-target="#editstartingDebt" id='startingBalance'><%= totalDebt %></a>
+                                    <a href="/startingDebt/<%= startingDebt._id %>/edit" data-toggle="modal" data-target="#editstartingDebt" id='startingBalance'><%= totalDebt.toFixed(2) %></a>
                                     <% } %>
                                     <% }) %>
                                 </span>
