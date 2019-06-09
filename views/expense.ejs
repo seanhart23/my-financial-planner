@@ -32,13 +32,13 @@
 <div class='container'>
     <!--<div class='row'>-->
         <div class='col-lg-3 col-sm-12' id='mobile-card'>
-            <div class='chiclet'>
+            <div class='chiclet card'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Snapshot</strong>
                     <a href="/accountBalance/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addaccountBalance">Add Balance</a></div>
                         <table class="table">
                             <tr>
-                                <td>Balance</td>
+                                <td  class='indent'>Balance</td>
                                 <% accountBalance.forEach(function(accountBalance){ %>
                                     <% if(currentUser.username === accountBalance.author.username){ %>
                                     <td class='td-right'><span id='dollarSign'>$</span><div class='table-number'>
@@ -48,11 +48,11 @@
                                 </div></td>
                             </tr>
                             <tr>
-                                <td>Bills</td>
+                                <td class='indent'>Bills</td>
                                 <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="totalBill">0.00</div></td>
                             </tr>                          
                             <tr>
-                                <td>Remaining</td>
+                                <td class='indent'>Remaining</td>
                                 <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="remaining">0.00</div></td>
                             </tr>
                         </table>
@@ -60,7 +60,7 @@
                 </div>
                 <p>
                     
-            <div class='chiclet'>
+            <div class='chiclet card'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Totals By Type</strong></div>
                         <table class="table" id='totalsByType'>
@@ -72,7 +72,7 @@
                                         <% } %>
                                         <% }) %>
                                 <td id='color' style='background-Color:red'></td>
-                                <td><a href="#" id='credit'>Credit Card</a></td>
+                                <td><a class='indent' href="#" id='credit'>Credit Card</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -84,7 +84,7 @@
                                         <% } %>
                                         <% }) %>
                                 <td id='color' style='background-Color:yellow'></td>
-                                <td><a href="#" id='studentLoan'>Student Loan</a></td>
+                                <td><a class='indent' href="#" id='studentLoan'>Student Loan</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -95,7 +95,7 @@
                                         <% } %>
                                         <% }) %>
                                 <td id='color' style='background-Color:orange'></td>
-                                <td><a href="#" id='loan'>Loan</a></td>
+                                <td><a class='indent'href="#" id='loan'>Loan</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -106,7 +106,7 @@
                                         <% } %>
                                         <% }) %>
                                 <td id='color' style='background-Color:LawnGreen'></td>
-                                <td><a href="#" id='utility'>Utility</a></td>
+                                <td><a class='indent' href="#" id='utility'>Utility</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalUtility.toFixed(2) %></span></td>
                             </tr>                             
                             <tr>
@@ -117,7 +117,7 @@
                                         <% } %>
                                         <% }) %>
                                 <td id='color' style='background-Color:blue'></td>
-                                <td><a href="#" id='household'>Household</a></td>
+                                <td><a class='indent' href="#" id='household'>Household</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalHousehold.toFixed(2) %></span></td>
                             </tr>                             
                             <tr>
@@ -128,7 +128,7 @@
                                         <% } %>
                                         <% }) %>
                                 <td id='color' style='background-Color:purple'></td>
-                                <td><a href="#" id='membership'>Membership</a></td>
+                                <td><a class='indent' href="#" id='membership'>Membership</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalMembership.toFixed(2) %></span></td>
                             </tr>                             
                             <tr>
@@ -139,7 +139,7 @@
                                         <% } %>
                                         <% }) %>
                                 <td id='color' style='background-Color:midnightblue'></td>
-                                <td><a href="#" id='onetime'>One Time</a></td>
+                                <td><a class='indent' href="#" id='onetime'>One Time</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalOnetime.toFixed(2) %></span></td>
                             </tr> 
                             <tr>
@@ -150,7 +150,7 @@
                                         <% } %>
                                         <% }) %>
                                 <td id='color' style='background-Color:deeppink'></td>
-                                <td><a href="#" id='other'>Other</a></td>
+                                <td><a class='indent' href="#" id='other'>Other</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
                             </tr>
                         </table>
@@ -159,13 +159,13 @@
             </div>
             
             <div class='col-lg-9 col-sm-12' id='mobile-card'>
-                <div class='chiclet' id='main-table'>
-                    <div class="panel panel-default">
+                <div class='chiclet'>
+                    <div class="panel panel-default card">
                         <div class="panel-heading"><strong>Monthly Expenses</strong>
                         <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense<!--<i class="fa fa-plus" aria-hidden="true"></i>--></a></div>
                         </div>
-                        <table class="table sortable" id="bills">
-                            <thead>
+                         <table class="table sortable" id="bills"> 
+                           <thead>
                                 <tr>
                                     <th id='color'></th>
                                     <th id='due'>Due Date</th>
@@ -180,11 +180,9 @@
                             </thead>
                             <tbody>
                                 <% bills.forEach(function(bill){ %>
-                                <tr>
                                     <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
-                             
-                                        <td id='color'> 
-                                        </td>
+                                    <tr class='table-card'>
+                                        <td id='color'></td>
                                         <td id='due'><%= bill.dueDate %></td>
                                         <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
                                         <td id='type'><%= bill.type %></td>
@@ -208,7 +206,7 @@
                                     <% } %>
                                 <% }) %>
                             </tr>
-                            <tr id='emptyMessageBills'></tr>
+                            <!--<tr id='emptyMessageBills'></tr>-->
                             </tbody>
                         </table>
                     </div>

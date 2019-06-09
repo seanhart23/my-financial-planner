@@ -32,14 +32,14 @@
 
 <!--<div class='row'>-->
 <div class='col-lg-3 col-sm-12' id='mobile-card'>
-    <div class='chiclet'>
+    <div class='chiclet card'>
         <div class="panel panel-default panel-default">
             <div class="panel-heading"><strong>Debt Snapshot</strong>
                 <a href="/startingDebt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addstartingDebt">Add Starting Debt</a>
             </div>
                 <table class="table">
                     <tr>
-                        <td>Starting Debt</td>
+                        <td class='indent'>Starting Debt</td>
                             <td class='td-right'>
                                 
                                     <% var totalDebt = 0 %>
@@ -55,21 +55,21 @@
                             </td>
                     </tr>
                     <tr>
-                        <td>Total Debt</td>
+                        <td class='indent'>Total Debt</td>
                         <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="totalDebt">0.00</div></td>
                     </tr>  
                     <tr>
-                        <td>Paid Off</td>
+                        <td class='indent'>Paid Off</td>
                         <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="paidOff">0.00</div></td>
                     </tr>
                     <tr>
-                        <td> % Paid Off</td>
+                        <td class='indent'> % Paid Off</td>
                         <td class='td-right'><span id="%paidOff">0.00</span> %</td>
                     </tr>
                 </table>
             </div>
         </div>
-                    <div class='chiclet'>
+                    <div class='chiclet card'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Balances</strong></div>
                         <table class="table">
@@ -80,7 +80,7 @@
                                         <% totalCredit = totalCredit + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td><a href="#" id='credit'>Credit Cards</a></td>
+                                <td><a  class='indent' href="#" id='credit'>Credit Cards</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -90,7 +90,7 @@
                                         <% totalLoan = totalLoan + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td><a href="#" id='loan'>Loans</a></td>
+                                <td><a class='indent' href="#" id='loan'>Loans</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -100,7 +100,7 @@
                                         <% totalSL = totalSL + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td><a href="#" id='SL'>Student Loans</a></td>
+                                <td><a class='indent' href="#" id='SL'>Student Loans</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
                             </tr>                            
                             <tr>
@@ -110,7 +110,7 @@
                                         <% totalBill = totalBill + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td><a href="#" id='bill'>Bills</a></td>
+                                <td><a class='indent'  href="#" id='bill'>Bills</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalBill'><%= totalBill.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -120,13 +120,13 @@
                                         <% totalOther = totalOther + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td><a href="#" id='other'>Other</a></td>
+                                <td><a class='indent'  href="#" id='other'>Other</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
                             </tr>
                         </table>
                     </div>
                 </div>
-            <div class='panel' id="outerChart">
+            <div class='panel card' id="outerChart">
                 <div class="panel-heading"><strong>Payoff Chart</strong></div>
                 <br>
                     <div id='chartOutline'>
@@ -141,15 +141,13 @@
 
 
 <div class='col-lg-9 col-sm-12' id='mobile-card'>
-
-
 <div class='chiclet'>
-    <div class="panel panel-default panel-danger">
+    <div class="panel panel-default card">
         <div class="panel-heading"><strong>Debts</strong>
             <a href="/debt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addDebt">Add Debt</a></div>
         </div>
             <table class="table sortable" id="debts">
-                <thead>
+                <thead> 
                     <tr>
                         <th id='payeeDebt'>Payee</th>
                         <th id='type'>Type</th>
@@ -163,9 +161,9 @@
                 <tbody>
                     <% debt.forEach(function(debt){ %>
                         <% if(debt.amount > 0){ %>
-                        <tr>
                             <% if(currentUser.username === debt.author.username){ %>
-                                <td id='payeeDebt'>
+                            <tr class='table-card'>
+                                <td class='indent' id='payeeDebt'>
                                     <a href="/debt/<%= debt._id %>/edit" data-toggle="modal" data-target="#editDebt"><%= debt.itemLabel %></a></span></td>
                                 <td id='type'><%= debt.type %></td>
                                 <td id='amount'><span class='b'><%= debt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
@@ -187,9 +185,9 @@
 
 
 <div class='chiclet main-table' id='paid-off'>
-    <div class="panel panel-default panel-danger">
+    <div class="panel panel-default card">
         <div class="panel-heading"><strong>Paid Off Debts</strong>
-        </div>
+        </div></div>
             <table class="table" id="paid-off-debts">
                 <thead>
                     <tr>
@@ -204,16 +202,17 @@
                 </thead>
                 <tbody>
                     <% debt.forEach(function(debt){ %>
-                    <tr>
+                    
                         <% if(currentUser.username === debt.author.username && debt.amount < 1){ %>
-                            <td id='payee'>
+                        <tr class='table-card'>
+                            <td class='indent' id='payee'>
                                 <a href="/debt/<%= debt._id %>/edit" data-toggle="modal" data-target="#editDebt"><%= debt.itemLabel %></a></span></td>
                             <td id='type'><%= debt.type %></td>
                             <td id='amount'><span class='b'><%= debt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
                             <td id='interestRate'><%= debt.interestRate.toFixed(3)%>%</td>
                             <td id='monthlyPayment'><%= debt.monthlyPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></td>
                             <td id='website'><a href="<%= debt.website %>" target="_blank" class="btn btn-primary btn-xs" id='goButton'>Go</a></td>
-                            <td>
+                            <td id='delete'>
                             <form action="/debt/<%= debt._id %>?_method=DELETE" method="POST" class="delete-form">
                                 <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                             </form>

@@ -27,12 +27,32 @@ document.getElementById("date").innerHTML = d.toDateString();
 <div class='container dashboard-table'>
     <!--<div class='row'>-->
         <div class='col-lg-4 col-sm-12' id='mobile-card'>
-            <div class='chiclet'>
+            <div class=''><div class='card'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Monthly Bills</strong></div>
                         <table class="table">
                             <tr>
-                                <td>Monthly Bills</td>
+                                <td class='indent' >First Half</td>
+                                <% var totalBills = 0 %>
+                                    <% bills.forEach(function(bill){ %>
+                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.dueDate < 15){ %>
+                                        <% totalBills = totalBills + bill.amountDue %>
+                                        <% } %>
+                                        <% }) %>
+                                <td class='td-right'><span id='dollarSign'>$</span><div class='table-number'><%= totalBills.toFixed(2) %></div></td>
+                            </tr>
+                            <tr>
+                                <td class='indent' >Second Half</td>
+                                <% var totalBills = 0 %>
+                                    <% bills.forEach(function(bill){ %>
+                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.dueDate > 14){ %>
+                                        <% totalBills = totalBills + bill.amountDue %>
+                                        <% } %>
+                                        <% }) %>
+                                <td class='td-right'><span id='dollarSign'>$</span><div class='table-number'><%= totalBills.toFixed(2) %></div></td>
+                            </tr>
+                            <tr>
+                                <td class='indent' >Total</td>
                                 <% var totalBills = 0 %>
                                     <% bills.forEach(function(bill){ %>
                                         <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
@@ -42,8 +62,9 @@ document.getElementById("date").innerHTML = d.toDateString();
                                 <td class='td-right'><span id='dollarSign'>$</span><div class='table-number'><%= totalBills.toFixed(2) %></div></td>
                             </tr>
                         </table>
-                    </div><p></p>
-            <div class='chiclet'>
+                    </div>
+                  </div>
+            <div class='chiclet'><div class='card'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Bills By Type</strong></div>
                         <table class="table">
@@ -54,7 +75,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalCredit = totalCredit + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='credit'>Credit Card</a></td>
+                                <td><div class='indent' id='credit'>Credit Card</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -65,7 +86,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalSL = totalSL + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='studentLoan'>Student Loan</a></td>
+                                <td><div  class='indent' id='studentLoan'>Student Loan</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -75,7 +96,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalLoan = totalLoan + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='loan'>Loan</a></td>
+                                <td><div  class='indent' id='loan'>Loan</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -85,7 +106,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalUtility = totalUtility + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='utility'>Utility</a></td>
+                                <td><div  class='indent' id='utility'>Utility</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalUtility.toFixed(2) %></span></td>
                             </tr> 
                             <tr>
@@ -95,7 +116,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalHousehold = totalHousehold + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td><divid='household'>Household</div></td>
+                                <td><div  class='indent' id='household'>Household</div></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalHousehold.toFixed(2) %></span></td>
                             </tr>                             
                             <tr>
@@ -105,7 +126,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalMembership = totalMembership + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='membership'>Membership</div></td>
+                                <td><div  class='indent' id='membership'>Membership</div></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalMembership.toFixed(2) %></span></td>
                             </tr>                             
                             <tr>
@@ -115,7 +136,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalOnetime = totalOnetime + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='onetime'>One Time</div></td>
+                                <td><div  class='indent' id='onetime'>One Time</div></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalOnetime.toFixed(2) %></span></td>
                             </tr> 
                             <tr>
@@ -125,22 +146,22 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalOther = totalOther + bill.amountDue %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='other'>Other</a></td>
+                                <td><div  class='indent' id='other'>Other</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
                             </tr>
                         </table>
                     </div>
-                </div>
+                </div></div>
                     </div>
                     </div>
                     <div class='col-lg-4 col-sm-12' id='mobile-card'>
-                        <div class='chiclet'>
+                        <div class='chiclet'><div class='card'>
                             <div class="panel panel-default">
                                 
                                 <div class="panel-heading"><strong>Debt Snapshot</strong></div>
                                     <table class="table">
                                         <tr>
-                                            <td>Debt Remaining</td>
+                                            <td class='indent' >Debt Remaining</td>
                                             <% var totalDebts = 0 %>
                                                 <% debt.forEach(function(debt){ %>
                                                     <% if(currentUser.username === debt.author.username  || currentUser.username === debt.authUser){ %>
@@ -150,7 +171,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                             <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id='totalDebt'><%= totalDebts.toFixed(2) %></div></td>
                                         </tr>
                                         <tr>
-                                            <td>Paid Off</td>
+                                            <td class='indent' >Paid Off</td>
                                             <% var variance = 0 %>
                                                 <% var percentage = 0 %>
                                                 <% startingDebt.forEach(function(startingDebt){ %>
@@ -164,7 +185,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         </tr>
                                         <tr>
                                             <span id="percentage"><%= percentage %></span>
-                                            <td># of Debts Paid Off</td>
+                                            <td class='indent' ># of Debts Paid Off</td>
                                             <% var numberOfDebts = 0 %>
                                                 <% debt.forEach(function(debt){ %>
                                                     <% if((currentUser.username === debt.author.username  || currentUser.username === debt.authUser) && debt.amount === 0.00){ %>
@@ -175,8 +196,8 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         </tr>
                                     </table>
                                 </div>
-                                </div>
-                                <div class='chiclet'>
+                                </div></div>
+                                <div class='chiclet'><div class='card'>
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Debt Balances</strong></div>
                         <table class="table">
@@ -187,7 +208,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalCredit = totalCredit + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='credit'>Credit Cards</a></td>
+                                <td><div  class='indent' id='credit'>Credit Cards</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -197,7 +218,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalLoan = totalLoan + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='loan'>Loans</a></td>
+                                <td><div  class='indent' id='loan'>Loans</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -207,7 +228,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalSL = totalSL + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='SL'>Student Loans</a></td>
+                                <td><div  class='indent' id='SL'>Student Loans</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
                             </tr>                            
                             <tr>
@@ -217,7 +238,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalBill = totalBill + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='bill'>Bills</a></td>
+                                <td><div  class='indent' id='bill'>Bills</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalBill'><%= totalBill.toFixed(2) %></span></td>
                             </tr>
                             <tr>
@@ -227,14 +248,14 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <% totalOther = totalOther + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td><div id='other'>Other</a></td>
+                                <td><div  class='indent' id='other'>Other</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
                             </tr>
                         </table>
                     </div></div>
-                    </div>  
+                    </div>  </div>
                     <div class='col-lg-4 col-sm-12' id='mobile-card'>
-                        <div class='chiclet'>
+                        <div class='chiclet'><div class='card'>
                             <div class='panel' id="outerChart">
                                 <div class="panel-heading"><strong>Payoff Chart</strong></div>
                                 <br>
@@ -242,7 +263,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                         <div id='chartLine'>
                                             <div id='percent'></div>
                                         <div id='chart'>     
-                                        </div>
+                                        </div></div>
                                     </div>
                                 </div>
                             </div>

@@ -61,8 +61,12 @@ table {
     font-family: 'Montserrat', serif;
 }
 
+thead tr {
+    /*background-color: white;*/
+}
+
 td {
-    width: 11.5%;
+    width: 15%;
     text-transform: uppercase;
     padding: 2px!important;
 }
@@ -78,6 +82,9 @@ tr:nth-child(even) {
 
 th {
     text-transform: uppercase;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    font-weight: 600;
 }
 
 .actions{
@@ -104,12 +111,16 @@ th {
     z-index: 0;
 }
 
+.card {
+    margin-bottom: 30px;
+    box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5);
+    border-radius: 5px 5px 5px 5px;
+}
+
 .chiclet {
     width: 100%;
     /*font-size: 12px;*/
-    margin-bottom: 20px;
-    /*border: 1px solid black;*/
-    /*box-shadow: 1px 1px 1px #000000;*/
+    margin-bottom: 0px 40px;
 }
 
 .container {
@@ -296,14 +307,19 @@ th {
 .panel {
     margin-bottom: 10px;
     border: 0px;
+    /*border-radius: 25px;*/
+}
+
+.panel-default{
+    border-radius: 25px;
 }
 
 .panel-heading {
-    font-size: 16px;
+    font-size: 18px;
     text-align: left;
     background-color: rgb(240, 240, 208)!important;
     color: Black!important;
-    border-radius: 0px;
+    border-radius: 5px 5px 0px 0px;
     border: 0px;
     /*box-shadow: 0px 1px 2px #000000;*/
     height: 40px;
@@ -318,6 +334,7 @@ th {
 
 .payBillbtn {
     width: 50%;
+    border-radius: 15px;
 }
 
 .percentage {
@@ -349,11 +366,11 @@ th {
     vertical-align: top;
     padding: 0px;
     font-size: 13px!important;
-    margin-bottom: 50px;
+    margin-bottom: 200px;
 }
 
 .snowball-head {
-    font-weight: 800;
+    font-weight: 500;
     background-color: Navy!important;
     text-align: center;
     color: white;
@@ -371,12 +388,19 @@ th {
     
 }
 
+
 .sub-head {
     background-color: lightGray;    
 }
 
 .table {
     margin-bottom: 0px;
+}
+
+.table-card {
+    box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5);
+    border-radius: 5px 5px 5px 5px;
+    height: 50px;
 }
 
 table.sortable thead {
@@ -395,8 +419,13 @@ table.sortable thead {
     letter-spacing: 1px;
 }
 
+.indent {
+    padding-left: 10px!important;
+}
+
 .td-right {
     text-align: right;
+    padding-right: 15px!important;
 }
 
 .test{
@@ -417,6 +446,7 @@ table.sortable thead {
 #amount {
     width: 15%;
     vertical-align: middle;
+    text-align: center;
 }
 
 #auto{
@@ -442,6 +472,9 @@ table.sortable thead {
 
 #bills {
     text-transform: uppercase;
+    border-collapse: separate;
+    border-spacing: 0px 15px;
+    margin-top: -30px;
 }
 
 #billHeader {
@@ -450,6 +483,7 @@ table.sortable thead {
 
 #billWebsite {
     text-align: center;
+    vertical-align: middle;
 }
 
 #budgetMobileTotal {
@@ -492,6 +526,7 @@ table.sortable thead {
 
 #color {
     width: .75%;
+    border-radius: 5px 0px 0px 5px;
 }
 
 #col1 {
@@ -507,12 +542,25 @@ table.sortable thead {
     margin-top: 15px;
 }
 
+#debts{
+    border-collapse: separate;
+    border-spacing: 0px 15px;
+    margin-top: -30px;
+    margin-bottom: 50px;
+}
+
+#delete{
+    vertical-align: middle;
+    border-radius: 0px 5px 5px 0px;
+}
+
 #deleteButton {
     border: none;
     font-size: 14px;
     background: none;
     height: 100%;
     color: black;
+    vertical-align: middle;
 }
 
 #description {
@@ -528,7 +576,7 @@ table.sortable thead {
 }
 
 #due {
-    width: 13%;
+    width: 15%;
     text-align: center;
     vertical-align: middle;
 }
@@ -547,8 +595,19 @@ table.sortable thead {
     width: 100%;
 }
 
+#footer-snowball {
+    height: 100px;
+    background-color: Navy;
+    bottom: 0;
+    position: fixed;
+    /*margin-top: 50px;*/
+    color: white;
+    width: 100%;
+}
+
 #goButton {
     width: 60%;
+    border-radius: 15px;
 }
 
 #group {
@@ -731,6 +790,12 @@ table.sortable thead {
     padding-right: 100px;
 }
 
+#paid-off-debts{
+    border-collapse: separate;
+    border-spacing: 0px 15px;
+    margin-top: -15px;
+}
+
 #paMobileHeader{
     width: 100%;   
 }
@@ -806,6 +871,11 @@ table.sortable thead {
 
 #statusdd {
     text-align: center;
+    vertical-align: middle;
+}
+
+#test {
+    margin-top: -15px;
 }
 
 #title {
@@ -833,6 +903,7 @@ table.sortable thead {
 
 #website{
     text-align: center;
+    vertical-align: middle;
     width: 10%;
 }
 
