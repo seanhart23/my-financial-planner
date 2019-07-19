@@ -80,6 +80,7 @@
                                         <% totalCredit = totalCredit + debt.amount %>
                                         <% } %>
                                         <% }) %>
+                                <td id='color' style='background-Color:red'></td>
                                 <td><a  class='indent' href="#" id='credit'>Credit Cards</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
                             </tr>
@@ -90,6 +91,7 @@
                                         <% totalLoan = totalLoan + debt.amount %>
                                         <% } %>
                                         <% }) %>
+                                <td id='color' style='background-Color:orange'></td>
                                 <td><a class='indent' href="#" id='loan'>Loans</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
                             </tr>
@@ -100,6 +102,7 @@
                                         <% totalSL = totalSL + debt.amount %>
                                         <% } %>
                                         <% }) %>
+                                <td id='color' style='background-Color:yellow'></td>
                                 <td><a class='indent' href="#" id='SL'>Student Loans</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
                             </tr>                            
@@ -110,6 +113,7 @@
                                         <% totalBill = totalBill + debt.amount %>
                                         <% } %>
                                         <% }) %>
+                                <td id='color' style='background-Color:lawnGreen'></td>
                                 <td><a class='indent'  href="#" id='bill'>Bills</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalBill'><%= totalBill.toFixed(2) %></span></td>
                             </tr>
@@ -120,6 +124,7 @@
                                         <% totalOther = totalOther + debt.amount %>
                                         <% } %>
                                         <% }) %>
+                                <td id='color' style='background-Color:deeppink'></td>
                                 <td><a class='indent'  href="#" id='other'>Other</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
                             </tr>
@@ -149,6 +154,7 @@
             <table class="table sortable" id="debts">
                 <thead> 
                     <tr>
+                        <th id='color'></th>
                         <th id='payeeDebt'>Payee</th>
                         <th id='type'>Type</th>
                         <th id='amount'>Amount</th>
@@ -163,6 +169,7 @@
                         <% if(debt.amount > 0){ %>
                             <% if(currentUser.username === debt.author.username){ %>
                             <tr class='table-card'>
+                                <td id='color'></td>
                                 <td class='indent' id='payeeDebt'>
                                     <a href="/debt/<%= debt._id %>/edit" data-toggle="modal" data-target="#editDebt"><%= debt.itemLabel %></a></span></td>
                                 <td id='type'><%= debt.type %></td>

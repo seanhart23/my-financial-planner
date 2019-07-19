@@ -31,6 +31,20 @@ function debtCalculate() {
 
 debtCalculate();
 
+function sortTable(debts, sortColumn){
+    var tableData = document.getElementById(debts).getElementsByTagName('tbody').item(0);
+    var rowData = tableData.getElementsByTagName('tr');            
+    for(var i = 0; i < rowData.length - 1; i++){
+        for(var j = 0; j < rowData.length - (i + 1); j++){
+            if(Number(rowData.item(j).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, "")) > Number(rowData.item(j+1).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, ""))){
+                tableData.insertBefore(rowData.item(j+1),rowData.item(j));
+            }
+        }
+    }
+}
+
+sortTable('debts', 3);
+
 $(document).ready(function(){
  $("#amount").trigger('click');
 });
@@ -148,3 +162,27 @@ document.getElementById("loan").addEventListener("click", loan, false);
 document.getElementById("bill").addEventListener("click", bill, false);
 document.getElementById("other").addEventListener("click", other, false);
 
+function color(table, type) {
+  var table, tr, td, i;
+  table = document.getElementById(table);
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[type];
+    if (td) {
+      if (td.innerHTML === "Bill") {
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "LawnGreen";
+      } else if (td.innerHTML === "Other"){
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Deeppink";
+      } else if (td.innerHTML === "Credit Card") {
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "red";
+      } else if (td.innerHTML === "Student Loan"){
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Yellow";
+      } else if (td.innerHTML === "Loan"){
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Orange";
+      } 
+    }
+  }
+}
+
+color('debts', 2);
+color('totalsByType', 1);

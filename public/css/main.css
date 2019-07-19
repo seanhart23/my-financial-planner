@@ -61,23 +61,21 @@ table {
     font-family: 'Montserrat', serif;
 }
 
-thead tr {
-    /*background-color: white;*/
-}
-
 td {
     width: 15%;
     text-transform: uppercase;
     padding: 2px!important;
+    border: none;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th {
+  border-top: none;
 }
 
 tr {
     border-right: none;
     border-left: none;
-}
-
-tr:nth-child(even) {
-    background-color: rgb(253, 253, 253);
 }
 
 th {
@@ -104,7 +102,21 @@ th {
     border: 1px solid rgb(240, 240, 208);
 }
 
+.btn-sm:focus {
+    background-color: #000080;
+    color: white;
+    border: 1px solid rgb(240, 240, 208);
+    z-index: 0;
+}
+
 .btn-sm:hover {
+    background-color: rgb(253, 253, 253);
+    color: blue;
+    border: 1px solid rgb(240, 240, 208);
+    z-index: 0;
+}
+
+.btn-sm:after {
     background-color: rgb(253, 253, 253);
     color: blue;
     border: 1px solid rgb(240, 240, 208);
@@ -426,6 +438,7 @@ table.sortable thead {
 .td-right {
     text-align: right;
     padding-right: 15px!important;
+    width: 14%;
 }
 
 .test{
@@ -576,7 +589,7 @@ table.sortable thead {
 }
 
 #due {
-    width: 15%;
+    width: 11%;
     text-align: center;
     vertical-align: middle;
 }
@@ -806,6 +819,7 @@ table.sortable thead {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    padding-left: 8px;
 }
 
 #payeeDebt {
@@ -990,16 +1004,28 @@ th {
     font-size: 10px;
 }
 
+/*.table-card {*/
+/*    box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5)!important;*/
+/*    border-radius: 5px 5px 5px 5px!important;*/
+/*    height: 50px;*/
+/*    border: 1px solid red!important;*/
+/*    margin-top: 15px;*/
+/*}*/
+
 #auto {
-    width: 7%;
+    width: 9%;
 }
 
 #amount {
-    width: 10%
+    width: 15%
+}
+
+#bills {
+    margin-top: 0px;
 }
 
 #billWebsite {
-    width: 10%;
+    width: 15%;
 }
 
 #budgetMobileTotal {
@@ -1016,7 +1042,7 @@ th {
 }
 
 #delete {
-    width: 10%;    
+    width: 5%;    
 }
 
 #deleteButton {
@@ -1025,7 +1051,7 @@ th {
 }
 
 #due {
-    width: 5%;
+    width: 8%;
 }
 
 #interestRate {
@@ -1090,7 +1116,7 @@ th {
 }
 
 #payee {
-    width: 15%;
+    width: 20%;
 }
 
 #payeeDebt {

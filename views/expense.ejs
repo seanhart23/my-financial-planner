@@ -159,13 +159,13 @@
             </div>
             
             <div class='col-lg-9 col-sm-12' id='mobile-card'>
-                <div class='chiclet'>
-                    <div class="panel panel-default card">
-                        <div class="panel-heading"><strong>Monthly Expenses</strong>
+                <div class='chiclet' id='main-table'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading card"><strong>Monthly Expenses</strong>
                         <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense<!--<i class="fa fa-plus" aria-hidden="true"></i>--></a></div>
                         </div>
-                         <table class="table sortable" id="bills"> 
-                           <thead>
+                        <table class="table sortable" id="bills">
+                            <thead>
                                 <tr>
                                     <th id='color'></th>
                                     <th id='due'>Due Date</th>
@@ -181,7 +181,7 @@
                             <tbody>
                                 <% bills.forEach(function(bill){ %>
                                     <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
-                                    <tr class='table-card'>
+                                    <tr class ='table-card'>
                                         <td id='color'></td>
                                         <td id='due'><%= bill.dueDate %></td>
                                         <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
@@ -203,9 +203,9 @@
                                                <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                                             </form>
                                         </td>
-                                    <% } %>
+                                    </tr>
+                                    <% } %>                            
                                 <% }) %>
-                            </tr>
                             <!--<tr id='emptyMessageBills'></tr>-->
                             </tbody>
                         </table>
@@ -216,7 +216,7 @@
     </div>
 
 <script type="text/javascript" src='/js/bills.js'></script>
-</div>
+
 <% include ./partials/footer %>
 
 <!--NEW MODAL-->
