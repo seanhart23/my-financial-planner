@@ -2,6 +2,7 @@
 <html>
     <head>
       <title>My Financial Planner</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -9,67 +10,56 @@
       <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">      
       <link rel="stylesheet" href="/css/main.css">
       <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
       <script src="https://code.jquery.com/jquery.js"></script>
       <!--<script type="text/javascript" src='/js/main.js'></script>-->
       <link rel="icon" type="image/png" href="/images/favicon.ico">
       <link rel="apple-touch-icon" href="/images/favicon.ico">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+      
     </head>
     <body>
 
-
-<div id='landing-header'>
-
-
-<div class='container' id='title'>My Financial Planner</span>
-
-    <span class='pull-right'>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand">My Financial Planner</a>
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
         <% if(!currentUser){ %>
-        <a href='/register' class='header-link'>Register</a> 
-        <a href='/login' class='header-link'>Login</a> 
-        <a href=mailto:seanhart23@gmail.com class='header-link'>Send Feedback</a>
+            <li class="nav-item">
+                <a class="nav-link header-link" href="/Register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link header-link" href="/login">Login</a>
+            </li>        
+            <li class="nav-item">
+                <a class="nav-link header-link" href="mailto:seanhart23@gmail.com">Send Feedback</a>
+            </li>
         <% } else { %>
-        <a href="/dashboard" class='header-link'>Dashboard</a></a>
-        <a href="/expense" class='header-link'>Monthly Expense Tracker</a>
-        <span class="nav-item dropdown">
-        <a class="dropdown-toggle header-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Debt
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/debt">Debt Tracker</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/snowball">Debt Snowball</a>
-          <div class="dropdown-divider"></div>
-        </div>
-      
-       <a href="/logout" class='header-link'>Logout</a>
+            <li class="nav-item">
+                <a class="nav-link header-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link header-link" href="/expense">Monthly Expense Tracker</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle header-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Debt
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/debt">Debt Tracker</a>
+                  <a class="dropdown-item" href="/snowball">Debt Snowball</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link header-link" href="/logout">Logout</a>
+            </li>
         <% } %>
-
-</span></div>
-   <div><% if(!currentUser){ %>
-    <% } else { %>
-           <div id='mobile-link-bar'>
-            <a href="/dashboard" class='mobile-link'>Dashboard</a> -
-            <a href="/expense" class='mobile-link'>Expenses</a> -
-            <span class="nav-item dropdown">
-                <a class="dropdown-toggle mobile-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Debt Tools</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/debt">Debt Tracker</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/snowball">Debt Snowball</a>
-                    <div class="dropdown-divider"></div>
-                </div> -
-            <a href="/logout" class='mobile-link'>Logout</a>
-        </div>
-    <% } %>
-  </div></div>
-
-    
-
-
-    </div>
+    </ul>
   </div>
 </nav>
+
+

@@ -104,6 +104,11 @@
                             <td class='sub-head'>
                                 $<%= a[x].amount.toFixed(2) %>
                             </td>
+                        </tr>                         
+                        <tr>
+                            <td class='sub-head'>
+                                $<%= a[x].minimum.toFixed(2) %>
+                            </td>
                         </tr>                        
                         <tr>
                             <td class='sub-head'>
@@ -221,6 +226,7 @@
                             
                         months();
                         %> <tr><td class='sub-head'>Remaining Debt</td></tr><%
+                        %> <tr><td class='sub-head'>Minimum Payment</td></tr><%
                         %> <tr><td class='sub-head'>Interest Rate</td></tr><%
                         var a = month.indexOf(r)
                         var z = payMonths 

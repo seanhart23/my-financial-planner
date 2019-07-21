@@ -33,7 +33,7 @@
     <!--<div class='row'>-->
         <div class='col-lg-3 col-sm-12' id='mobile-card'>
             <div class='chiclet card'>
-                <div class="panel panel-default">
+                <div class="panel">
                     <div class="panel-heading"><strong>Snapshot</strong>
                     <a href="/accountBalance/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addaccountBalance">Add Balance</a></div>
                         <table class="table">
@@ -61,7 +61,7 @@
                 <p>
                     
             <div class='chiclet card'>
-                <div class="panel panel-default">
+                <div class="panel">
                     <div class="panel-heading"><strong>Totals By Type</strong></div>
                         <table class="table" id='totalsByType'>
                             <tr>
@@ -160,10 +160,14 @@
             
             <div class='col-lg-9 col-sm-12' id='mobile-card'>
                 <div class='chiclet' id='main-table'>
-                    <div class="panel panel-default">
-                        <div class="panel-heading card"><strong>Monthly Expenses</strong>
-                        <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense<!--<i class="fa fa-plus" aria-hidden="true"></i>--></a></div>
+                    
+                    <div class="panel panel-default card">
+                        <div class="panel-heading">
+                            <strong>Monthly Expenses</strong>
+                            <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense</a>
                         </div>
+                    </div>
+                    
                         <table class="table sortable" id="bills">
                             <thead>
                                 <tr>

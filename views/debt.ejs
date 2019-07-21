@@ -33,7 +33,7 @@
 <!--<div class='row'>-->
 <div class='col-lg-3 col-sm-12' id='mobile-card'>
     <div class='chiclet card'>
-        <div class="panel panel-default panel-default">
+        <div class="panel">
             <div class="panel-heading"><strong>Debt Snapshot</strong>
                 <a href="/startingDebt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addstartingDebt">Add Starting Debt</a>
             </div>
@@ -70,7 +70,7 @@
             </div>
         </div>
                     <div class='chiclet card'>
-                <div class="panel panel-default">
+                <div class="panel">
                     <div class="panel-heading"><strong>Balances</strong></div>
                         <table class="table">
                             <tr>
@@ -124,7 +124,7 @@
                                         <% totalOther = totalOther + debt.amount %>
                                         <% } %>
                                         <% }) %>
-                                <td id='color' style='background-Color:deeppink'></td>
+                                <td id='color' style='background-Color:blue'></td>
                                 <td><a class='indent'  href="#" id='other'>Other</a></td>
                                 <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
                             </tr>
@@ -147,10 +147,13 @@
 
 <div class='col-lg-9 col-sm-12' id='mobile-card'>
 <div class='chiclet'>
+    
     <div class="panel panel-default card">
         <div class="panel-heading"><strong>Debts</strong>
-            <a href="/debt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addDebt">Add Debt</a></div>
+            <a href="/debt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addDebt">Add Debt</a>
         </div>
+    </div>
+    
             <table class="table sortable" id="debts">
                 <thead> 
                     <tr>

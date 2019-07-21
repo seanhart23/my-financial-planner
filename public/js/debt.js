@@ -172,14 +172,14 @@ function color(table, type) {
       if (td.innerHTML === "Bill") {
         tr[i].getElementsByTagName("td")[0].style.backgroundColor = "LawnGreen";
       } else if (td.innerHTML === "Other"){
-        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Deeppink";
+        tr[i].getElementsByTagName("td")[0].style.backgroundColor = "blue";
       } else if (td.innerHTML === "Credit Card") {
         tr[i].getElementsByTagName("td")[0].style.backgroundColor = "red";
       } else if (td.innerHTML === "Student Loan"){
         tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Yellow";
       } else if (td.innerHTML === "Loan"){
         tr[i].getElementsByTagName("td")[0].style.backgroundColor = "Orange";
-      } 
+      }
     }
   }
 }
