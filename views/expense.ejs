@@ -185,7 +185,7 @@
                             <tbody>
                                 <% bills.forEach(function(bill){ %>
                                     <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
-                                    <tr class ='table-card'>
+                                    <div class='table-card-border'><tr class ='table-card'>
                                         <td id='color'></td>
                                         <td id='due'><%= bill.dueDate %></td>
                                         <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
@@ -207,7 +207,7 @@
                                                <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                                             </form>
                                         </td>
-                                    </tr>
+                                    </tr></div>
                                     <% } %>                            
                                 <% }) %>
                             <!--<tr id='emptyMessageBills'></tr>-->
