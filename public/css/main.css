@@ -1090,6 +1090,7 @@ th {
     border-radius: 15px;
     height: 50px;
     margin-top: 150px!important;
+    border: .5px solid black;
     /*border-collapse: separate;*/
     /*-webkit-appearance: none;*/
 }
