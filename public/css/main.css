@@ -12,7 +12,7 @@ html,body
 
 h1 {
     font-size: 25px;
-    /*font-weight: 100;*/
+    font-weight: 300;
     margin-top: 5px;
     color: #000080;
 }
@@ -47,7 +47,8 @@ select {
 }
 
 strong {
-    font-weight: 400;
+    font-weight: 300;
+    color: #000080;
 }
 
 table {
@@ -59,19 +60,27 @@ table {
 
 td {
     width: 15%;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     padding: 2px!important;
     border: none;
 }
 
 thead {
     position: relative;
-    margin-top: 50px;
+    /*margin-top: 50px;*/
+    /*border: 1px solid red;*/
+    color: #000080;
+    font-weight: 300;
+    
 }
 
 .table>tbody>tr>td,
 .table>tbody>tr>th {
   border-top: none;
+}
+
+.table>thead>tr>th{
+  border-bottom:0; 
 }
 
 tr {
@@ -80,10 +89,10 @@ tr {
 }
 
 th {
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     margin-bottom: 0px;
     padding-top: 0px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .actions{
@@ -91,10 +100,19 @@ th {
     padding: 500px;
 }
 
+/*.btn {*/
+/*    width: 33.33%;*/
+/*}*/
+
 .btn-xs {
     width: 50px;
     background-color: Navy;
     border: 1px solid rgb(240, 240, 208);
+}
+
+.btn-group {
+    width: 100%;
+    padding-top: none;
 }
 
 .btn-sm {
@@ -128,12 +146,13 @@ th {
     margin-bottom: 30px;
     box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5);
     border-radius: 5px 5px 5px 5px;
+    border: 1px solid lightgray;
 }
 
-.chiclet {
-    width: 100%;
-    margin-bottom: 0px 40px;
-}
+/*.chiclet {*/
+/*    width: 100%;*/
+/*    margin-bottom: 0px 40px;*/
+/*}*/
 
 .container {
     padding: 0px;
@@ -188,6 +207,11 @@ th {
 
 .glyphicon {
     line-height: 15px;
+}
+
+.hr-th {
+    margin-top: 5px;
+    margin-bottom: 0px;
 }
 
 .infoTitle {
@@ -266,7 +290,7 @@ th {
 }
 
 .navbar {
-    background-color: #000080!important;
+    background-color: #404040!important;
     box-shadow: 0px 0px 4px #000000;
     color: white;
     text-decoration: none;
@@ -321,6 +345,7 @@ th {
     margin-bottom: 0px;
     border: 0px;
     /*border-radius: 25px;*/
+    padding-bottom: 10px;
 }
 
 .panel-default{
@@ -331,11 +356,12 @@ th {
     font-size: 18px;
     text-align: left;
     background-color: rgb(240, 240, 208)!important;
-    color: Black!important;
+    color: slategray!important;
     border-radius: 5px 5px 0px 0px;
     border: 0px;
     height: 40px;
     font-weight: 800;
+    padding: 10px 6px 0px 6px;
 }
 
 .panel-default {
@@ -367,7 +393,7 @@ th {
 }
 
 .section {
-    min-height: 88vh;
+    min-height: 80vh;
 }
 
 .snowball {
@@ -407,13 +433,18 @@ th {
 
 .table {
     margin-bottom: 0px;
+    border: 0px;
 }
 
 .table-card {
     box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5);
-    /*border-radius: 5px 5px 5px 5px;*/
+    border-radius: 5px 5px 5px 5px;
     height: 50px;
-    border: 1px solid lightgray;
+    /*border: 5px solid red;*/
+}
+
+.table-hr {
+    margin: 0px 6px 5px 6px;
 }
 
 table.sortable thead {
@@ -434,6 +465,8 @@ table.sortable thead {
 
 .indent {
     padding-left: 6px!important;
+    text-transform: none;
+    font-style: helvetica;
 }
 
 .td-right {
@@ -484,8 +517,13 @@ table.sortable thead {
     font-size: 16px;
 }
 
-#bills {
-    text-transform: uppercase;
+#bills>th>tr:nth-child(0) {
+    border-collapse: separate;
+    border-spacing: 0px 0px;
+    margin-top: -30px;
+}
+
+#bills{
     border-collapse: separate;
     border-spacing: 0px 15px;
     margin-top: -30px;
@@ -514,6 +552,7 @@ table.sortable thead {
     font-size: 10px;
     padding-top: 0px;
     height: 1px;
+    
 }
 
 #chartLine {
@@ -528,7 +567,7 @@ table.sortable thead {
 #chartOutline {
     border: 1px solid lightgray;
     height: 225px;
-    background-color: #ffe6e6;
+    background-color: red;
     /*border-top-left-radius: 50px;*/
     /*border-top-right-radius: 50px;*/
     /*overflow: hidden;*/
@@ -536,6 +575,7 @@ table.sortable thead {
     width: 65px;
     margin-left: auto;
     margin-right: auto;
+    color: white;
 }
 
 #color {
@@ -554,13 +594,20 @@ table.sortable thead {
 
 #date {
     margin-top: 15px;
+    font-weight: 300;
+}
+
+#db-panel-head {
+    background-color: white!important;
+    text-transform: none;
+    padding-top: 5px;
 }
 
 #debts{
     border-collapse: separate;
     border-spacing: 0px 15px;
     margin-top: 0px;
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 
 #delete{
@@ -596,12 +643,12 @@ table.sortable thead {
 }
 
 #footer {
-    height: 100px;
-    background-color: Navy;
+    height: 150px;
+    background-color: lightgray;
     bottom: 0;
     position: relative;
     /*margin-top: 50px;*/
-    color: white;
+    color: black;
     width: 100%;
 }
 
@@ -615,15 +662,19 @@ table.sortable thead {
     width: 100%;
 }
 
+#full {
+    width: 33.34%;
+}
+
 #goButton {
     width: 60%;
     border-radius: 15px;
 }
 
 #group {
-    padding-top: 30px;
-    margin-right: 15px;
-    margin-bottom: 0px;
+    /*margin-top: 95px;*/
+    margin-bottom: 10px;
+    /*height: 75px;*/
 }
 
 #head {
@@ -634,9 +685,10 @@ table.sortable thead {
     background-color: transparent;
     border: 0px;
     font-size: 12px;
-    padding-top: 0px;
+    padding-top: 7px;
     width: auto;
     display: inline;
+    font-weight: 400;
 }
 
 #info {
@@ -692,6 +744,9 @@ table.sortable thead {
     z-index: 3;
 }
 
+#left-upper-margin {
+    margin-top: 95px;
+}
 #link {
     text-decoration: none;
     color: white;
@@ -788,6 +843,10 @@ table.sortable thead {
     letter-spacing: 1px;
 }
 
+#one {
+    width: 33.33%;
+}
+
 #outerChart.panel {
     padding-bottom: 10px;
     /*border: 1px solid #000080;*/
@@ -858,6 +917,10 @@ table.sortable thead {
     width: 23%;
 }
 
+#snapshot {
+    margin-top: 95px;
+}
+
 #snowball {
     display: inline-block;
     white-space: nowrap;
@@ -912,6 +975,9 @@ table.sortable thead {
     display: none;
 }
 
+#two {
+    width: 33.33%;
+}
 #userID {
     padding-top: 15px;
     padding-right: 100px;
@@ -1015,23 +1081,17 @@ th {
 }
 
 .table-card {
-    box-shadow: 4px 4px 20px green;
+    /*box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5)!important;*/
     border-radius: 5px;
     height: 50px;
     border: 4px solid red!important;
-    margin-top: 15px;
-    /*box-shadow: none;*/
-    /*z-index: 1;*/
+    /*margin-top: 15px;*/
 }
 
-/*.table-card-border {*/
-/*    box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5)!important;*/
-/*    border-radius: 5px 5px 5px 5px!important;*/
-/*    height: 50px;*/
-/*    border: 1px solid red!important;*/
-/*    margin-top: 15px;*/
-/*    background-color: rgba(0 , 0, 0, 0.1);*/
-/*}*/
+.table-card-border{
+    height: 50px;
+    border: 4px solid red!important;
+}
 
 #auto {
     width: 9%;
@@ -1079,6 +1139,9 @@ th {
     display: none;
 }
 
+#left-upper-margin {
+    margin-top: 0;
+}
 #main-banner {
     display: none;
 }

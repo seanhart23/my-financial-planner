@@ -34,7 +34,7 @@
 <div class='col-lg-3 col-sm-12' id='mobile-card'>
     <div class='chiclet card'>
         <div class="panel">
-            <div class="panel-heading"><strong>Debt Snapshot</strong>
+            <div class="panel-heading" id='db-panel-head'><strong>Debt Snapshot</strong><hr class='hr-th'>
                 <a href="/startingDebt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addstartingDebt">Add Starting Debt</a>
             </div>
                 <table class="table">
@@ -71,7 +71,7 @@
         </div>
                     <div class='chiclet card'>
                 <div class="panel">
-                    <div class="panel-heading"><strong>Balances</strong></div>
+                            <div class="panel-heading" id='db-panel-head'><strong>Balances</strong><hr class='hr-th'></div>
                         <table class="table">
                             <tr>
                                 <% var totalCredit = 0 %>
@@ -132,7 +132,7 @@
                     </div>
                 </div>
             <div class='panel card' id="outerChart">
-                <div class="panel-heading"><strong>Payoff Chart</strong></div>
+                <div class="panel-heading" id='db-panel-head'><strong>Payoff Chart</strong><hr class='hr-th'></div>
                 <br>
                     <div id='chartOutline'>
                         <div id='chartLine'><div id='percent'></div>
@@ -148,11 +148,13 @@
 <div class='col-lg-9 col-sm-12' id='mobile-card'>
 <div class='chiclet'>
     
-    <div class="panel">
-        <div class="panel-heading"><strong>Debts</strong>
+   
+        <div class="panel-heading" id='db-panel-head'>
+            <strong>Debts</strong>
             <a href="/debt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addDebt">Add Debt</a>
+            <hr class='hr-th'>
         </div>
-    </div>
+  
     
             <table class="table sortable" id="debts">
                 <thead> 
@@ -195,7 +197,7 @@
 
 
 <div class='chiclet main-table' id='paid-off'>
-    <div class="panel panel-default">
+    <div class="panel" id='db-panel-head'>
         <div class="panel-heading"><strong>Paid Off Debts</strong>
         </div></div>
             <table class="table" id="paid-off-debts">

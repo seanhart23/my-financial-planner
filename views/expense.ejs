@@ -1,5 +1,7 @@
 <% include ./partials/header.ejs %>
+
 <div class='section'>
+    
 <style>
     @media screen and (max-width: 640px) {
         body {
@@ -10,222 +12,216 @@
 
 <div id='paMobileHeader'>
     <div class='container'>
-    <h3 id='welcome'></h3>
+        <h3 id='welcome'></h3>
         <div class='pull-right' id='date'></div>
-    <h1>Monthly Expense Tracker</h1>
-    <hr>
-</div>
+        <h1>Monthly Expense Tracker</h1>
+        <hr>
+    </div>
 </div>
 
+
+<br>
+
 <div class='container'>
-    <div id='mobile-card'>
-        <div class='col-lg-3 col-sm-12'></div>
-        <div class="btn-group pull-right" role="group" id='group' aria-label="...">
+    <div class='col-lg-3 col-sm-12' id='mobile-card'>
+    
+
+        <div class='card' id='snapshot'>
+            <div class="panel">
+                <div class="panel-heading" id='db-panel-head'><strong>Snapshot</strong><hr class='hr-th'>
+                <a href="/accountBalance/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addaccountBalance">Add Balance</a></div>
+                    <table class="table">
+                        <tr>
+                            <td  class='indent'>Balance</td>
+                            <% accountBalance.forEach(function(accountBalance){ %>
+                                <% if(currentUser.username === accountBalance.author.username){ %>
+                                <td class='td-right'><span id='dollarSign'>$</span><div class='table-number'>
+                                <a href="/accountBalance/<%= accountBalance._id %>/edit" data-toggle="modal" data-target="#edit" id='accountBalance'><%= accountBalance.amount.toFixed(2) %></a>
+                                <% } %>
+                                <% }) %>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td class='indent'>Bills</td>
+                            <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="totalBill">0.00</div></td>
+                        </tr>                          
+                        <tr>
+                            <td class='indent'>Remaining</td>
+                            <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="remaining">0.00</div></td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+        
+            <div id='mobile-card'>
+        <div class="btn-group" id='group' role="group" id='group' aria-label="...">
             <button type="button" id='one' class="btn btn-primary btn-sm">1st Half</button>
             <button type="button" id='full' class="btn btn-primary btn-sm">Full Month</button>
             <button type="button" id='two' class="btn btn-primary btn-sm">2nd Half</button>
         </div>
     </div>
-</div>
-<br>
-
-<div class='container'>
-    <!--<div class='row'>-->
-        <div class='col-lg-3 col-sm-12' id='mobile-card'>
-            <div class='chiclet card'>
-                <div class="panel">
-                    <div class="panel-heading"><strong>Snapshot</strong>
-                    <a href="/accountBalance/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addaccountBalance">Add Balance</a></div>
-                        <table class="table">
-                            <tr>
-                                <td  class='indent'>Balance</td>
-                                <% accountBalance.forEach(function(accountBalance){ %>
-                                    <% if(currentUser.username === accountBalance.author.username){ %>
-                                    <td class='td-right'><span id='dollarSign'>$</span><div class='table-number'>
-                                    <a href="/accountBalance/<%= accountBalance._id %>/edit" data-toggle="modal" data-target="#edit" id='accountBalance'><%= accountBalance.amount.toFixed(2) %></a>
-                                    <% } %>
-                                    <% }) %>
-                                </div></td>
-                            </tr>
-                            <tr>
-                                <td class='indent'>Bills</td>
-                                <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="totalBill">0.00</div></td>
-                            </tr>                          
-                            <tr>
-                                <td class='indent'>Remaining</td>
-                                <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="remaining">0.00</div></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <p>
                     
-            <div class='chiclet card'>
-                <div class="panel">
-                    <div class="panel-heading"><strong>Totals By Type</strong></div>
-                        <table class="table" id='totalsByType'>
-                            <tr>
-                                <% var totalCredit = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Credit Card"){ %>
-                                        <% totalCredit = totalCredit + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td id='color' style='background-Color:red'></td>
-                                <td><a class='indent' href="#" id='credit'>Credit Card</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
-                            </tr>
-                            <tr>
-                                <% var totalSL = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                    
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Student Loan"){ %>
-                                        <% totalSL = totalSL + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td id='color' style='background-Color:yellow'></td>
-                                <td><a class='indent' href="#" id='studentLoan'>Student Loan</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
-                            </tr>
-                            <tr>
-                                <% var totalLoan = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Loan"){ %>
-                                        <% totalLoan = totalLoan + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td id='color' style='background-Color:orange'></td>
-                                <td><a class='indent'href="#" id='loan'>Loan</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
-                            </tr>
-                            <tr>
-                                <% var totalUtility = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Utility"){ %>
-                                        <% totalUtility = totalUtility + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td id='color' style='background-Color:LawnGreen'></td>
-                                <td><a class='indent' href="#" id='utility'>Utility</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalUtility.toFixed(2) %></span></td>
-                            </tr>                             
-                            <tr>
-                                <% var totalHousehold = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Household"){ %>
-                                        <% totalHousehold = totalHousehold + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td id='color' style='background-Color:blue'></td>
-                                <td><a class='indent' href="#" id='household'>Household</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalHousehold.toFixed(2) %></span></td>
-                            </tr>                             
-                            <tr>
-                                <% var totalMembership = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Membership"){ %>
-                                        <% totalMembership = totalMembership + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td id='color' style='background-Color:purple'></td>
-                                <td><a class='indent' href="#" id='membership'>Membership</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalMembership.toFixed(2) %></span></td>
-                            </tr>                             
-                            <tr>
-                                <% var totalOnetime = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "One Time"){ %>
-                                        <% totalOnetime = totalOnetime + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td id='color' style='background-Color:midnightblue'></td>
-                                <td><a class='indent' href="#" id='onetime'>One Time</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalOnetime.toFixed(2) %></span></td>
-                            </tr> 
-                            <tr>
-                                <% var totalOther = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Other"){ %>
-                                        <% totalOther = totalOther + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td id='color' style='background-Color:deeppink'></td>
-                                <td><a class='indent' href="#" id='other'>Other</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
-            <div class='col-lg-9 col-sm-12' id='mobile-card'>
-                <div class='chiclet' id='main-table'>
-                    
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <strong>Monthly Expenses</strong>
-                            <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense</a>
-                        </div>
-                    </div>
-                    
-                        <table class="table sortable" id="bills">
-                            <thead>
-                                <tr>
-                                    <th id='color'></th>
-                                    <th id='due'>Due Date</th>
-                                    <th id='payee'>Payee</th>
-                                    <th id='type'>Type</th>
-                                    <th id='amount'>Amount Due</th>
-                                    <th id='auto'>Auto Pay</th>
-                                    <th id='statusdd'>Status</th>
-                                    <th id='billWebsite'>Website</th>
-                                    <th id='trash'></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% bills.forEach(function(bill){ %>
-                                    <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
-                                    <div class='table-card-border'><tr class ='table-card'>
-                                        <td id='color'></td>
-                                        <td id='due'><%= bill.dueDate %></td>
-                                        <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
-                                        <td id='type'><%= bill.type %></td>
-                                        <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                        <td id='auto'><%= bill.autoPay %></td>
-                                        <td id='statusdd'>
-                                             <select class='form-control' id='status' name="status">
-                                                <option value="unpaid">Unpaid</option>
-                                                <option value="paid">Paid</option>
-                                                <option value="leave">Leave</option>
-                                                <option value="move">Move</option>
-                                                <option value="remove">Remove</option>
-                                            </select>
-                                        </td>
-                                        <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Go</a></td>
-                                        <td id='delete'>
-                                            <form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
-                                               <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                                            </form>
-                                        </td>
-                                    </tr></div>
-                                    <% } %>                            
+        <div class='card'>
+            <div class="panel">
+                <div class="panel-heading" id='db-panel-head'><strong>Totals By Type</strong><hr class='hr-th'></div>
+                <table class="table" id='totalsByType'>
+                    <tr>
+                        <% var totalCredit = 0 %>
+                        <% bills.forEach(function(bill){ %>
+                                <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Credit Card"){ %>
+                                <% totalCredit = totalCredit + bill.amountDue %>
+                                <% } %>
                                 <% }) %>
-                            <!--<tr id='emptyMessageBills'></tr>-->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                        <td id='color' style='background-Color:red'></td>
+                        <td><a class='indent' href="#" id='credit'>Credit Card</a></td>
+                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
+                    </tr>
+                    <tr>
+                        <% var totalSL = 0 %>
+                        <% bills.forEach(function(bill){ %>
+                            
+                                <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Student Loan"){ %>
+                                <% totalSL = totalSL + bill.amountDue %>
+                                <% } %>
+                                <% }) %>
+                        <td id='color' style='background-Color:yellow'></td>
+                        <td><a class='indent' href="#" id='studentLoan'>Student Loan</a></td>
+                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
+                    </tr>
+                    <tr>
+                        <% var totalLoan = 0 %>
+                        <% bills.forEach(function(bill){ %>
+                                <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Loan"){ %>
+                                <% totalLoan = totalLoan + bill.amountDue %>
+                                <% } %>
+                                <% }) %>
+                        <td id='color' style='background-Color:orange'></td>
+                        <td><a class='indent'href="#" id='loan'>Loan</a></td>
+                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
+                    </tr>
+                    <tr>
+                        <% var totalUtility = 0 %>
+                        <% bills.forEach(function(bill){ %>
+                                <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Utility"){ %>
+                                <% totalUtility = totalUtility + bill.amountDue %>
+                                <% } %>
+                                <% }) %>
+                        <td id='color' style='background-Color:LawnGreen'></td>
+                        <td><a class='indent' href="#" id='utility'>Utility</a></td>
+                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalUtility.toFixed(2) %></span></td>
+                    </tr>                             
+                    <tr>
+                        <% var totalHousehold = 0 %>
+                        <% bills.forEach(function(bill){ %>
+                                <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Household"){ %>
+                                <% totalHousehold = totalHousehold + bill.amountDue %>
+                                <% } %>
+                                <% }) %>
+                        <td id='color' style='background-Color:blue'></td>
+                        <td><a class='indent' href="#" id='household'>Household</a></td>
+                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalHousehold.toFixed(2) %></span></td>
+                    </tr>                             
+                    <tr>
+                        <% var totalMembership = 0 %>
+                        <% bills.forEach(function(bill){ %>
+                                <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Membership"){ %>
+                                <% totalMembership = totalMembership + bill.amountDue %>
+                                <% } %>
+                                <% }) %>
+                        <td id='color' style='background-Color:purple'></td>
+                        <td><a class='indent' href="#" id='membership'>Membership</a></td>
+                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalMembership.toFixed(2) %></span></td>
+                    </tr>                             
+                    <tr>
+                        <% var totalOnetime = 0 %>
+                        <% bills.forEach(function(bill){ %>
+                                <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "One Time"){ %>
+                                <% totalOnetime = totalOnetime + bill.amountDue %>
+                                <% } %>
+                                <% }) %>
+                        <td id='color' style='background-Color:midnightblue'></td>
+                        <td><a class='indent' href="#" id='onetime'>One Time</a></td>
+                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalOnetime.toFixed(2) %></span></td>
+                    </tr> 
+                    <tr>
+                        <% var totalOther = 0 %>
+                        <% bills.forEach(function(bill){ %>
+                                <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Other"){ %>
+                                <% totalOther = totalOther + bill.amountDue %>
+                                <% } %>
+                                <% }) %>
+                        <td id='color' style='background-Color:deeppink'></td>
+                        <td><a class='indent' href="#" id='other'>Other</a></td>
+                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
+                    </tr>
+                </table>
             </div>
         </div>
+        
     </div>
+            
+    <div class='col-lg-9 col-sm-12' id='mobile-card'>
+        <div id='main-table'>
+                
+            <div class="panel-heading" id='db-panel-head'>
+                <strong>Monthly Expenses</strong>
+                <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense</a>
+                <hr class='hr-th'>
+            </div>
+       
+            <table class="table sortable" id="bills">
+                <thead>
+                    <tr>
+                        <th id='color'></th>
+                        <th id='due'>Due Date</th>
+                        <th id='payee'>Payee</th>
+                        <th id='type'>Type</th>
+                        <th id='amount'>Amount Due</th>
+                        <th id='auto'>Auto Pay</th>
+                        <th id='statusdd'>Status</th>
+                        <th id='billWebsite'>Website</th>
+                        <th id='trash'></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% bills.forEach(function(bill){ %>
+                        <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
+                        <tr class ='table-card'>
+                            <td id='color'></td>
+                            <td id='due'><%= bill.dueDate %></td>
+                            <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
+                            <td id='type'><%= bill.type %></td>
+                            <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                            <td id='auto'><%= bill.autoPay %></td>
+                            <td id='statusdd'>
+                                 <select class='form-control' id='status' name="status">
+                                    <option value="unpaid">Unpaid</option>
+                                    <option value="paid">Paid</option>
+                                    <option value="leave">Leave</option>
+                                    <option value="move">Move</option>
+                                    <option value="remove">Remove</option>
+                                </select>
+                            </td>
+                            <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Go</a></td>
+                            <td id='delete'>
+                                <form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
+                                   <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% } %>                            
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript" src='/js/bills.js'></script>
 
 <% include ./partials/footer %>
 
 <!--NEW MODAL-->
-
-
 
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -254,9 +250,4 @@
         <div class="modal-body"></div>
     </div>
 </div>
-
-
-
-
-
 
