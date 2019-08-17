@@ -519,13 +519,13 @@ table.sortable thead {
 }
 
 #bills>th>tr:nth-child(0) {
-    border-collapse: separate;
+    /*border-collapse: separate;*/
     border-spacing: 0px 0px;
     margin-top: -30px;
 }
 
 #bills{
-    border-collapse: collapse;
+    /*border-collapse: collapse;*/
     border-spacing: 0px 15px;
     margin-top: -30px;
 }
@@ -1089,10 +1089,9 @@ th {
     box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5)!important;
     border-radius: 15px;
     height: 50px;
-    /*border: .5px solid black;*/
     margin-top: 150px!important;
-    border-collapse: separate;
-    -webkit-appearance: none;
+    /*border-collapse: separate;*/
+    /*-webkit-appearance: none;*/
 }
 
 #auto {
