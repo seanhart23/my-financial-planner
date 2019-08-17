@@ -56,6 +56,7 @@ table {
     width: auto;
     border: 0px;
     font-family: 'Montserrat', serif;
+    border-collapse: collapse;
 }
 
 td {
@@ -437,7 +438,7 @@ th {
 }
 
 .table-card {
-    box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5);
+    /*box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5);*/
     border-radius: 5px 5px 5px 5px;
     height: 50px;
     /*border: 5px solid red;*/
@@ -524,7 +525,7 @@ table.sortable thead {
 }
 
 #bills{
-    border-collapse: separate;
+    border-collapse: collapse;
     border-spacing: 0px 15px;
     margin-top: -30px;
 }
@@ -943,6 +944,10 @@ table.sortable thead {
     width: auto;
 }
 
+.spacer {
+    height: 15px;    
+}
+
 #status {
     padding: 2px 12px;
     height: 23px;
@@ -1081,16 +1086,12 @@ th {
 }
 
 .table-card {
-    /*box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5)!important;*/
-    border-radius: 5px;
+    box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5)!important;
+    border-radius: 15px;
     height: 50px;
-    border: 4px solid red!important;
-    /*margin-top: 15px;*/
-}
-
-.table-card-border{
-    height: 50px;
-    border: 4px solid red!important;
+    border: none;
+    margin-top: 150px!important;
+    border-collapse: separate;
 }
 
 #auto {
@@ -1186,6 +1187,10 @@ th {
 
 #login-hr {
     display: inline!important;
+}
+
+#snapshot {
+    margin-top: 15px;
 }
 
 #statusdd {
