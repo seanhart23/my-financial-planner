@@ -485,6 +485,15 @@ table.sortable thead {
     width: 40%;
 }
 
+.indent-dash {
+    .indent {
+    padding-left: 6px!important;
+    text-transform: none;
+    font-style: helvetica;
+    /*display: inline-block;*/
+    width: 100%;
+}
+}
 .td-right {
     text-align: right;
     padding-right: 15px!important;
