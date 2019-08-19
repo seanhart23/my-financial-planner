@@ -32,20 +32,21 @@
 
 <!--<div class='row'>-->
 <div class='col-lg-3 col-sm-12' id='mobile-card'>
-    <div class='chiclet card'>
+    <div class='chiclet card' id='snapshot'>
         <div class="panel">
-            <div class="panel-heading" id='db-panel-head'><strong>Debt Snapshot</strong><hr class='hr-th'>
-                <a href="/startingDebt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addstartingDebt">Add Starting Debt</a>
+            <div class="panel-heading" id='db-panel-head'><strong>Debt Snapshot</strong>
+                <a href="/startingDebt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addstartingDebt">Add Starting Debt</a><hr class='hr-th'>
             </div>
                 <table class="table">
                     <tr>
                         <td class='indent'>Starting Debt</td>
+                        <td>$</td>
                             <td class='td-right'>
                                 
                                     <% var totalDebt = 0 %>
                                     <% startingDebt.forEach(function(startingDebt){ %>
                                     <% if(currentUser.username === startingDebt.author.username){ %>
-                                    <span id='dollarSign'>$</span>
+                                    <!--<span id='dollarSign'>$</span>-->
                                 <span class='table-number'>
                                     <% totalDebt = totalDebt + startingDebt.amount %>
                                     <a href="/startingDebt/<%= startingDebt._id %>/edit" data-toggle="modal" data-target="#editstartingDebt" id='startingBalance'><%= totalDebt.toFixed(2) %></a>
@@ -56,15 +57,18 @@
                     </tr>
                     <tr>
                         <td class='indent'>Total Debt</td>
-                        <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="totalDebt">0.00</div></td>
+                        <td class='right'>$</td>
+                        <td class='td-right'><div class='table-number' id="totalDebt">0.00</div></td>
                     </tr>  
                     <tr>
                         <td class='indent'>Paid Off</td>
-                        <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="paidOff">0.00</div></td>
+                        <td class='right'>$</td>
+                        <td class='td-right'><div class='table-number' id="paidOff">0.00</div></td>
                     </tr>
                     <tr>
                         <td class='indent'> % Paid Off</td>
-                        <td class='td-right'><span id="%paidOff">0.00</span> %</td>
+                        <td class='right'>%</td>
+                        <td class='td-right' id='%paidOff'>0.00</td>
                     </tr>
                 </table>
             </div>
@@ -187,18 +191,18 @@
                                     <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                                 </form>
                                 </td>
+                            </tr>
                             <% } %>
                         <% } %>
                     <% }) %>
-                    </tr>
                 </tbody>
             </table>
         </div>
 
 
 <div class='chiclet main-table' id='paid-off'>
-    <div class="panel" id='db-panel-head'>
-        <div class="panel-heading"><strong>Paid Off Debts</strong>
+    <div class="panel">
+        <div class="panel-heading" id='db-panel-head'><strong>Paid Off Debts</strong>
         </div></div>
             <table class="table" id="paid-off-debts">
                 <thead>

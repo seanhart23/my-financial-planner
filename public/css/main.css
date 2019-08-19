@@ -25,6 +25,7 @@ h4 {
 
 hr {
     margin-top: 10px;
+    margin-bottom: 0px;
 }
 
 input::-webkit-outer-spin-button,
@@ -157,6 +158,10 @@ th {
 
 .container {
     padding: 0px;
+}
+
+.dashboard-table {
+    margin-top: 50px;
 }
 
 .dropdown-divider {
@@ -302,6 +307,7 @@ th {
     text-align: left;
     padding: 0px;
     justify-content: left;
+    font-weight: 300;
 }
 
 .navbar-nav {
@@ -346,7 +352,7 @@ th {
     margin-bottom: 0px;
     border: 0px;
     /*border-radius: 25px;*/
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 .panel-default{
@@ -381,6 +387,10 @@ th {
 
 .positive-header {
     color: green!important;
+}
+
+.right {
+    /*text-align: right;*/
 }
 
 .row {
@@ -438,7 +448,7 @@ th {
 }
 
 .table-card {
-    /*box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5);*/
+    box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5);
     border-radius: 5px 5px 5px 5px;
     height: 50px;
     /*border: 5px solid red;*/
@@ -459,15 +469,20 @@ table.sortable thead {
 }
 
 .table-number {
-    width: 119px;
+    /*width: 119px;*/
     float: right;
     letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    width: auto;
 }
 
 .indent {
     padding-left: 6px!important;
     text-transform: none;
     font-style: helvetica;
+    /*display: inline-block;*/
+    width: 40%;
 }
 
 .td-right {
@@ -518,12 +533,6 @@ table.sortable thead {
     font-size: 16px;
 }
 
-#bills>th>tr:nth-child(0) {
-    border-collapse: separate;
-    border-spacing: 0px 0px;
-    margin-top: -30px;
-}
-
 #bills{
     border-collapse: separate;
     border-spacing: 0px 15px;
@@ -568,7 +577,7 @@ table.sortable thead {
 #chartOutline {
     border: 1px solid lightgray;
     height: 225px;
-    background-color: red;
+    background-color: #ff4d4d;
     /*border-top-left-radius: 50px;*/
     /*border-top-right-radius: 50px;*/
     /*overflow: hidden;*/
@@ -607,7 +616,7 @@ table.sortable thead {
 #debts{
     border-collapse: separate;
     border-spacing: 0px 15px;
-    margin-top: 0px;
+    margin-top: -15px;
     /*margin-bottom: 50px;*/
 }
 
@@ -633,8 +642,10 @@ table.sortable thead {
 }
 
 #dollarSign {
-  position:relative;
-  margin-right:-40px
+  /*position:relative;*/
+  /*margin-right:-40px*/
+  display: inline-block;
+  text-align: right;
 }
 
 #due {
@@ -665,6 +676,7 @@ table.sortable thead {
 
 #full {
     width: 33.34%;
+    border: none;
 }
 
 #goButton {
@@ -674,8 +686,10 @@ table.sortable thead {
 
 #group {
     /*margin-top: 95px;*/
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     /*height: 75px;*/
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #head {
@@ -690,6 +704,8 @@ table.sortable thead {
     width: auto;
     display: inline;
     font-weight: 400;
+    color: blue;
+    text-decoration: none;
 }
 
 #info {
@@ -803,7 +819,7 @@ table.sortable thead {
 
 #mailto {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 #main-banner {
     background-color: gray;
@@ -819,7 +835,7 @@ table.sortable thead {
 }
 
 #mobile-card {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 #mobile-link {
@@ -840,12 +856,13 @@ table.sortable thead {
     /*margin-top: 50px;*/
     display: inline;
     float: right;
-    width: 119px;
+    /*width: 119px;*/
     letter-spacing: 1px;
 }
 
 #one {
     width: 33.33%;
+    border: none;
 }
 
 #outerChart.panel {
@@ -860,6 +877,10 @@ table.sortable thead {
     padding: 15px;
     font-weight: 100;
     padding-right: 100px;
+}
+
+#paid-off {
+    margin-top: 20px;
 }
 
 #paid-off-debts{
@@ -982,6 +1003,7 @@ table.sortable thead {
 
 #two {
     width: 33.33%;
+    border: none;
 }
 #userID {
     padding-top: 15px;

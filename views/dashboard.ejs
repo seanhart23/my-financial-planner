@@ -27,7 +27,8 @@ document.getElementById("date").innerHTML = d.toDateString();
         <div class='col-lg-4 col-sm-12' id='mobile-card'>
             <div class=''><div class='card'>
                 <div class="panel">
-                    <div class="panel-heading"><strong>Monthly Bills</strong></div>
+                    <div class="panel-heading" id='db-panel-head'><strong>Monthly Bills</strong><hr class='hr-th'></div>
+                    
                         <table class="table">
                             <tr>
                                 <td class='indent' >First Half</td>
@@ -64,7 +65,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                   </div>
             <div class='chiclet'><div class='card'>
                 <div class="panel">
-                    <div class="panel-heading"><strong>Bills By Type</strong></div>
+                    <div class="panel-heading" id='db-panel-head'><strong>Bills By Type</strong><hr class='hr-th'></div>
                         <table class="table">
                             <tr>
                                 <% var totalCredit = 0 %>
@@ -156,7 +157,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                         <div class='chiclet'><div class='card'>
                             <div class="panel">
                                 
-                                <div class="panel-heading"><strong>Debt Snapshot</strong></div>
+                                <div class="panel-heading" id='db-panel-head'><strong>Debt Snapshot</strong><hr class='hr-th'></div>
                                     <table class="table">
                                         <tr>
                                             <td class='indent' >Debt Remaining</td>
@@ -197,7 +198,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                 </div></div>
                                 <div class='chiclet'><div class='card'>
                 <div class="panel">
-                    <div class="panel-heading"><strong>Debt Balances</strong></div>
+                    <div class="panel-heading" id='db-panel-head'><strong>Debt Balances</strong><hr class='hr-th'></div>
                         <table class="table">
                             <tr>
                                 <% var totalCredit = 0 %>
@@ -255,7 +256,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                     <div class='col-lg-4 col-sm-12' id='mobile-card'>
                         <div class='chiclet'><div class='card'>
                             <div class='panel' id="outerChart">
-                                <div class="panel-heading"><strong>Payoff Chart</strong></div>
+                                <div class="panel-heading" id='db-panel-head'><strong>Payoff Chart</strong><hr class='hr-th'></div>
                                 <br>
                                     <div id='chartOutline'>
                                         <div id='chartLine'>

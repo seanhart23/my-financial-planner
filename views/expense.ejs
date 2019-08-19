@@ -28,14 +28,15 @@
 
         <div class='card' id='snapshot'>
             <div class="panel">
-                <div class="panel-heading" id='db-panel-head'><strong>Snapshot</strong><hr class='hr-th'>
-                <a href="/accountBalance/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addaccountBalance">Add Balance</a></div>
+                <div class="panel-heading" id='db-panel-head'><strong>Snapshot</strong>
+                <a href="/accountBalance/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addaccountBalance">Add Balance</a><hr class='hr-th'></div>
                     <table class="table">
                         <tr>
-                            <td  class='indent'>Balance</td>
+                            <td class='indent'>Balance</td>
+                            <td class='right'>$</td>
                             <% accountBalance.forEach(function(accountBalance){ %>
                                 <% if(currentUser.username === accountBalance.author.username){ %>
-                                <td class='td-right'><span id='dollarSign'>$</span><div class='table-number'>
+                                <td class='td-right'><div class='table-number'>
                                 <a href="/accountBalance/<%= accountBalance._id %>/edit" data-toggle="modal" data-target="#edit" id='accountBalance'><%= accountBalance.amount.toFixed(2) %></a>
                                 <% } %>
                                 <% }) %>
@@ -43,16 +44,17 @@
                         </tr>
                         <tr>
                             <td class='indent'>Bills</td>
-                            <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="totalBill">0.00</div></td>
+                            <td class='right'>$</td>
+                            <td class='td-right'><div class='table-number' id="totalBill">0.00</div></td>
                         </tr>                          
                         <tr>
                             <td class='indent'>Remaining</td>
-                            <td class='td-right'><span id='dollarSign'>$</span><div class='table-number' id="remaining">0.00</div></td>
+                            <td class='right'>$</td>
+                            <td class='td-right'><div class='table-number' id="remaining">0.00</div></td>
                         </tr>
                 </table>
+                
             </div>
-        </div>
-        
             <div id='mobile-card'>
         <div class="btn-group" id='group' role="group" id='group' aria-label="...">
             <button type="button" id='one' class="btn btn-primary btn-sm">1st Half</button>
@@ -60,6 +62,9 @@
             <button type="button" id='two' class="btn btn-primary btn-sm">2nd Half</button>
         </div>
     </div>
+        </div>
+        
+            
                     
         <div class='card'>
             <div class="panel">
@@ -209,9 +214,6 @@
                                 </form>
                             </td>
                         </tr>
-                        <!--<tr>-->
-                        <!--    <td class='spacer'> </td>-->
-                        <!--</tr>-->
                         <% } %>   
                     <% }) %>
                 </tbody>
