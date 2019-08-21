@@ -39,36 +39,34 @@
             </div>
                 <table class="table">
                     <tr>
-                        <td class='indent'>Starting Debt</td>
-                        <td>$</td>
-                            <td class='td-right'>
-                                
-                                    <% var totalDebt = 0 %>
-                                    <% startingDebt.forEach(function(startingDebt){ %>
-                                    <% if(currentUser.username === startingDebt.author.username){ %>
-                                    <!--<span id='dollarSign'>$</span>-->
-                                <span class='table-number'>
-                                    <% totalDebt = totalDebt + startingDebt.amount %>
-                                    <a href="/startingDebt/<%= startingDebt._id %>/edit" data-toggle="modal" data-target="#editstartingDebt" id='startingBalance'><%= totalDebt.toFixed(2) %></a>
-                                    <% } %>
-                                    <% }) %>
-                                </span>
-                            </td>
+                        <td class='left-column-3'>Starting Debt</td>
+                        <td class='mid-column-3'>$</td>
+                        <td class='right-column-3'>
+                                <% var totalDebt = 0 %>
+                                <% startingDebt.forEach(function(startingDebt){ %>
+                                <% if(currentUser.username === startingDebt.author.username){ %>
+                            <span class='table-number'>
+                                <% totalDebt = totalDebt + startingDebt.amount %>
+                                <a href="/startingDebt/<%= startingDebt._id %>/edit" data-toggle="modal" data-target="#editstartingDebt" id='startingBalance'><%= totalDebt.toFixed(2) %></a>
+                                <% } %>
+                                <% }) %>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
-                        <td class='indent'>Total Debt</td>
-                        <td class='right'>$</td>
-                        <td class='td-right'><div class='table-number' id="totalDebt">0.00</div></td>
+                        <td class='left-column-3'>Total Debt</td>
+                        <td class='mid-column-3'>$</td>
+                        <td class='right-column-3'><div class='table-number' id="totalDebt">0.00</div></td>
                     </tr>  
                     <tr>
-                        <td class='indent'>Paid Off</td>
-                        <td class='right'>$</td>
-                        <td class='td-right'><div class='table-number' id="paidOff">0.00</div></td>
+                        <td class='left-column-3'>Paid Off</td>
+                        <td class='mid-column-3'>$</td>
+                        <td class='right-column-3'><div class='table-number' id="paidOff">0.00</div></td>
                     </tr>
                     <tr>
-                        <td class='indent'> % Paid Off</td>
-                        <td class='right'>%</td>
-                        <td class='td-right' id='%paidOff'>0.00</td>
+                        <td class='left-column-3'>% Paid Off</td>
+                        <td class='mid-column-3'>%</td>
+                        <td class='right-column-3'><div class='table-number' id='%paidOff'>0.00</div></td>
                     </tr>
                 </table>
             </div>
@@ -85,8 +83,9 @@
                                         <% } %>
                                         <% }) %>
                                 <td id='color' style='background-Color:red'></td>
-                                <td><a  class='indent' href="#" id='credit'>Credit Cards</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
+                                <td><a class='indent' href="#" id='credit'>Credit Cards</a></td>
+                                <td id='dollarSign'>$</td>
+                                <td class='td-right'><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
                             </tr>
                             <tr>
                                 <% var totalLoan = 0 %>
@@ -97,7 +96,8 @@
                                         <% }) %>
                                 <td id='color' style='background-Color:orange'></td>
                                 <td><a class='indent' href="#" id='loan'>Loans</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
+                                <td id='dollarSign'>$</td>
+                                <td class='td-right'><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
                             </tr>
                             <tr>
                                 <% var totalSL = 0 %>
@@ -108,7 +108,8 @@
                                         <% }) %>
                                 <td id='color' style='background-Color:yellow'></td>
                                 <td><a class='indent' href="#" id='SL'>Student Loans</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
+                                <td id='dollarSign'>$</td>
+                                <td class='td-right'><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
                             </tr>                            
                             <tr>
                                 <% var totalBill = 0 %>
@@ -119,7 +120,8 @@
                                         <% }) %>
                                 <td id='color' style='background-Color:lawnGreen'></td>
                                 <td><a class='indent'  href="#" id='bill'>Bills</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalBill'><%= totalBill.toFixed(2) %></span></td>
+                                <td id='dollarSign'>$</td>
+                                <td class='td-right'><span class='table-number' id='totalBill'><%= totalBill.toFixed(2) %></span></td>
                             </tr>
                             <tr>
                                 <% var totalOther = 0 %>
@@ -130,7 +132,8 @@
                                         <% }) %>
                                 <td id='color' style='background-Color:blue'></td>
                                 <td><a class='indent'  href="#" id='other'>Other</a></td>
-                                <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
+                                <td id='dollarSign'>$</td>
+                                <td class='td-right'><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
                             </tr>
                         </table>
                     </div>

@@ -151,10 +151,20 @@ th {
     border: 1px solid lightgray;
 }
 
-/*.chiclet {*/
-/*    width: 100%;*/
-/*    margin-bottom: 0px 40px;*/
-/*}*/
+.left-column-3 {
+    padding-left: 6px!important;
+    width: 60%;    
+}
+
+.mid-column-3 {
+    width: 10%; 
+}
+
+.right-column-3 {
+    width: 30%;
+    text-align: right;
+    padding-right: 5px!important;
+}
 
 .container {
     padding: 0px;
@@ -218,6 +228,12 @@ th {
 .hr-th {
     margin-top: 5px;
     margin-bottom: 0px;
+}
+
+.indent {
+    padding-left: 6px!important;
+    text-transform: none;
+    width: 58%;
 }
 
 .infoTitle {
@@ -348,6 +364,10 @@ th {
     color: red!important;
 }
 
+.no-top {
+    padding-top: 3px!important;
+}
+
 .panel {
     margin-bottom: 0px;
     border: 0px;
@@ -389,10 +409,6 @@ th {
     color: green!important;
 }
 
-.right {
-    /*text-align: right;*/
-}
-
 .row {
     margin-left: 0px;
 }
@@ -414,7 +430,7 @@ th {
     vertical-align: top;
     padding: 0px;
     font-size: 13px!important;
-    margin-bottom: 200px;
+    margin-bottom: 500px;
 }
 
 .snowball-head {
@@ -469,7 +485,7 @@ table.sortable thead {
 }
 
 .table-number {
-    /*width: 119px;*/
+    width: 40%;
     float: right;
     letter-spacing: 1px;
     position: relative;
@@ -477,27 +493,10 @@ table.sortable thead {
     width: auto;
 }
 
-.indent {
-    padding-left: 6px!important;
-    text-transform: none;
-    font-style: helvetica;
-    /*display: inline-block;*/
-    width: 40%;
-}
-
-.indent-dash {
-    .indent {
-    padding-left: 6px!important;
-    text-transform: none;
-    font-style: helvetica;
-    /*display: inline-block;*/
-    width: 100%;
-}
-}
 .td-right {
     text-align: right;
-    padding-right: 15px!important;
-    width: 14%;
+    padding-right: 5px!important;
+    width: 12%;
 }
 
 .test{
@@ -513,6 +512,13 @@ table.sortable thead {
 
 #addBill {
     margin-top: 20px;
+}
+
+#align {
+    position: fixed;
+    margin-top: 138px;
+    color: red;
+    width: 100%;
 }
 
 #amount {
@@ -651,16 +657,24 @@ table.sortable thead {
 }
 
 #dollarSign {
-  /*position:relative;*/
-  /*margin-right:-40px*/
-  display: inline-block;
+  margin-right:-40px;
   text-align: right;
+  width: 5%;
+}
+
+#dollarSign1 {
+  text-align: left;
+  width: 50%;
 }
 
 #due {
     width: 13%;
     text-align: center;
     vertical-align: middle;
+}
+
+#emp {
+    padding-top: 0px!important;
 }
 
 #footer {
@@ -813,6 +827,7 @@ table.sortable thead {
     margin-bottom: 15px;
     background-color: #000080;
     color: white;
+    border: none;
 }
 
 #login-hr {
@@ -949,7 +964,7 @@ table.sortable thead {
 }
 
 #snapshot {
-    margin-top: 95px;
+    margin-top: 94px;
 }
 
 #snowball {
@@ -963,7 +978,7 @@ table.sortable thead {
     margin-bottom: 20px;
     /*border: 1px solid #000080;*/
     padding: 20px;
-    width: 30%;
+    width: 40%;
     background-color: GhostWhite;
     /*position: fixed;*/
     box-shadow: 0px 2px 6px #000000;

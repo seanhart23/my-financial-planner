@@ -32,25 +32,25 @@
                 <a href="/accountBalance/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addaccountBalance">Add Balance</a><hr class='hr-th'></div>
                     <table class="table">
                         <tr>
-                            <td class='indent'>Balance</td>
-                            <td class='right'>$</td>
+                            <td class='left-column-3'>Balance</td>
+                            <td class='mid-column-3'>$</td>
                             <% accountBalance.forEach(function(accountBalance){ %>
                                 <% if(currentUser.username === accountBalance.author.username){ %>
-                                <td class='td-right'><div class='table-number'>
+                                <td class='right-column-3'><div class='table-number'>
                                 <a href="/accountBalance/<%= accountBalance._id %>/edit" data-toggle="modal" data-target="#edit" id='accountBalance'><%= accountBalance.amount.toFixed(2) %></a>
                                 <% } %>
                                 <% }) %>
                             </div></td>
                         </tr>
                         <tr>
-                            <td class='indent'>Bills</td>
-                            <td class='right'>$</td>
-                            <td class='td-right'><div class='table-number' id="totalBill">0.00</div></td>
+                            <td class='left-column-3'>Bills</td>
+                            <td class='mid-column-3'>$</td>
+                            <td class='right-column-3'><div class='table-number' id="totalBill">0.00</div></td>
                         </tr>                          
                         <tr>
-                            <td class='indent'>Remaining</td>
-                            <td class='right'>$</td>
-                            <td class='td-right'><div class='table-number' id="remaining">0.00</div></td>
+                            <td class='left-column-3'>Remaining</td>
+                            <td class='mid-column-3'>$</td>
+                            <td class='right-column-3'><div class='table-number' id="remaining">0.00</div></td>
                         </tr>
                 </table>
                 
@@ -79,7 +79,8 @@
                                 <% }) %>
                         <td id='color' style='background-Color:red'></td>
                         <td><a class='indent' href="#" id='credit'>Credit Card</a></td>
-                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
+                        <td id="dollarSign">$</td>
+                        <td class='td-right'><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
                     </tr>
                     <tr>
                         <% var totalSL = 0 %>
@@ -91,7 +92,8 @@
                                 <% }) %>
                         <td id='color' style='background-Color:yellow'></td>
                         <td><a class='indent' href="#" id='studentLoan'>Student Loan</a></td>
-                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
+                        <td id="dollarSign">$</td>
+                        <td class='td-right'><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
                     </tr>
                     <tr>
                         <% var totalLoan = 0 %>
@@ -102,7 +104,8 @@
                                 <% }) %>
                         <td id='color' style='background-Color:orange'></td>
                         <td><a class='indent'href="#" id='loan'>Loan</a></td>
-                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
+                        <td id="dollarSign">$</td>
+                        <td class='td-right'><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
                     </tr>
                     <tr>
                         <% var totalUtility = 0 %>
@@ -113,7 +116,8 @@
                                 <% }) %>
                         <td id='color' style='background-Color:LawnGreen'></td>
                         <td><a class='indent' href="#" id='utility'>Utility</a></td>
-                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalUtility.toFixed(2) %></span></td>
+                        <td id="dollarSign">$</td>
+                        <td class='td-right'><span class='table-number' id='totalUtility'><%= totalUtility.toFixed(2) %></span></td>
                     </tr>                             
                     <tr>
                         <% var totalHousehold = 0 %>
@@ -124,7 +128,8 @@
                                 <% }) %>
                         <td id='color' style='background-Color:blue'></td>
                         <td><a class='indent' href="#" id='household'>Household</a></td>
-                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalHousehold.toFixed(2) %></span></td>
+                        <td id="dollarSign">$</td>
+                        <td class='td-right'><span class='table-number' id='totalUtility'><%= totalHousehold.toFixed(2) %></span></td>
                     </tr>                             
                     <tr>
                         <% var totalMembership = 0 %>
@@ -134,8 +139,9 @@
                                 <% } %>
                                 <% }) %>
                         <td id='color' style='background-Color:purple'></td>
-                        <td><a class='indent' href="#" id='membership'>Membership</a></td>
-                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalMembership.toFixed(2) %></span></td>
+                        <td class='indent'><a href="#" id='membership'>Membership</a></td>
+                        <td id="dollarSign">$</td>
+                        <td class='td-right'><span class='table-number' id='totalUtility'><%= totalMembership.toFixed(2) %></span></td>
                     </tr>                             
                     <tr>
                         <% var totalOnetime = 0 %>
@@ -146,7 +152,8 @@
                                 <% }) %>
                         <td id='color' style='background-Color:midnightblue'></td>
                         <td><a class='indent' href="#" id='onetime'>One Time</a></td>
-                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalUtility'><%= totalOnetime.toFixed(2) %></span></td>
+                        <td id="dollarSign">$</td>
+                        <td class='td-right'><span class='table-number' id='totalUtility'><%= totalOnetime.toFixed(2) %></span></td>
                     </tr> 
                     <tr>
                         <% var totalOther = 0 %>
@@ -157,7 +164,8 @@
                                 <% }) %>
                         <td id='color' style='background-Color:deeppink'></td>
                         <td><a class='indent' href="#" id='other'>Other</a></td>
-                        <td class='td-right'><span id='dollarSign'>$</span><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
+                        <td id="dollarSign">$</td>
+                        <td class='td-right'><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
                     </tr>
                 </table>
             </div>
@@ -191,30 +199,30 @@
                 <tbody>
                     <% bills.forEach(function(bill){ %>
                         <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
-                        <tr class ='table-card'>
-                            <td id='color'></td>
-                            <td id='due'><%= bill.dueDate %></td>
-                            <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
-                            <td id='type'><%= bill.type %></td>
-                            <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                            <td id='auto'><%= bill.autoPay %></td>
-                            <td id='statusdd'>
-                                 <select class='form-control' id='status' name="status">
-                                    <option value="unpaid">Unpaid</option>
-                                    <option value="paid">Paid</option>
-                                    <option value="leave">Leave</option>
-                                    <option value="move">Move</option>
-                                    <option value="remove">Remove</option>
-                                </select>
-                            </td>
-                            <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Go</a></td>
-                            <td id='delete'>
-                                <form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
-                                   <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <% } %>   
+                            <tr class ='table-card'>
+                                <td id='color'></td>
+                                <td id='due'><%= bill.dueDate %></td>
+                                <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
+                                <td id='type'><%= bill.type %></td>
+                                <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td id='auto'><%= bill.autoPay %></td>
+                                <td id='statusdd'>
+                                     <select class='form-control' id='status' name="status">
+                                        <option value="unpaid">Unpaid</option>
+                                        <option value="paid">Paid</option>
+                                        <option value="leave">Leave</option>
+                                        <option value="move">Move</option>
+                                        <option value="remove">Remove</option>
+                                    </select>
+                                </td>
+                                <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Go</a></td>
+                                <td id='delete'>
+                                    <form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
+                                       <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% } %>
                     <% }) %>
                 </tbody>
             </table>
