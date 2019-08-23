@@ -1,6 +1,8 @@
 var total = 0;
 var $;
 
+
+
 function sortTable(bills, sortColumn){
     var tableData = document.getElementById(bills).getElementsByTagName('tbody').item(0);
     var rowData = tableData.getElementsByTagName('tr');            
@@ -343,7 +345,6 @@ function color(table, billType) {
 
 color('bills', 3);
 color('totalsByType', 1);
-
 
 
 

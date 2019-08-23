@@ -102,6 +102,11 @@ th {
     padding: 500px;
 }
 
+.alert {
+    text-align: center!important;
+    margin-top: -17px;
+}
+
 /*.btn {*/
 /*    width: 33.33%;*/
 /*}*/
@@ -207,6 +212,7 @@ th {
 
 .emptyMessage {
     text-align: center;
+    height: 0px;
 }
 
 .fa-plus {
@@ -892,6 +898,7 @@ table.sortable thead {
 #outerChart.panel {
     padding-bottom: 10px;
     /*border: 1px solid #000080;*/
+    margin-bottom: 50px;
 }
 
 #output {

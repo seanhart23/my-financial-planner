@@ -62,7 +62,6 @@
             }
         }) %>
         <script>document.getElementById('debtsRemaining').innerHTML = <%= i %></script>
-        <!--<div class="panel-heading" id='db-panel-head'><strong>Debt Snowball</strong></div>-->
             <table id = 'wholeTable'><%
                 var a = [];
                 var interestA = 0;
@@ -80,18 +79,20 @@
                     return a.amount == b.amount ? 0 : +(a.amount > b.amount) || -1;
                     }); %>
 
-                       <% if(a.length == 0) {
-                            %> <span><br><div class="alert alert-info" role="alert">
-                                To see your debt snowball, add all of your debts to the debt tracker page 
-                            </div></span> <%
-                        } else { %>
-                <hr id='align'>
-                 <tr>
-                <table class='test'>
-                    <table class='snowball'>
-                            <th class='snowball-header snowball-head'>
-                                Payoff Months
-                            </th>
+                       <% if(a.length == 0) { %> 
+                        <span><br>
+                            <div class="alert alert-info" role="alert">
+                            To see your debt snowball, add all of your debts to the <a href='/debt'>debt tracker</a>
+                            </div>
+                        </span> 
+                        <% } else { %>
+                        <hr id='align'>
+                        <tr>
+                        <table class='test'>
+                            <table class='snowball'>
+                                    <th class='snowball-header snowball-head'>
+                                        Payoff Months
+                                    </th>
                         <% } %>
                             
                         </tr>  

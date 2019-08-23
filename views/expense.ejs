@@ -196,7 +196,7 @@
                         <th id='trash'></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id='billBody'>
                     <% bills.forEach(function(bill){ %>
                         <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
                             <tr class ='table-card'>
@@ -226,10 +226,21 @@
                     <% }) %>
                 </tbody>
             </table>
+            <div id='emptyMessage'></div>
         </div>
     </div>
 </div>
 
+<script>
+    function UpdateCount(tableID, message, colCount) {
+    var rowCount = $('#' + tableID + ' tr').length;
+    if (rowCount < 3) {
+    document.getElementById(message).innerHTML = "<td colspan='8'><span><br><div class='alert alert-info' role='alert'>Click 'Add Expense' in the top right hand corner to get started</div></span></td> ";
+  } 
+}
+
+UpdateCount('bills', 'emptyMessage', 6)
+</script>
 <script type="text/javascript" src='/js/bills.js'></script>
 
 <% include ./partials/footer %>
