@@ -2,6 +2,46 @@
 // //BUDGET JS
 // //=============================
 
+function filterBudget(section, id) {
+   var budgetMonth = document.getElementById("currentMonth").value,
+       filter = document.getElementById(section),
+       timePeriod = filter.getElementsByClassName("timePeriod"),
+       budgetExpense = filter.getElementsByClassName('budget-expense');
+   for (var i = 0; i < timePeriod.length; i++) {
+      if (timePeriod[i].innerText === budgetMonth){
+         budgetExpense[i].style.display = "";
+      } else {
+         budgetExpense[i].style.display = "none";
+      }
+   }
+}
+
+
+filterBudget('filter', 'first');
+filterBudget('filter1', 'second');
+filterBudget('filter2', 'third');
+filterBudget('filter3', 'fourth');
+
+document.getElementById("triggerFilter").addEventListener("click", filterBudget.bind(null, 'filter', 'first'), false);
+document.getElementById("triggerFilter").addEventListener("click", filterBudget.bind(null, 'filter1', 'second'), false);
+document.getElementById("triggerFilter").addEventListener("click", filterBudget.bind(null, 'filter2', 'third'), false);
+document.getElementById("triggerFilter").addEventListener("click", filterBudget.bind(null, 'filter3', 'fourth'), false);
+
+// document.getElementById("progress").style.width = document.getElementById('progress-percent').innerText;
+
+
+
+function CheckSpace(event)
+{
+   if(event.which ==32)
+   {
+      event.preventDefault();
+      return false;
+   }
+}
+
+
+
 // var sumPlannedIncome  = 0,
 //     sumActualIncome   = 0,
 //     sumPlannedExpense = 0,

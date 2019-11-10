@@ -1,0 +1,46 @@
+<div class="modal-header">
+    <h5 class="modal-title">Edit a Transaction</h5>
+</div>
+<div class="modal-body">
+    <form action="/budgetExpense/<%= budgetExpense._id %>?_method=PUT" method="post">
+
+        <div class="form-group">
+            Title: <input class='form-control' type='text' name='expense' value='<%= budgetExpense.expense %>'>
+        </div>        
+        <div class="form-group">
+            Amount: <input class='form-control' type='number' name='amount' value='<%= budgetExpense.amount %>'>
+        </div>
+        <div class='form-group'>
+            Type:
+            <select class='form-control' name="type">
+                <option value="budgetExpense.type" disabled selected><%= budgetExpense.type %></option>
+                <option value="misc income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+        </div>           
+        <div class='form-group'>
+            Category:
+            <select class='form-control' name="category">
+                <option value="budgetExpense.category" disabled selected><%= budgetExpense.category %></option>
+                <option value="income">Miscelaneous Income</option>
+                <option value="income">Miscelaneous Expense</option>
+                <% budgetItem.forEach(function(budgetItem){ %>
+                    <% if(currentUser.username === budgetItem.author.username){ %>
+                <option value="<%= budgetItem.itemLabel %>"><%= budgetItem.itemLabel %></option>
+                <% } %>
+                <% }) %>
+            </select>
+        </div>                   
+        <div class='form-group'>
+            Date: <input class='form-control' type='date' name='date' value='<%= budgetExpense.date %>'>    
+        </div>           
+        <div class='form-group'>
+            <button class="btn btn-lg btn-default btn-block btn-primary">Submit</button>
+                </div>
+    </form>
+        <form action="/budgetExpense/<%= budgetExpense._id %>?_method=DELETE" method="POST" class="delete-form">
+           <button class="btn btn-lg btn-default btn-block btn-warning">Delete</button>
+        </form>
+        <a href='/budgetExpense' data-dismiss="modal" class='btn btn-lg btn-block'>Go Back</a>
+
+</div>

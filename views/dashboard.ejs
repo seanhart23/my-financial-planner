@@ -23,9 +23,33 @@ document.getElementById("date").innerHTML = d.toDateString();
 </script>
 
 <div class='container dashboard-table'>
-    <!--<div class='row'>-->
+    <% var balance = 0 %>
+    <% accountBalance.forEach(function(accountBalance){ %>
+        <% if(currentUser.username === accountBalance.author.username){ %>
+        <% balance = balance + accountBalance.amount %>
+        <% } %>
+        <% }) %>
+    <% var totalBills = 0 %>
+    <% bills.forEach(function(bill){ %>
+        <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
+        <% totalBills = totalBills + bill.amountDue %>
+        <% } %>
+        <% }) %>
+    <% var totalDebts = 0 %>
+    <% debt.forEach(function(debt){ %>
+        <% if(currentUser.username === debt.author.username  || currentUser.username === debt.authUser){ %>
+        <% totalDebts = totalDebts + debt.amount %>
+        <% } %>
+        <% }) %>
+        <div class='row'>
+        <div class='dashboard-item col-lg-5'>
+            Total Monthly Income<span class='pull-right'>$<%= balance.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
+            Total Monthly Expense<span class='pull-right'>$<%= totalBills.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
+            Total Debt Remaining<span class='pull-right'>$<%= totalDebts.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
+        </div>
+        <div class='col-lg-7'></div></div>
         <div class='col-lg-4 col-sm-12' id='mobile-card'>
-            <div class=''><div class='card'>
+            <div class='chiclet'>
                 <div class="panel">
                     <div class="panel-heading" id='db-panel-head'><strong>Monthly Bills</strong><hr class='hr-th'></div>
                     
@@ -66,7 +90,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                         </table>
                     </div>
                   </div>
-            <div class='chiclet'><div class='card'>
+            <div class='chiclet'><div>
                 <div class="panel">
                     <div class="panel-heading" id='db-panel-head'><strong>Bills By Type</strong><hr class='hr-th'></div>
                         <table class="table">
@@ -160,11 +184,11 @@ document.getElementById("date").innerHTML = d.toDateString();
                             </tr>
                         </table>
                     </div>
-                </div></div>
+                </div></div><div>
                     </div>
                     </div>
                     <div class='col-lg-4 col-sm-12' id='mobile-card'>
-                        <div class='chiclet'><div class='card'>
+                        <div class='chiclet'><div>
                             <div class="panel">
                                 
                                 <div class="panel-heading" id='db-panel-head'><strong>Debt Snapshot</strong><hr class='hr-th'></div>
@@ -207,7 +231,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                                     </table>
                                 </div>
                                 </div></div>
-                                <div class='chiclet'><div class='card'>
+                                <div class='chiclet'><div>
                 <div class="panel">
                     <div class="panel-heading" id='db-panel-head'><strong>Debt Balances</strong><hr class='hr-th'></div>
                         <table class="table">
@@ -270,7 +294,7 @@ document.getElementById("date").innerHTML = d.toDateString();
                     </div></div>
                     </div>  </div>
                     <div class='col-lg-4 col-sm-12' id='mobile-card'>
-                        <div class='chiclet'><div class='card'>
+                        <div class='chiclet'><div>
                             <div class='panel' id="outerChart">
                                 <div class="panel-heading" id='db-panel-head'><strong>Payoff Chart</strong><hr class='hr-th'></div>
                                 <br>

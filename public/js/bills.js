@@ -1,11 +1,15 @@
-var total = 0;
-var $;
+var total = 0,
+    date = new Date(),
+    $;
 
+document.getElementById("date").innerHTML = date.toDateString();
 
+// SORT TABLE
 
 function sortTable(bills, sortColumn){
-    var tableData = document.getElementById(bills).getElementsByTagName('tbody').item(0);
-    var rowData = tableData.getElementsByTagName('tr');            
+    var tableData = document.getElementById(bills).getElementsByTagName('tbody').item(0),
+        rowData   = tableData.getElementsByTagName('tr');            
+    
     for(var i = 0; i < rowData.length - 1; i++){
         for(var j = 0; j < rowData.length - (i + 1); j++){
             if(Number(rowData.item(j).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, "")) > Number(rowData.item(j+1).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, ""))){
@@ -15,19 +19,17 @@ function sortTable(bills, sortColumn){
     }
 }
 
-sortTable('bills', 1);
+//
+
+// SORT TABLE BY DUE DATE ON PAGE LOAD
 
 $(document).ready(function(){
  $("#due").trigger('click');
 });
-// var n = document.getElementById("color")
 
+//
 
-
-var d = new Date();
-document.getElementById("date").innerHTML = d.toDateString();
-
-//CALCULATE BILL TOTAL
+// CALCULATE BILL TOTAL
 
 function billCalculate() {
     total = 0;
@@ -39,9 +41,9 @@ function billCalculate() {
     document.getElementById('totalBill').innerHTML = total.toFixed(2);
 }
 
-billCalculate();
+//
 
-//COUNT OF TABLE ROWS
+// COUNT OF TABLE ROWS
 
 function UpdateCount() {
     var t = $('#bills').find('tbody tr #payee').length;
@@ -50,18 +52,18 @@ function UpdateCount() {
   } 
 }
 
-UpdateCount();
+//
 
 //CALCULATE BILLS FOR EACH PART OF THE MONTH BASED ON BUTTON GROUP
 
-function first() {
+function dateRange(dateNumber1, dateNumber2) {
   var table, tr, td, i;
   table = document.getElementById("bills");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[1];
     if (td) {
-      if (td.innerHTML < 15) {
+      if (td.innerHTML > dateNumber1 && td.innerHTML < dateNumber2) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
@@ -71,48 +73,21 @@ function first() {
   billCalculate();
 }
 
-function second() {
-  var table, tr, td, i;
-  table = document.getElementById("bills");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      if (td.innerHTML > 14) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-  billCalculate();
-}
+//
 
-function full() {
-  var table, tr, td, i;
-  table = document.getElementById("bills");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      if (td.innerHTML) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-  billCalculate();
-}
+// FILTER BILLS
 
-function credit() {
-  var table, tr, td, i;
+function filterBills(billType) {
+  var table,
+      tr, 
+      td, 
+      i;
   table = document.getElementById("bills");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[3];
     if (td) {
-      if (td.innerHTML === "Credit Card") {
+      if (td.innerHTML === billType) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
@@ -122,169 +97,34 @@ function credit() {
   billCalculate();
 }
 
+//
 
-function studentLoan() {
-  var table, tr, td, i;
-  table = document.getElementById("bills");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
-    if (td) {
-      if (td.innerHTML === "Student Loan") {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-  billCalculate();
-}
+// CHANGE DATE RANGE
 
+document.getElementById("one").addEventListener("click", dateRange.bind(null, 0, 15), false);
+document.getElementById("two").addEventListener("click", dateRange.bind(null, 14, 32), false);
+document.getElementById("full").addEventListener("click", dateRange.bind(null, 0, 32), false);
 
-function loan() {
-  var table, tr, td, i;
-  table = document.getElementById("bills");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
-    if (td) {
-      if (td.innerHTML === "Loan") {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-  billCalculate();
-}
+//
 
+// CHANGE REMAINING FONT COLOR BASED ON BALANCE
 
-function utility() {
-  var table, tr, td, i;
-  table = document.getElementById("bills");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
-    if (td) {
-      if (td.innerHTML === "Utility") {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-  billCalculate();
-}
-
-function household() {
-  var table, tr, td, i;
-  table = document.getElementById("bills");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
-    if (td) {
-      if (td.innerHTML === "Household") {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-  billCalculate();
-}
-
-function membership() {
-  var table, tr, td, i;
-  table = document.getElementById("bills");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
-    if (td) {
-      if (td.innerHTML === "Membership") {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-  billCalculate();
-}
-
-function onetime() {
-  var table, tr, td, i;
-  table = document.getElementById("bills");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
-    if (td) {
-      if (td.innerHTML === "One Time") {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-  billCalculate();
-}
-
-function other() {
-  var table, tr, td, i;
-  table = document.getElementById("bills");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
-    if (td) {
-      if (td.innerHTML === "Other") {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-  billCalculate();
-}
-
-document.getElementById("one").addEventListener("click", first, false);
-document.getElementById("two").addEventListener("click", second, false);
-document.getElementById("full").addEventListener("click", full, false);
-document.getElementById("credit").addEventListener("click", credit, false);
-document.getElementById("studentLoan").addEventListener("click", studentLoan, false);
-document.getElementById("loan").addEventListener("click", loan, false);
-document.getElementById("utility").addEventListener("click", utility, false);
-document.getElementById("household").addEventListener("click", household, false);
-document.getElementById("membership").addEventListener("click", membership, false);
-document.getElementById("onetime").addEventListener("click", onetime, false);
-document.getElementById("other").addEventListener("click", other, false);
-// document.getElementById("billCalculate").addEventListener("click", billCalculate, false);
-  
+$('#one, #two, #three, #full, #balance, #bills, #status').bind('click', function (event, previousText) {
+    var remaining = document.getElementById("accountBalance").innerHTML - document.getElementById('totalBill').innerHTML;
+    document.getElementById('remaining').innerHTML = remaining.toFixed(2);
     
-//CALCULATE REMAINING VALUE
-
-// $(document).ready(function (event, previousText) {
-//       var income = document.getElementById("balance").value;
-//       var bills = document.getElementById("totalBill").innerHTML;
-//       var value = +income - +bills;
-//       document.getElementById("remaining").innerHTML = value.toFixed(2);
-//       if (value < 0){
-//       document.getElementById("remaining").style.color = "red";
-// } else if (value >0) {
-//       document.getElementById("remaining").style.color = "green";
-// } else {
-//       document.getElementById("remaining").style.color = "black";
-// }
-// });
-
-$('#one, #two, #three, #full, #balance, #bills, #status').bind('keydown keyup click change', function (event, previousText) {
-      var remaining = document.getElementById("accountBalance").innerHTML - document.getElementById('totalBill').innerHTML
-      document.getElementById('remaining').innerHTML = remaining.toFixed(2)
-      if (remaining < 0){
+    if (remaining < 0){
       document.getElementById("remaining").style.color = "red";
-} else if (remaining >0) {
+    } else if (remaining >0) {
       document.getElementById("remaining").style.color = "green";
-} else {
+    } else {
       document.getElementById("remaining").style.color = "black";
-}
+  }
 });
+
+//
+
+// DISPLAY ADD STARTING BALANCE LINK
 
 function showStartingBalance(){
   if(document.getElementById('accountBalance').innerHTML !== "0"){
@@ -292,7 +132,7 @@ function showStartingBalance(){
   }
 }
 
-showStartingBalance();
+//
 
 //DELETE ROW FROM DROPDOWN
 
@@ -313,12 +153,18 @@ $('select').on("change",function(){
       }
 });
 
+//
 
+// ADD TABLE COLOR 
 
 function color(table, billType) {
-  var table, tr, td, i;
+  var tr, 
+      td, 
+      i;
+      
   table = document.getElementById(table);
-  tr = table.getElementsByTagName("tr");
+  tr    = table.getElementsByTagName("tr");
+  
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[billType];
     if (td) {
@@ -343,8 +189,21 @@ function color(table, billType) {
   }
 }
 
+//
+
+billCalculate();
+UpdateCount();
+sortTable('bills', 1);
 color('bills', 3);
 color('totalsByType', 1);
+showStartingBalance();
 
 
-
+document.getElementById("credit").addEventListener("click", filterBills.bind(null, 'Credit Card'), false);
+document.getElementById("studentLoan").addEventListener("click", filterBills.bind(null, 'Student Loan'), false);
+document.getElementById("loan").addEventListener("click", filterBills.bind(null, 'Loan'), false);
+document.getElementById("utility").addEventListener("click", filterBills.bind(null, 'Utility'), false);
+document.getElementById("household").addEventListener("click", filterBills.bind(null, 'Household'), false);
+document.getElementById("membership").addEventListener("click", filterBills.bind(null, 'Membership'), false);
+document.getElementById("onetime").addEventListener("click", filterBills.bind(null, 'One Time'), false);
+document.getElementById("other").addEventListener("click", filterBills.bind(null, 'Other'), false);

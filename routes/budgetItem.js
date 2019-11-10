@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var budgetItem = require('../models/budgetItem');
+var budgetExpense = require('../models/budgetExpense');
 var middleware = require('../middleware');
 
 router.get('/', function(req, res){
-        budgetItem.find({}, function(err, allBudgetItem){
+        budgetItem.find({}, function(err, allBudgetItems){
         if(err){
             console.log(err);
         } else {
-            res.render("budgetItem", {budgetItem: allBudgetItem});      
+            res.render("budgetItem", {budgetItem: allBudgetItems});      
         }
     });
 });
@@ -55,7 +56,7 @@ router.put('/:id', function(req, res){
         } else {
             res.redirect('/budget');
         }
-    });    
+    });  
 });
 
 router.delete('/:id',function(req, res){

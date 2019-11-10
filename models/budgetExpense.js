@@ -1,10 +1,12 @@
 var mongoose = require("mongoose");
 
 //SCHEMA SETUP
-var budgetItemSchema = new mongoose.Schema({
-    itemLabel: String,
+var budgetExpenseSchema = new mongoose.Schema({
+    expense: String,
+    date: String,
+    amount: Number,
+    category: String,
     type: String,
-    planned: Number,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
@@ -14,4 +16,4 @@ var budgetItemSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("budgetItem", budgetItemSchema);
+module.exports = mongoose.model("budgetExpense", budgetExpenseSchema);

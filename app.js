@@ -8,6 +8,8 @@ var methodOverride = require('method-override'),
     router         = express.Router(),
     User           = require('./models/user'),
     budgetItem     = require('./models/budgetItem'),
+    budgetExpense  = require('./models/budgetExpense'),
+    // budgetIncome   = require('./models/budgetIncome'),
     middleware     = require('./middleware'),
     app            = express();
 
@@ -51,9 +53,13 @@ var startingDebtRoutes = require('./routes/startingDebt');
 var accountBalanceRoutes = require('./routes/accountBalance');
 var snowballRoutes       = require('./routes/snowball');
 var extraAmountRoutes       = require('./routes/extraAmount');
+var budgetExpenseRoutes       = require('./routes/budgetExpense');
+// var budgetIncomeRoutes       = require('./routes/budgetIncome');
 
 //REQUIRING ROUTE FILES USING EXPRESS ROUTER
 app.use('/budgetItem', budgetItemRoutes);
+app.use('/budgetExpense', budgetExpenseRoutes);
+// app.use('/budgetIncome', budgetIncomeRoutes);
 app.use('/bills', billRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/expense', expenseRoutes);
@@ -66,13 +72,15 @@ app.use('/', indexRoutes);
 
 app.get('/budget',  middleware.isLoggedIn, function(req, res){
 budgetItem.find({}, function(err, allBudgetItems){
+budgetExpense.find({}, function(err, allBudgetExpenses){
         if(err){
             console.log(err);
         } else {
-            res.render("budget", {budgetItem: allBudgetItems});      
+            res.render("budget", {budgetItem: allBudgetItems, budgetExpense: allBudgetExpenses});      
         }
     });
 });     
+});
 
 //TELL APP TO LISTEN TO PORT AND IP
 app.listen(process.env.PORT, process.env.IP, function(){

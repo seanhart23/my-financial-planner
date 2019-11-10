@@ -107,6 +107,16 @@ th {
     margin-top: -17px;
 }
 
+.border {
+    margin: 0px;
+}
+.btn-budget {
+    width: 100%;
+    background-color: #337ab7!important;
+    color: white!important;
+    border: 1px solid #2e6da4;
+}
+
 /*.btn {*/
 /*    width: 33.33%;*/
 /*}*/
@@ -149,11 +159,28 @@ th {
     z-index: 0;
 }
 
+.budget-item {
+    margin-top: 15px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 16px;
+}
+
+.budget-expense {
+    margin-left: 20px;
+    margin-right: 7px;
+    line-height: 25px;
+}
+
 .card {
     margin-bottom: 30px;
     box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5);
     border-radius: 5px 5px 5px 5px;
     border: 1px solid lightgray;
+}
+
+.chiclet {
+    margin-bottom: 25px;
 }
 
 .left-column-3 {
@@ -173,6 +200,14 @@ th {
 
 .container {
     padding: 0px;
+}
+
+.dashboard-item {
+    font-size: 20px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-bottom: 25px;
+    /*width: 40%;*/
+    font-weight: 300;
 }
 
 .dashboard-table {
@@ -231,6 +266,14 @@ th {
     line-height: 15px;
 }
 
+.hide {
+    display: none;
+}
+
+.hr-b {
+    margin-top: 0px;
+}
+
 .hr-th {
     margin-top: 5px;
     margin-bottom: 0px;
@@ -240,6 +283,12 @@ th {
     padding-left: 6px!important;
     text-transform: none;
     width: 58%;
+}
+
+.indent-budget {
+    padding-left: 6px!important;
+    text-transform: none;
+    width: 40%;
 }
 
 .infoTitle {
@@ -254,10 +303,8 @@ th {
 }
 
 .itemLabel {
-    width: 30%;   
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .itemLabelIncome {
@@ -285,6 +332,9 @@ th {
     margin-bottom: 200px;
 }
 
+.margin {
+    margin-left: 7px;
+}
 .mobile {
     display: none;
 }
@@ -415,6 +465,14 @@ th {
     color: green!important;
 }
 
+.progress {
+    margin-bottom: 2px;
+    height: 15px;
+}
+
+.progress-bar {
+    font-size: 9px;
+}
 .row {
     margin-left: 0px;
 }
@@ -505,8 +563,19 @@ table.sortable thead {
     width: 12%;
 }
 
+.td-right-budget {
+    text-align: right;
+    padding-right: 5px!important;
+    width: 25%;
+}
+
 .test{
     border: 1px solid red;
+}
+
+.timePeriod {
+    display: none!important;
+    color: red!important;
 }
 
 .wrapper {
@@ -567,6 +636,10 @@ table.sortable thead {
 #billWebsite {
     text-align: center;
     vertical-align: middle;
+}
+
+#budget-overview {
+    margin-top: 10px;
 }
 
 #budgetMobileTotal {
@@ -922,6 +995,7 @@ table.sortable thead {
 
 #paMobileHeader{
     width: 100%;   
+    margin-bottom: 15px;
 }
 
 #payee {
@@ -1022,6 +1096,12 @@ table.sortable thead {
     font-weight: 200;
 }
 
+#total {
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 7px;
+    
+}
 #trash {
     width: 6%;
 }

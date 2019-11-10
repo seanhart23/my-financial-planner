@@ -1,283 +1,369 @@
 <% include ./partials/header %>
 
+
+
+<!-- IN PAGE HEADER -->
+
 <div id='paMobileHeader'>
-<div class='container'>
-        <h1 id='welcome'>Budget Tool</h1>
-        <div id='description'>The Budget Tool is used to track your montlhy income and expense.  
-        Enter all of you income and expense to ensure you allocate properly.</div>
-    <p></p>
+    <div class='container'>
+        <h1 id='welcome'>Budgeting Tool</h1>
+        <hr>
+    </div>
 </div>
-</div>
+
+<!-- END HEADER -->
+
+<!--START PAGE CONTENT -->
 
 <div class='container'>
     <div class='row'>
-<div id='budgetMobileTotal'>
-        <div class='col-lg-4 col-xs-12 order-1'>
-        <h3>Totals</h3>
-        <hr>
-        <div class="panel panel-default panel-default">
-            <div class="panel-heading"><strong>Totals</strong></div>
-                <table class='table'>
-                    <thead>
-                        <th></th>
-                        <th class='dollarAmount'>Planned</th>
-                        <th class='dollarAmount'>Actual</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Income:</td>
-                            <td class='dollarAmount'><span id='totalPlannedIncome'>0.00</span></td>
-                            <td class='dollarAmount'><span id='totalActualIncome'>0.00</span></td>
-                        </tr>
-                        <tr>
-                            <td>Expense:</td>
-                            <td class='dollarAmount'><span id='totalPlannedExpense'>0.00</span></td>
-                            <td class='dollarAmount'><span id='totalActualExpense'>0.00</span></td>
-                        </tr>
-                        <tr>
-                            <td>Variance:</td>
-                            <td class='dollarAmount'><span id='totalPlannedVariance'>0.00</span></td>
-                            <td class='dollarAmount'><span id='totalActualVariance'>0.00</span></td>
-                        </tr>
-                    </tbody>
-                </table>  
-        </div>
-    </div>
-</div>
+        
+<!-- START LEFT RAIL -->
 
-    
-    <div class='col-lg-8 col-md-12 order-2'>
-<!--INCOME TABLE -->
-        <h3>Income</h3>
-        <hr>
-        <div class="panel panel-default panel-success">
-            <div class="panel-heading"><strong>Planned Monthly Income</strong>
-            <a href="/budgetItem/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
-                <table class='table' id='income'>
-                    <thead>
-                        <tr>
-                            <th class='itemLabelIncome'>Name</th>
-                            <th class='dollarAmount'>Planned</th>
-                            <th class='dollarAmount'>Actual</th>
-                            <th class='dollarAmount'>Variance</th>
-                            <th class='actions'>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+<div class='col-lg-3'>
+    <div class='card' id='budget-overview'>
+        <div class="panel">
+            <div class="panel-heading" id='db-panel-head'><strong>Budget Overview</strong>
+                <hr class='hr-th'>
+            </div>
+            <table class='table'>
+                <tr>
+                    <td class='indent-budget'>Planned Income</td>
+                    <td class='td-right-budget'>
+                        <% var total = 0 %>    
                         <% budgetItem.forEach(function(budgetItem){ %>
                             <% if(budgetItem.type === 'Income' && currentUser.username === budgetItem.author.username){ %>
-                        <tr>
-                                <td class='itemLabel'><a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editItem"><%= budgetItem.itemLabel %></a></td>                                <td class='dollarAmount'><span class='plannedIncomeTotal'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
-                                <td class='dollarAmount'><span class='actualIncomeTotal'><%= budgetItem.actual.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
-                                <% var variance = budgetItem.actual.toFixed(2) - budgetItem.planned.toFixed(2) %>
-                                <td class='dollarAmount'><span class ='a'><%= variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
-                                <td class='actions'>  
-                                    <form action="/budgetItem/<%= budgetItem._id %>?_method=DELETE" method="POST" class="delete-form">
-                                        <button class='btn btn-primary btn-xs' id='hiddenButton'><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
-                            <% } %>
+                            <% total = total + budgetItem.planned %>
+                        <% } %>
                         <% }) %>
-                        </tr>
-                        <tr id ='emptyMessageIncome'></tr>
-                    </tbody>
-                </table>
-        </div>
-        <h3>Expense</h3>
-        <hr>
-<!-- FIXED EXPENSE TABLE -->        
-        <div class="panel panel-danger">
-            <div class="panel-heading negative-header"><strong>Fixed Expense</strong>
-                <a href="/budgetItem/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
-                <table class="table" id='FixedExpense'>
-                    <thead>
-                            <th onclick='sortTable(0)'>Due Date</th>
-                            <th>Name</th>
-                            <th class='dollarAmount'>Planned</th>
-                            <th class='dollarAmount'>Actual</th>
-                            <th class='dollarAmount'>Variance</th>
-                            <th class='actions'>Delete</th>
-                    </thead>
-                    <tbody>               
+                        <%= total.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %>
+                    </td>
+                </tr>                      
+                <tr>
+                   <td class='indent-budget'>Actual Income</td>
+                    <td class='td-right-budget'>
+                    <% var expenseTotal = 0 %>  
+                        <% budgetExpense.forEach(function(budgetExpense){ %>
+                            <% if(budgetExpense.type == 'income' && currentUser.username === budgetExpense.author.username){ %>
+                            <% expenseTotal = expenseTotal + budgetExpense.amount %>
+                        <% } %>
+                        <% }) %>
+                   
+                        <%= expenseTotal.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %>
+                    </td>
+                </tr>  
+                <tr>
+                    <td class='indent-budget'>Planned Expense</td>
+                    <td class='td-right-budget'>
+                        <% var total = 0 %>    
                         <% budgetItem.forEach(function(budgetItem){ %>
-                            <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Fixed' && currentUser.username === budgetItem.author.username){ %>
-                        <tr>
-                                <td><%= budgetItem.dueDate %></td>
-                                <td class='itemLabel'><a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editItem"><%= budgetItem.itemLabel %></a></td>                                <td class='dollarAmount'><span class='plannedExpenseTotal'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                <td class='dollarAmount'><span class='actualExpenseTotal'><%= budgetItem.actual.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                <% var variance = budgetItem.actual.toFixed(2) - budgetItem.planned.toFixed(2) %>
-                                <td class='dollarAmount'><span class='a'><%= variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }).replace('$',' $'); %></td>
-                                <td class='actions'>  
-                                    <form action="/budgetItem/<%= budgetItem._id %>?_method=DELETE" method="POST" class="delete-form">
-                                        <button class='btn btn-primary btn-xs' id='hiddenButton'><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
-                            <% } %>
+                            <% if(budgetItem.type === 'Expense' && currentUser.username === budgetItem.author.username){ %>
+                            <% total = total + budgetItem.planned %>
+                        <% } %>
                         <% }) %>
-                        </tr>
-                        <tr id='emptyMessageFixedExpense'></tr>
-                    </tbody>
-                </table>
-            </div>
-<!-- VARIABLE EXPENSE TABLE -->
-        <div class="panel panel-danger">
-            <div class="panel-heading negative-header"><strong>Variable Expense</strong>
-                <a href="/budgetItem/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
-                <table class="table" id='VariableExpense'>
-                    <thead>
-                            <th onclick='sortTable(0)'>Due Date</th>
-                            <th>Name</th>
-                            <th class='dollarAmount'>Planned</th>
-                            <th class='dollarAmount'>Actual</th>
-                            <th class='dollarAmount'>Variance</th>
-                            <th class='actions'>Delete</th>
-                    </thead>
-                    <tbody>                        
-                        <% budgetItem.forEach(function(budgetItem){ %>
-                            <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Variable'  && currentUser.username === budgetItem.author.username){ %>
-                        <tr>
-                                <td><%= budgetItem.dueDate %></td>
-                                <td class='itemLabel'><a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editItem"><%= budgetItem.itemLabel %></a></td>
-                                <td class='dollarAmount'><span class='plannedExpenseTotal'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                <td class='dollarAmount'><span class='actualExpenseTotal'><%= budgetItem.actual.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                <% var variance = budgetItem.actual.toFixed(2) - budgetItem.planned.toFixed(2) %>
-                                <td class='dollarAmount'><span class='a'><%= variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }).replace('$',' $'); %></td>
-                                <td class='actions'>  
-                                    <form action="/budgetItem/<%= budgetItem._id %>?_method=DELETE" method="POST" class="delete-form">
-                                        <button class='btn btn-primary btn-xs' id='hiddenButton'><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
-                            <% } %>
+                        <%= total.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %>
+                    </td>
+                </tr>                      
+                <tr>
+                    <td class='indent-budget'>Actual Expense</td>
+                    <td class='td-right-budget'>
+                    <% var expenseTotal = 0 %>  
+                        <% budgetExpense.forEach(function(budgetExpense){ %>
+                            <% if(budgetExpense.type == 'expense' && currentUser.username === budgetExpense.author.username){ %>
+                            <% expenseTotal = expenseTotal + budgetExpense.amount %>
+                        <% } %>
                         <% }) %>
-                        </tr>
-                        <tr id ='emptyMessageVariableExpense'></tr>
-                    </tbody>
-                </table>
-            </div>
-<!-- DEBT TABLE -->
-        <div class="panel panel-danger">
-            <div class="panel-heading negative-header"><strong>Debt</strong>
-               <a href="/budgetItem/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
-                <table class="table" id='Debt'>
-                    <thead>
-                            <th onclick='sortTable(0)'>Due Date</th>
-                            <th>Name</th>
-                            <th class='dollarAmount'>Planned</th>
-                            <th class='dollarAmount'>Actual</th>
-                            <th class='dollarAmount'>Variance</th>
-                            <th class='actions'>Delete</th>
-                    </thead>
-                    <tbody>
-                        <% budgetItem.forEach(function(budgetItem){ %>
-                            <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Debt' && currentUser.username === budgetItem.author.username){ %>
-                        <tr>
-                                <td><%= budgetItem.dueDate %></td>
-                                <td class='itemLabel'><a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editItem"><%= budgetItem.itemLabel %></a></td>                                <td class='dollarAmount'><span class='plannedExpenseTotal'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                <td class='dollarAmount'><span class='actualExpenseTotal'><%= budgetItem.actual.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                <% var variance = budgetItem.actual.toFixed(2) - budgetItem.planned.toFixed(2) %>
-                                <td class='dollarAmount'><span class='a'><%= variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }).replace('$',' $'); %></td>
-                                <td class='actions'>  
-                                    <form action="/budgetItem/<%= budgetItem._id %>?_method=DELETE" method="POST" class="delete-form">
-                                        <button class='btn btn-primary btn-xs' id='hiddenButton'><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
-                            <% } %>
-                        <% }) %>
-                        </tr>
-                        <tr id ='emptyMessageDebt'></tr>
-                    </tbody>
-                </table>
-            </div>
-<!-- OTHER EXPENSE TABLE -->
-        <div class="panel panel-danger">
-            <div class="panel-heading negative-header"><strong>Other Expense</strong>
-                <a href="/budgetItem/new" class='btn btn-primary btn-xs pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
-                <table class="table" id='OtherExpense'>
-                    <thead>
-                            <th onclick='sortTable(0)'>Due Date</th>
-                            <th>Name</th>
-                            <th class='dollarAmount'>Planned</th>
-                            <th class='dollarAmount'>Actual</th>
-                            <th class='dollarAmount'>Variance</th>
-                            <th class='actions'>Delete</th>
-                    </thead>
-                    <tbody>
-                        <% budgetItem.forEach(function(budgetItem){ %>
-                            <% if(budgetItem.type === 'Expense' && budgetItem.category === 'Other' && currentUser.username === budgetItem.author.username){ %>
-                        <tr>
-                                <td><%= budgetItem.dueDate %></td>
-                                <td class='itemLabel'><a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editItem"><%= budgetItem.itemLabel %></a></td>
-                                <td class='dollarAmount'><span class='plannedExpenseTotal'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                <td class='dollarAmount'><span class='actualExpenseTotal'><%= budgetItem.actual.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                <% var variance = budgetItem.actual.toFixed(2) - budgetItem.planned.toFixed(2) %>
-                                <td class='dollarAmount'><span class='a'><%= variance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }).replace('$',' $'); %></td>
-                                <td class='actions'>  
-                                    <form action="/budgetItem/<%= budgetItem._id %>?_method=DELETE" method="POST" class="delete-form">
-                                        <button class='btn btn-primary btn-xs' id='hiddenButton'><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
-                            <% } %>
-                        <% }) %>
-                        </tr>
-                        <tr id ='emptyMessageOtherExpense'></tr>
-                    </tbody>
-                </table>
-            </div>
-    </div>
-<!-- TOTALS TABLE -->
-    <div class='col-lg-4 col-xs-12 order-1' id='budgetTotals'>
-        <h3>Totals</h3>
-        <hr>
-        <div class="panel panel-default panel-default">
-            <div class="panel-heading"><strong>Totals</strong></div>
-                <table class='table'>
-                    <thead>
-                        <th></th>
-                        <th class='dollarAmount'>Planned</th>
-                        <th class='dollarAmount'>Actual</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Income:</td>
-                            <td class='dollarAmount'><span id='totalPlannedIncome'>0.00</span></td>
-                            <td class='dollarAmount'><span id='totalActualIncome'>0.00</span></td>
-                        </tr>
-                        <tr>
-                            <td>Expense:</td>
-                            <td class='dollarAmount'><span id='totalPlannedExpense'>0.00</span></td>
-                            <td class='dollarAmount'><span id='totalActualExpense'>0.00</span></td>
-                        </tr>
-                        <tr>
-                            <td>Variance:</td>
-                            <td class='dollarAmount'><span id='totalPlannedVariance'>0.00</span></td>
-                            <td class='dollarAmount'><span id='totalActualVariance'>0.00</span></td>
-                        </tr>
-                    </tbody>
-                </table>  
+                   
+                        <%= expenseTotal.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %>
+                    </td>
+                </tr>                    
+            </table>
         </div>
     </div>
-</div>
-
-</div>
-
-<!--NEW MODAL-->
-
-<div class="modal fade" id="addItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-body"></div>
+    <a href="/budgetExpense/new" data-toggle="modal" data-target="#addExpense">
+        <button class='btn btn-primary btn-sm btn-budget'>Add a Transaction
+        </button>
+    </a>
+    
+    Budget Month
+    
+        <select class='form-control' name="currentMonth" id='currentMonth'>
+        <option value="1019" selected>October 2019</option>
+        <option value="0919">September 2019</option>
+        <option value="0819">August 2019</option>
+    </select>
+      <div class='form-group'>
+        <button class="btn btn-primary btn-sm btn-budget" id='triggerFilter'>Submit</button>
     </div>
+  
+</div>
+
+<!-- END LEFT RAIL -->
+
+<!-- START INCOME SECTION -->
+
+<div class='col-lg-9'>
+    
+<!-- HEADER FOR INCOME -->
+    
+    <div class="panel-heading" id='db-panel-head'>
+        <strong>Income</strong>
+        <a href="/budgetItem/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addBudget">Add a Budget Line</a>
+        <hr class='hr-th'>
+    </div>
+
+<!-- END HEADER -->
+    
+<!-- LOOP THROUGH  BUDGET CATEGORIES -->
+
+    <div id='filter'>
+        <% var items = [] %>
+    <% budgetItem.forEach(function(budgetItem){ %>
+        <% if(budgetItem.type === 'Income' && currentUser.username === budgetItem.author.username){ %>
+            <% items.push(budgetItem.itemLabel) %>
+            <% var total = 0 %>    
+
+            <% budgetExpense.forEach(function(budgetExpense){ %>
+                <% if(budgetExpense.category == budgetItem.itemLabel && currentUser.username === budgetExpense.author.username){ %>
+                    <% total = total + budgetExpense.amount %>
+                <% } %>
+            <% }) %>
+    
+            <% var percent = (total/budgetItem.planned) * 100 %>
+            
+            <div class='budget-item' id='lineItem'>
+                <%= budgetItem.dueDate %>
+                <%= budgetItem.itemLabel %>
+                (<a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editBudgetItem">Edit</a>)
+                    <div class='pull-right'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></div>
+                    </span><br>
+                    <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: <%= percent %>%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                </div> 
+            </div>
+            <% total = 0 %>
+            
+            <a class='margin' data-toggle="collapse" href="#<%= budgetItem.itemLabel %>" aria-expanded="true" role="button" aria-controls="<%= budgetItem.label %>">View Transactions</a>
+            
+   
+            <div id='<%= budgetItem.itemLabel %>' class='collapse'>
+                
+<!-- LOOP THROUGH SPECIFIC CATEGORY TRANSACTIONS -->
+            
+                <% budgetExpense.forEach(function(budgetExpense){ %>
+                    <% if(budgetExpense.category == budgetItem.itemLabel && currentUser.username === budgetExpense.author.username){ %>
+                    <span class='expense'>
+                    <div class='budget-expense'><%= budgetExpense.expense %> 
+                        (<a href="/budgetExpense/<%= budgetExpense._id %>/edit" data-toggle="modal" data-target="#editBudgetExpense">Edit</a>):
+                            <!--<%= budgetExpense.date %>-->
+                            <% var d = budgetExpense.date %>
+                            <% var year = d.slice(2,4) %>
+                            <% var month = d.slice(5,7) %>
+                            <% var timePeriod = month + year %>
+                            <span class='hide'>(<span class='timePeriod'><%= timePeriod %></span>)</span>
+                            <div class='pull-right'><%=budgetExpense.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %>
+                            </div>
+                            <hr class='border'>
+                        </div>
+                        <% total = total + budgetExpense.amount %>
+                    <% } %>
+                <% }) %>
+                <div id='total'>Total:
+                    <div class='pull-right'><%= total.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %>
+                    </div>
+                </div>
+            </div>
+        <% } %>   
+    <% }) %></span></div>
+    
+<!-- END LOOP OF INCOME BUDGET CATEGORIES -->
+
+<!-- START UNCATEGORIZED BUDGET TRANSACTIONS -->        
+
+<div class='budget-item'>                
+    <a data-toggle="collapse" href="#uncatIncome" aria-expanded="true" role="button" aria-controls="uncatIncome">Uncategorized Income</a>
+</div>
+
+<div id='filter1'>
+    <div id='uncatIncome' class='collapse'>
+    <span class='expense'>
+
+        <% budgetExpense.forEach(function(budgetExpense){ %>
+        <% if(budgetExpense.type === "income" && currentUser.username === budgetExpense.author.username){ %>
+        <% var n = items.includes(budgetExpense.category); %> 
+        <% if(n === false){ %>
+        <div class='budget-expense'><%= budgetExpense.expense %>: 
+            (<a href="/budgetExpense/<%= budgetExpense._id %>/edit" data-toggle="modal" data-target="#editBudgetExpense">Edit</a>)(<%= budgetExpense.date %>)
+            <% var d = budgetExpense.date %>
+            <% var year = d.slice(2,4) %>
+            <% var month = d.slice(5,7) %>
+            <% var timePeriod = month + year %>
+            (<span class='timePeriod'><%= timePeriod %></span>)
+                <div class='pull-right'><%=budgetExpense.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %>
+            </div>
+        </div>
+        <% total = total + budgetExpense.amount %>
+        <% } } }) %>
+        </span><br>
+    </div> 
+</div> 
+
+
+
+<!-- END UNCATEGORIED BUDGET TRANSACTIONS -->
+
+<!-- END INCOME SECTION -->
+
+<!-- START EXPENSE SECTION -->
+
+<!-- HEADER FOR EXPENSE -->
+    
+    <div class="panel-heading" id='db-panel-head'>
+        <strong>
+            Expense
+        </strong>
+        <hr class='hr-th'>
+    </div>
+
+<!-- END HEADER -->
+
+<!-- LOOP THROUGH BUDGET CATEGORIES -->
+
+<div id='filter2'>
+<% var items = [] %>
+<% budgetItem.forEach(function(budgetItem){ %>
+        <% if(budgetItem.type === 'Expense' && currentUser.username === budgetItem.author.username){ %>
+        <% items.push(budgetItem.itemLabel) %>
+        <% var total = 0 %>    
+
+        <% budgetExpense.forEach(function(budgetExpense){ %>
+            <% if(budgetExpense.category == budgetItem.itemLabel && currentUser.username === budgetExpense.author.username){ %>
+                <% total = total + budgetExpense.amount %>
+            <% } %>
+        <% }) %>
+
+        <% var percent = (total/budgetItem.planned) * 100 %>
+
+        <div class='budget-item'>
+            <%= budgetItem.itemLabel %>
+                (<a href="/budgetItem/<%= budgetItem._id %>/edit" data-toggle="modal" data-target="#editBudgetItem">Edit</a>)
+                <div class='pull-right'><%= budgetItem.planned.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></div>
+                </span><br>
+                <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: <%= percent %>%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>  
+        
+        <% total = 0 %>
+        
+        <a class='margin' data-toggle="collapse" href="#<%= budgetItem.itemLabel %>" aria-expanded="true" role="button" aria-controls="<%= budgetItem.label %>">View Transactions</a>
+        
+        <div id='<%= budgetItem.itemLabel %>' class='collapse'>
+            
+<!-- LOOP THROUGH SPECIFIC CATEGORY TRANSACTIONS -->
+
+            <% budgetExpense.forEach(function(budgetExpense){ %>
+            
+                <% if(budgetExpense.category == budgetItem.itemLabel && currentUser.username === budgetExpense.author.username){ %>
+                <span class='expense'>
+
+                    <div class='budget-expense'><%= budgetExpense.expense %>: 
+                    (<a href="/budgetExpense/<%= budgetExpense._id %>/edit" data-toggle="modal" data-target="#editBudgetExpense">Edit</a>)
+                           
+                    <% var d = budgetExpense.date %>
+                    <% var year = d.slice(2,4) %>
+                    <% var month = d.slice(5,7) %>
+                    <% var timePeriod = month + year %>
+                    (<span class='timePeriod'><%= timePeriod %></span>)
+                        <div class='pull-right'><%=budgetExpense.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %>
+                        </div>
+                    </div>
+                    <% total = total + budgetExpense.amount %>
+                <% } %>
+            <% }) %>
+            <div id='total'>Total:
+                <div class='pull-right'><%= total.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %>
+                </div>
+            </div>
+        </div></div>
+        <% } %>   
+    <% }) %>    
+    </span>        
+    </div>
+
+<!-- END LOOP OF EXPENSE BUDGET CATEGORIES -->
+
+<!-- START UNCATEGORIZED BUDGET TRANSACTIONS --> 
+
+    <div class='budget-item'>                
+        <a data-toggle="collapse" href="#uncatExpense" aria-expanded="true" role="button" aria-controls="uncatExpense">
+        Uncategorized Expense
+        </a>
+    </div>
+    <div id='filter3'>
+    <div id='uncatExpense' class='collapse'>
+        <span class='expense'>
+    <% budgetExpense.forEach(function(budgetExpense){ %>
+        <% if(budgetExpense.type === "expense" && currentUser.username === budgetExpense.author.username){ %>
+            <% var n = items.includes(budgetExpense.category); %> 
+            <% if(n === false){ %>
+            <div class='budget-expense'><%= budgetExpense.expense %>: 
+                (<a href="/budgetExpense/<%= budgetExpense._id %>/edit" data-toggle="modal" data-target="#editBudgetExpense">Edit</a>)(<%= budgetExpense.date %>)
+                <% var d = budgetExpense.date %>
+                    <% var year = d.slice(2,4) %>
+                    <% var month = d.slice(5,7) %>
+                    <% var timePeriod = month + year %>
+                    (<span class='timePeriod'><%= timePeriod %></span>)
+                <div class='pull-right'><%=budgetExpense.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %>
+                </div>
+            </div>
+            <% total = total + budgetExpense.amount %>
+        <% } } }) %>
+    <br>
+    </span>
+    </div>
+    </div>
+ 
+<!-- END EXPENSE SECTION -->
+
+</div>
+</div>
 </div>
 </div>
 
-<!--EDIT MODAL-->
-<div class="modal fade" id="editItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-body"></div>
-    </div>
-</div>
+
+
 
 <script type="text/javascript" src='/js/budget.js'></script>
-
 <% include ./partials/footer %>
+
+<div class="modal fade" id="addExpense" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="addBudget" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="editBudgetItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="editBudgetExpense" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div>
+</div>

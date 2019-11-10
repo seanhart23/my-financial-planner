@@ -83,7 +83,7 @@
                                         <% } %>
                                         <% }) %>
                                 <td id='color' style='background-Color:red'></td>
-                                <td><a class='indent' href="#" id='credit'>Credit Cards</a></td>
+                                <td><a class='indent' href="#" id='credit'>Credit Card</a></td>
                                 <td id='dollarSign'>$</td>
                                 <td class='td-right'><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
                             </tr>
@@ -185,7 +185,7 @@
                                 <td class='indent' id='payeeDebt'>
                                     <a href="/debt/<%= debt._id %>/edit" data-toggle="modal" data-target="#editDebt"><%= debt.itemLabel %></a></span></td>
                                 <td id='type'><%= debt.type %></td>
-                                <td id='amount'><span class='b'><%= debt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
+                                <td id='amount'><span class='debtAmount'><%= debt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
                                 <td id='interestRate'><%= debt.interestRate.toFixed(3)%>%</td>
                                 <td id='monthlyPayment'><%= debt.monthlyPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></td>
                                 <td id='website'><a href="<%= debt.website %>" target="_blank" class="btn btn-primary btn-xs" id='goButton'>Go</a></td>
