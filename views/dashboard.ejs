@@ -42,7 +42,7 @@ document.getElementById("date").innerHTML = d.toDateString();
         <% } %>
         <% }) %>
         <div class='row'>
-        <div class='dashboard-item col-lg-5'>
+        <div class='dashboard-item col-lg-5' id='mobile-card'>
             Total Monthly Income<span class='pull-right'>$<%= balance.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
             Total Monthly Expense<span class='pull-right'>$<%= totalBills.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
             Total Debt Remaining<span class='pull-right'>$<%= totalDebts.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
