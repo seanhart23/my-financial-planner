@@ -41,7 +41,7 @@ document.getElementById("date").innerHTML = d.toDateString();
         <% totalDebts = totalDebts + debt.amount %>
         <% } %>
         <% }) %>
-        <div class='row'>
+        <div class='container'>
         <div class='dashboard-item col-lg-5' id='mobile-card'>
             Total Monthly Income<span class='pull-right'>$<%= balance.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
             Total Monthly Expense<span class='pull-right'>$<%= totalBills.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
