@@ -10,3 +10,21 @@ $.getJSON(queryURL, function (data) {
   $('#output').append(date);
   
 });
+
+$(function () {
+    $("#expense").on("click", function () {
+        $("#main-page-section").load("/expense");
+    });    
+    $("#bill-edit").on("click", function () {
+        $("#main-page-section").load("/expense");
+    });
+    $("#debt-tracker").on("click", function () {
+        $("#main-page-section").load("/debt");
+    });
+    $("#debt-snowball").on("click", function () {
+        $("#main-page-section").load("/snowball");
+    });
+    $("#budget").on("click", function () {
+        $("#main-page-section").load("/budget");
+    });
+});

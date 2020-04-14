@@ -1,28 +1,14 @@
 <% include ./partials/header.ejs %>
-<div class='section'>
-<style>
-    @media screen and (max-width: 640px) {
-        body {
-        overflow-x: hidden;
-        }
-    }
-</style>
-<div id='paMobileHeader'>
-<div class='container'>
-        <h3 id='welcome'></h3>
-        <div class='pull-right' id='date'></div>
-        <h1><%= currentUser.name %>'s Dashboard</h1>
-        <hr>
-</div>
-</div>
-<script>
-        
-//DATE
-var d = new Date();
-document.getElementById("date").innerHTML = d.toDateString();
-</script>
+<link rel="stylesheet" href="/css/dashboard.css">
 
-<div class='container dashboard-table'>
+
+<!-- CALCULATIONS -->
+    <% var income = 0%>
+        <% monthlyIncome.forEach(function(monthlyIncome){ %>
+        <% if(currentUser.username === monthlyIncome.author.username){ %>
+        <% income = income + monthlyIncome.amount %>
+        <% } %>
+        <% }) %>
     <% var balance = 0 %>
     <% accountBalance.forEach(function(accountBalance){ %>
         <% if(currentUser.username === accountBalance.author.username){ %>
@@ -41,279 +27,97 @@ document.getElementById("date").innerHTML = d.toDateString();
         <% totalDebts = totalDebts + debt.amount %>
         <% } %>
         <% }) %>
-        <div class='container'>
-        <div class='dashboard-item col-lg-5' id='mobile-card'>
-            Total Monthly Income<span class='pull-right'>$<%= balance.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
-            Total Monthly Expense<span class='pull-right'>$<%= totalBills.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
-            Total Debt Remaining<span class='pull-right'>$<%= totalDebts.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></span><br>
-        </div>
-        <div class='col-lg-7'></div></div>
-        <div class='col-lg-4 col-sm-12' id='mobile-card'>
-            <div class='chiclet'>
-                <div class="panel">
-                    <div class="panel-heading" id='db-panel-head'><strong>Monthly Bills</strong><hr class='hr-th'></div>
-                    
-                        <table class="table">
-                            <tr>
-                                <td class='indent'>First Half</td>
-                                <td>$</td>
-                                <% var totalBills = 0 %>
-                                    <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.dueDate < 15){ %>
-                                        <% totalBills = totalBills + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><div class='table-number'><%= totalBills.toFixed(2) %></div></td>
-                            </tr>
-                            <tr>
-                                <td class='indent'>Second Half</td>
-                                <td>$</td>
-                                <% var totalBills = 0 %>
-                                    <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.dueDate > 14){ %>
-                                        <% totalBills = totalBills + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><div class='table-number'><%= totalBills.toFixed(2) %></div></td>
-                            </tr>
-                            <tr>
-                                <td class='indent'>Total</td>
-                                <td>$</td>
-                                <% var totalBills = 0 %>
-                                    <% bills.forEach(function(bill){ %>
-                                        <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
-                                        <% totalBills = totalBills + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><div class='table-number'><%= totalBills.toFixed(2) %></div></td>
-                            </tr>
-                        </table>
-                    </div>
-                  </div>
-            <div class='chiclet'><div>
-                <div class="panel">
-                    <div class="panel-heading" id='db-panel-head'><strong>Bills By Type</strong><hr class='hr-th'></div>
-                        <table class="table">
-                            <tr>
-                                <td class='indent' id='credit'>Credit Card</td>
-                                <td>$</td>
-                                <% var totalCredit = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Credit Card"){ %>
-                                        <% totalCredit = totalCredit + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
-                            </tr>
-                            <tr>
-                                <td class='indent' id='studentLoan'>Student Loan</td>
-                                <td>$</td>
-                                <% var totalSL = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Student Loan"){ %>
-                                        <% totalSL = totalSL + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
-                            </tr>
-                            <tr>
-                                <td class='indent' id='loan'>Loan</td>
-                                <td>$</td>
-                                <% var totalLoan = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Loan"){ %>
-                                        <% totalLoan = totalLoan + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
-                            </tr>
-                            <tr>
-                                <td class='indent' id='utility'>Utility</td>
-                                <td>$</td>
-                                <% var totalUtility = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Utility"){ %>
-                                        <% totalUtility = totalUtility + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalUtility'><%= totalUtility.toFixed(2) %></span></td>
-                            </tr> 
-                            <tr>                                
-                            <td class='indent' id='household'>Household</td>
-                                <td>$</td>
-                                <% var totalHousehold = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Household"){ %>
-                                        <% totalHousehold = totalHousehold + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalUtility'><%= totalHousehold.toFixed(2) %></span></td>
-                            </tr>                             
-                            <tr>
-                                <td class='indent' id='membership'>Membership</td>
-                                <td>$</td>
-                                <% var totalMembership = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Membership"){ %>
-                                        <% totalMembership = totalMembership + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalUtility'><%= totalMembership.toFixed(2) %></span></td>
-                            </tr>                             
-                            <tr>
-                                <td class='indent' id='onetime'>One Time</td>
-                                <td>$</td>
-                                <% var totalOnetime = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "One Time"){ %>
-                                        <% totalOnetime = totalOnetime + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalUtility'><%= totalOnetime.toFixed(2) %></span></td>
-                            </tr> 
-                            <tr>
-                                <td class='indent' id='other'>Other</td>
-                                <td>$</td>
-                                <% var totalOther = 0 %>
-                                <% bills.forEach(function(bill){ %>
-                                        <% if((currentUser.username === bill.author.username  || currentUser.username === bill.authUser) && bill.type === "Other"){ %>
-                                        <% totalOther = totalOther + bill.amountDue %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div></div><div>
-                    </div>
-                    </div>
-                    <div class='col-lg-4 col-sm-12' id='mobile-card'>
-                        <div class='chiclet'><div>
-                            <div class="panel">
-                                
-                                <div class="panel-heading" id='db-panel-head'><strong>Debt Snapshot</strong><hr class='hr-th'></div>
-                                    <table class="table">
-                                        <tr>
-                                            <td class='indent' >Debt Remaining</td>
-                                            <td>$</td>
-                                            <% var totalDebts = 0 %>
-                                                <% debt.forEach(function(debt){ %>
-                                                    <% if(currentUser.username === debt.author.username  || currentUser.username === debt.authUser){ %>
-                                                    <% totalDebts = totalDebts + debt.amount %>
-                                                <% } %>
-                                            <% }) %>
-                                            <td class='td-right'><div class='table-number' id='totalDebt'><%= totalDebts.toFixed(2) %></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td class='indent'>Paid Off</td>
-                                            <td>$</td>
-                                            <% var variance = 0 %>
-                                                <% var percentage = 0 %>
-                                                <% startingDebt.forEach(function(startingDebt){ %>
-                                                <% if(currentUser.username === startingDebt.author.username){ %>
-                                                    <% variance = startingDebt.amount - totalDebts %>
-                                                    <% percentage = (variance/startingDebt.amount * 100).toFixed(2) %>
-                                                <% } %>
-                                            <% }) %>
-                                            <td class='td-right'><div class='table-number' id="paidOff"><%= variance.toFixed(2) %></div></td>
-                                        </tr>
-                                        <tr>
-                                            <span id="percentage"><%= percentage %></span>
-                                            <td class='indent'># of Debts Paid Off</td>
-                                            <% var numberOfDebts = 0 %>
-                                                <% debt.forEach(function(debt){ %>
-                                                    <% if((currentUser.username === debt.author.username  || currentUser.username === debt.authUser) && debt.amount === 0.00){ %>
-                                                    <% numberOfDebts = numberOfDebts +1 %>
-                                                    <% } %>
-                                                    <% }) %>
-                                            <td class='td-right' colspan="2"><div class='table-number'><%= numberOfDebts %></div></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                </div></div>
-                                <div class='chiclet'><div>
-                <div class="panel">
-                    <div class="panel-heading" id='db-panel-head'><strong>Debt Balances</strong><hr class='hr-th'></div>
-                        <table class="table">
-                            <tr>
-                                <td class='indent' id='credit'>Credit Cards</td>
-                                <td>$</td>
-                                <% var totalCredit = 0 %>
-                                <% debt.forEach(function(debt){ %>
-                                        <% if((currentUser.username === debt.author.username  || currentUser.username === debt.authUser) && debt.type === "Credit Card"){ %>
-                                        <% totalCredit = totalCredit + debt.amount %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalCredit'><%= totalCredit.toFixed(2) %></span></td>
-                            </tr>
-                            <tr>
-                                <td class='indent' id='loan'>Loans</td>
-                                <td>$</td>
-                                <% var totalLoan = 0 %>
-                                <% debt.forEach(function(debt){ %>
-                                        <% if((currentUser.username === debt.author.username  || currentUser.username === debt.authUser) && debt.type === "Loan"){ %>
-                                        <% totalLoan = totalLoan + debt.amount %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalLoan'><%= totalLoan.toFixed(2) %></span></td>
-                            </tr>
-                            <tr>
-                                <td class='indent' id='SL'>Student Loans</td>
-                                <td>$</td>
-                                <% var totalSL = 0 %>
-                                <% debt.forEach(function(debt){ %>
-                                        <% if((currentUser.username === debt.author.username  || currentUser.username === debt.authUser) && debt.type === "Student Loan"){ %>
-                                        <% totalSL = totalSL + debt.amount %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalSL'><%= totalSL.toFixed(2) %></span></td>
-                            </tr>                            
-                            <tr>
-                                <td class='indent'id='bill'>Bills</td>
-                                <td>$</td>
-                                <% var totalBill = 0 %>
-                                <% debt.forEach(function(debt){ %>
-                                        <% if((currentUser.username === debt.author.username  || currentUser.username === debt.authUser) && debt.type === "Bill"){ %>
-                                        <% totalBill = totalBill + debt.amount %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalBill'><%= totalBill.toFixed(2) %></span></td>
-                            </tr>
-                            <tr>
-                                <td class='indent' id='other'>Other</td>
-                                <td>$</td>
-                                <% var totalOther = 0 %>
-                                <% debt.forEach(function(debt){ %>
-                                        <% if((currentUser.username === debt.author.username  || currentUser.username === debt.authUser) && debt.type === "Other"){ %>
-                                        <% totalOther = totalOther + debt.amount %>
-                                        <% } %>
-                                        <% }) %>
-                                <td class='td-right'><span class='table-number' id='totalOther'><%= totalOther.toFixed(2) %></span></td>
-                            </tr>
-                        </table>
-                    </div></div>
-                    </div>  </div>
-                    <div class='col-lg-4 col-sm-12' id='mobile-card'>
-                        <div class='chiclet'><div>
-                            <div class='panel' id="outerChart">
-                                <div class="panel-heading" id='db-panel-head'><strong>Payoff Chart</strong><hr class='hr-th'></div>
-                                <br>
-                                    <div id='chartOutline'>
-                                        <div id='chartLine'>
-                                            <div id='percent'></div>
-                                        <div id='chart'>     
-                                        </div></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-                </div>
-            </div>
-        </div>
-        </div>
-        <% include ./partials/footer %>
+    <% IncomeExpenseOffset = income - totalBills %>    
+    <% var variance = 0 %>
+        <% var percentage = 0 %>
+            <% startingDebt.forEach(function(startingDebt){ %>
+            <% if(currentUser.username === startingDebt.author.username){ %>
+                <% variance = startingDebt.amount - totalDebts %>
+                <% percentage = (variance/startingDebt.amount * 100).toFixed(2) %>
+            <% } %>
+    <% }) %>
+<!-- END CALCULATIONS -->
 
+<div id='page-content'>
+
+<!-- LEFT MENU -->
+    <div class='col-lg-2'></div>
+    <div id='menu'>
+        <div class='header'>Tools</div>
+        <a href='/dashboard' class='btn btn-primary btn-sm menu-button' id='dashboard'>Dashboard</a><br>
+        <button class='btn btn-primary btn-sm menu-button' id='expense'>Expense Tracker</button><br>
+        <button class='btn btn-primary btn-sm menu-button' id='debt-tracker'>Debt Tracker</button><br>
+        <button class='btn btn-primary btn-sm menu-button' id='debt-snowball'>Debt Snowball</button><br>
+        <button class='btn btn-primary btn-sm menu-button' id='budget'>Budget</button><br>
     </div>
-    
-<script type="text/javascript" src='/js/dashboard.js'></script>
+<!-- END LEFT MENU -->
+
+<!-- END LEFT MENU -->
+    <div class='col-lg-10' id='main-page-section'>
+         <div class='header'>Welcome <%= currentUser.name %></div>
+
+    <div id='main-level'>
+            <div class='pull-right main-level-data' id='date'><span></span></div>
+    </div>
+<!-- DASHBOARD DATA -->
+<div class='dashboard-data'>
+    <div class='dashboard-card'>
+        <div class='dashboard-card-number'>
+            $<%= income.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+        </div>
+        <hr class='dashboard-card-hr'>
+        <div class='dashboard-card-text'>
+        <% monthlyIncome.forEach(function(monthlyIncome){ %>
+            <a href='/monthlyIncome/<%= monthlyIncome._id %>/edit' class='link'>Total Monthly Income</a>
+        <% }) %>
+        </div>
+    </div>
+    <div class='dashboard-card'>
+        <div class='dashboard-card-number'>
+            $<%= totalBills.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+        </div>
+        <hr class='dashboard-card-hr'>
+        <div class='dashboard-card-text'>
+            Monthly Expenses
+        </div>
+    </div>
+    <div class='dashboard-card'>
+        <div class='dashboard-card-number'>
+            $<%= IncomeExpenseOffset.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+        </div>
+        <hr class='dashboard-card-hr'>
+        <div class='dashboard-card-text'>
+            Difference
+        </div>
+    </div>
+    <div class='dashboard-card'>
+        <div class='dashboard-card-number'>
+            $<%= totalDebts.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+        </div>
+        <hr class='dashboard-card-hr'>
+        <div class='dashboard-card-text'>
+            Debt Remaining
+        </div>
+    </div>    
+    <div class='dashboard-card'>
+        <div class='dashboard-card-number'>
+            $<%= variance.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+        </div>
+        <hr class='dashboard-card-hr'>
+        <div class='dashboard-card-text'>
+            Paid Off
+        </div>
+    </div>    
+    <div class='dashboard-card'>
+        <div class='dashboard-card-number'>
+            <%= percentage %>%
+        </div>
+        <hr class='dashboard-card-hr'>
+        <div class='dashboard-card-text'>
+            % Paid Off
+        </div>
+    </div>
+</div>
+<!-- END DASHBOARD DATA -->
+
+<script src="/js/dashboard.js"></script>

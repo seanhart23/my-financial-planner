@@ -75,7 +75,7 @@ router.put('/:id', middleware.isLoggedIn, function(req, res){
         if(err){
             res.redirect('/expense');
         } else {
-            res.redirect('/expense');
+            res.redirect('/dashboard');
         }
     });    
 });

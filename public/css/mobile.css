@@ -1,0 +1,239 @@
+
+@media screen and (max-width: 640px) {
+
+body {
+    overflow-y: scroll;
+   -webkit-overflow-scrolling: touch;
+}
+
+/*hr {*/
+/*    display: none;*/
+/*}*/
+
+h1 {
+    margin-bottom: 10px;
+}
+
+table {
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+
+th {
+    font-size: 10px;
+}
+
+.container {
+    padding: 0px;
+}
+
+.dollarAmount {
+    text-align: left;
+}
+
+.dropdown-item {
+    padding: 10px 0px;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    padding: 10px 0px;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
+
+.dropdown-menu {
+    background-color: #000080;  
+    border: none;
+    box-shadow: none;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.mobile-link {
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+}
+
+.mobile-link:link, .mobile-link:visited, mobile-link:hover, mobile-link:active {
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+}
+
+.modal-content {
+    width: 90%;
+    margin: 0px auto;
+}
+
+.navbar-nav {
+    float: left;
+}
+
+.panel {
+    margin-bottom: 0px;
+}
+
+.payBillbtn {
+    font-size: 10px;
+}
+
+.table-card {
+    box-shadow: 4px 4px 20px RGB(0, 0, 128, 0.5)!important;
+    border-radius: 5px;
+    height: 50px;
+    margin-top: 150px!important;
+    border-collapse: separate;
+    -webkit-appearance: none;
+    background-color: #F5F5F5;
+}
+
+#auto {
+    width: 9%;
+}
+
+#amount {
+    width: 15%
+}
+
+#bills {
+    margin-top: 0px;
+}
+
+#billWebsite {
+    width: 15%;
+}
+
+#budgetMobileTotal {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+#budgetTotals {
+    display: none;
+}
+
+#date {
+    display: none;
+}
+
+#delete {
+    width: 5%;    
+}
+
+#deleteButton {
+    padding: 0px;
+    margin: 0px;
+}
+
+#due {
+    width: 8%;
+}
+
+#interestRate {
+    display: none;
+}
+
+#left-upper-margin {
+    margin-top: 0;
+}
+#main-banner {
+    display: none;
+}
+
+#mobile-card {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+#mobile-link {
+    display: inline;
+    text-decoration: none;
+    color: #000080;
+    margin-top: 10px;
+    font-size: 14px;
+
+}
+
+#mobile-link-bar {
+    width: 100%;
+    display: inherit;
+    height: 25px;
+    background-color: #000080;
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    line-height: 1.75;
+}
+
+#login {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: 50%!important;
+}
+
+#login-header {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+#login-hr {
+    display: inline!important;
+}
+
+#snapshot {
+    margin-top: 15px;
+}
+
+#statusdd {
+    display: none;
+}
+
+#paMobileHeader {
+    padding: 25px 20px 0px 20px;
+    text-align: center;
+}
+
+#payee {
+    width: 20%;
+}
+
+#payeeDebt {
+    width: 30%;
+}
+
+#snowball {
+    margin-left: 5%;
+}
+#snowballInfo {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#title {
+    text-align: center;
+    padding-top: 20px;
+}
+
+#website {
+    display: none;
+}
+
+#type {
+    display: none;
+}
+
+#welcome {
+    text-align: center;
+    padding-bottom: 0px;
+    margin-top: 50px;
+}
+}

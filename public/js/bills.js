@@ -128,7 +128,7 @@ $('#one, #two, #three, #full, #balance, #bills, #status').bind('click', function
 
 function showStartingBalance(){
   if(document.getElementById('accountBalance').innerHTML !== "0"){
-    document.getElementById('hiddenButton').style.display = "none";
+    document.getElementById('show').style.display = "none";
   }
 }
 

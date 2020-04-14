@@ -9,10 +9,15 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">      
       <link rel="stylesheet" href="/css/main.css">
+      <link rel="stylesheet" href="/css/nav.css">
+      <link rel="stylesheet" href="/css/cards.css">
+      <link rel="stylesheet" href="/css/header.css">
+      <link rel="stylesheet" href="/css/menu.css">
+      <link rel="stylesheet" href="/css/debt.css">
       <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
       <script src="https://code.jquery.com/jquery.js"></script>
-      <!--<script type="text/javascript" src='/js/main.js'></script>-->
+      <script type="text/javascript" src='/js/main.js'></script>
       <link rel="icon" type="image/png" href="/images/favicon.ico">
       <link rel="apple-touch-icon" href="/images/favicon.ico">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,26 +44,26 @@
                 <a class="nav-link header-link" href="mailto:seanhart23@gmail.com">Send Feedback</a>
             </li>
         <% } else { %>
-            <li class="nav-item">
-                <a class="nav-link header-link" href="/dashboard">Dashboard</a>
-            </li>            
+            <!--<li class="nav-item">-->
+            <!--    <a class="nav-link header-link" href="/dashboard">Dashboard</a>-->
+            <!--</li>            -->
             <!--<li class="nav-item">-->
             <!--    <a class="nav-link header-link" href="/budget">Budget</a>-->
             <!--</li>-->
+            <!--<li class="nav-item">-->
+            <!--    <a class="nav-link header-link" href="/expense">Monthly Expense Tracker</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item dropdown">-->
+            <!--    <a class="nav-link dropdown-toggle header-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--      Debt-->
+            <!--    </a>-->
+            <!--    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
+            <!--      <a class="dropdown-item" href="/debt">Debt Tracker</a>-->
+            <!--      <a class="dropdown-item" href="/snowball">Debt Snowball</a>-->
+            <!--    </div>-->
+            <!--</li>-->
             <li class="nav-item">
-                <a class="nav-link header-link" href="/expense">Monthly Expense Tracker</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle header-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Debt
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="/debt">Debt Tracker</a>
-                  <a class="dropdown-item" href="/snowball">Debt Snowball</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link header-link" href="/logout">Logout</a>
+                <a class="nav-link header-link" href="/logout"><i class='glyphicon glyphicon-log-out'></i></a>
             </li>
         <% } %>
     </ul>

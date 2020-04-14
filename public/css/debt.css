@@ -1,0 +1,35 @@
+#chart {
+    background-color: limegreen;
+    bottom: 0px;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    padding-top: 0px;
+    height: 1px;
+    
+}
+
+#chartLine {
+    border-bottom: .5px solid lightgray;
+    height: 100%;
+    bottom: 0px;
+    width: 125%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#chartOutline {
+    border: 1px solid red;
+    height: 225px;
+    background-color: white;
+    /*border-top-left-radius: 50px;*/
+    /*border-top-right-radius: 50px;*/
+    /*overflow: hidden;*/
+    position: relative;
+    width: 65px;
+    margin-left: auto;
+    margin-right: auto;
+    color: red;
+}

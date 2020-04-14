@@ -1,35 +1,76 @@
-<% include ./partials/header.ejs %>
-
-<div class='section'>
-    
-<style>
-    @media screen and (max-width: 640px) {
-        body {
-        overflow-x: hidden;
-        }
-    }
-</style>
-
-<div id='paMobileHeader'>
-    <div class='container'>
-        <h3 id='welcome'></h3>
-        <div class='pull-right' id='date'></div>
-        <h1>Monthly Expense Tracker</h1>
-        <hr>
+<!-- HEADER -->
+    <div>
+         <div class='header'>Monthly Expense Tracker</div>
+    <div id='main-level'>
+        <div class='pull-right main-level-data' id='date'></div>
     </div>
-</div>
+<!-- END HEADER -->
 
+<!-- DASHBOARD DATA -->
 
 <br>
 
-<div class='container'>
-    <div class='col-lg-3 col-sm-12' id='mobile-card'>
+<div id='main-page-section'>
     
-
+       <div class='col-lg-9 col-sm-12' id='mobile-card'>
+        <div id='main-table'>
+            <div class="table-header">
+                <!--<strong>Monthly Expenses</strong>-->
+                <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense</a>
+            </div>
+       
+            <table class="table sortable" id="bills">
+                <thead>
+                    <tr>
+                        <th id='color'></th>
+                        <th id='due'>Due Date</th>
+                        <th id='payee'>Payee</th>
+                        <th id='type'>Type</th>
+                        <th id='amount'>Amount Due</th>
+                        <th id='auto'>Auto Pay</th>
+                        <th id='statusdd'>Status</th>
+                        <th id='billWebsite'>Website</th>
+                        <th id='trash'></th>
+                    </tr>
+                </thead>
+                <tbody id='billBody'>
+                    <% bills.forEach(function(bill){ %>
+                        <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
+                            <tr class ='table-card'>
+                                <td id='color'></td>
+                                <td id='due'><%= bill.dueDate %></td>
+                                <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
+                                <td id='type'><%= bill.type %></td>
+                                <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
+                                <td id='auto'><%= bill.autoPay %></td>
+                                <td id='statusdd'>
+                                     <select class='form-control' id='status' name="status">
+                                        <option value="unpaid">Unpaid</option>
+                                        <option value="paid">Paid</option>
+                                        <option value="leave">Leave</option>
+                                        <option value="move">Move</option>
+                                        <option value="remove">Remove</option>
+                                    </select>
+                                </td>
+                                <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Go</a></td>
+                                <td id='delete'>
+                                    <form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
+                                       <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }) %>
+                </tbody>
+            </table>
+            <div id='emptyMessage'></div>
+        </div>
+    </div>
+    <div class='col-lg-3 col-sm-12' id='mobile-card'>
         <div class='card' id='snapshot'>
             <div class="panel">
                 <div class="panel-heading" id='db-panel-head'><strong>Snapshot</strong>
-                <a href="/accountBalance/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addaccountBalance">Add Balance</a><hr class='hr-th'></div>
+                <a href="/accountBalance/new" class='pull-right' id='show' data-toggle="modal" data-target="#addaccountBalance">Add Balance</a><hr class='hr-th'></div>
                     <table class="table">
                         <tr>
                             <td class='left-column-3'>Balance</td>
@@ -173,62 +214,7 @@
         
     </div>
             
-    <div class='col-lg-9 col-sm-12' id='mobile-card'>
-        <div id='main-table'>
-                
-            <div class="panel-heading" id='db-panel-head'>
-                <strong>Monthly Expenses</strong>
-                <a href="/bills/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addItem">Add Expense</a>
-                <hr class='hr-th'>
-            </div>
-       
-            <table class="table sortable" id="bills">
-                <thead>
-                    <tr>
-                        <th id='color'></th>
-                        <th id='due'>Due Date</th>
-                        <th id='payee'>Payee</th>
-                        <th id='type'>Type</th>
-                        <th id='amount'>Amount Due</th>
-                        <th id='auto'>Auto Pay</th>
-                        <th id='statusdd'>Status</th>
-                        <th id='billWebsite'>Website</th>
-                        <th id='trash'></th>
-                    </tr>
-                </thead>
-                <tbody id='billBody'>
-                    <% bills.forEach(function(bill){ %>
-                        <% if(currentUser.username === bill.author.username  || currentUser.username === bill.authUser){ %>
-                            <tr class ='table-card'>
-                                <td id='color'></td>
-                                <td id='due'><%= bill.dueDate %></td>
-                                <td id='payee'><a href="/bills/<%= bill._id %>/edit"data-toggle="modal" data-target="#editItem"><%= bill.payee %></a></td>
-                                <td id='type'><%= bill.type %></td>
-                                <td id='amount'><span class='a'><%= bill.amountDue.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></span></td>
-                                <td id='auto'><%= bill.autoPay %></td>
-                                <td id='statusdd'>
-                                     <select class='form-control' id='status' name="status">
-                                        <option value="unpaid">Unpaid</option>
-                                        <option value="paid">Paid</option>
-                                        <option value="leave">Leave</option>
-                                        <option value="move">Move</option>
-                                        <option value="remove">Remove</option>
-                                    </select>
-                                </td>
-                                <td id='billWebsite'><a href="<%= bill.website %>" target="_blank" class="btn btn-primary btn-xs payBillbtn">Go</a></td>
-                                <td id='delete'>
-                                    <form action="/bills/<%= bill._id %>?_method=DELETE" method="POST" class="delete-form">
-                                       <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <% } %>
-                    <% }) %>
-                </tbody>
-            </table>
-            <div id='emptyMessage'></div>
-        </div>
-    </div>
+ 
 </div>
 
 <script>

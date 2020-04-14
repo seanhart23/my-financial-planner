@@ -85,7 +85,7 @@ function filterDebts(debtType) {
 
 function showStartingDebt(){
   if(document.getElementById('startingBalance').innerHTML !== "0"){
-    document.getElementById('hiddenButton').style.display = "none";
+    document.getElementById('show').style.display = "none";
   }
 }
 
