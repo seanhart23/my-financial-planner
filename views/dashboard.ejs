@@ -2,6 +2,22 @@
 <link rel="stylesheet" href="/css/dashboard.css">
 
 
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+
 <!-- CALCULATIONS -->
     <% var income = 0%>
         <% monthlyIncome.forEach(function(monthlyIncome){ %>
@@ -48,7 +64,7 @@
         <button class='btn btn-primary btn-sm menu-button' id='expense'>Expense Tracker</button><br>
         <button class='btn btn-primary btn-sm menu-button' id='debt-tracker'>Debt Tracker</button><br>
         <button class='btn btn-primary btn-sm menu-button' id='debt-snowball'>Debt Snowball</button><br>
-        <button class='btn btn-primary btn-sm menu-button' id='budget'>Budget</button><br>
+        <!--<button class='btn btn-primary btn-sm menu-button' id='budget'>Budget</button><br>-->
     </div>
 <!-- END LEFT MENU -->
 
@@ -61,7 +77,8 @@
     </div>
 <!-- DASHBOARD DATA -->
 <div class='dashboard-data'>
-    <div class='dashboard-card'>
+    
+    <div class='dashboard-card' id='drag' draggable="true" ondragstart="drag(event)">
         <div class='dashboard-card-number'>
             $<%= income.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
         </div>
@@ -72,6 +89,7 @@
         <% }) %>
         </div>
     </div>
+
     <div class='dashboard-card'>
         <div class='dashboard-card-number'>
             $<%= totalBills.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
@@ -81,6 +99,7 @@
             Monthly Expenses
         </div>
     </div>
+
     <div class='dashboard-card'>
         <div class='dashboard-card-number'>
             $<%= IncomeExpenseOffset.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
@@ -90,6 +109,7 @@
             Difference
         </div>
     </div>
+
     <div class='dashboard-card'>
         <div class='dashboard-card-number'>
             $<%= totalDebts.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
@@ -99,6 +119,7 @@
             Debt Remaining
         </div>
     </div>    
+
     <div class='dashboard-card'>
         <div class='dashboard-card-number'>
             $<%= variance.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
@@ -108,6 +129,7 @@
             Paid Off
         </div>
     </div>    
+
     <div class='dashboard-card'>
         <div class='dashboard-card-number'>
             <%= percentage %>%
@@ -119,5 +141,8 @@
     </div>
 </div>
 <!-- END DASHBOARD DATA -->
+
+
+
 
 <script src="/js/dashboard.js"></script>

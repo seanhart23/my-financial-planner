@@ -73,7 +73,7 @@ router.get('/:id/edit', middleware.isLoggedIn, function(req, res){
 router.put('/:id', middleware.isLoggedIn, function(req, res){
     bill.findByIdAndUpdate(req.params.id, req.body.bill, function(err, updatedBill){
         if(err){
-            res.redirect('/expense');
+            res.redirect('/dashboard');
         } else {
             res.redirect('/dashboard');
         }
