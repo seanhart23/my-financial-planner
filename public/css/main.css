@@ -484,6 +484,9 @@ table.sortable thead {
 
 .test{
     border: 1px dashed red;
+    height: 250px;
+    width: 350px;
+    display: inline-block;
 }
 
 .timePeriod {

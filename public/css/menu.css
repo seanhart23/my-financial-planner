@@ -1,7 +1,18 @@
+.favorite-button {
+    width: 200px;
+    height: 30px;
+    margin-top: 20px;
+    background-color: red;
+    text-decoration: none;
+    color: white;
+    border-radius: 6px;
+}
+
 .menu-button {
     width: 200px;
     height: 30px;
     margin-top: 20px;
+    border-radius: 6px;
 }
 
 #menu {

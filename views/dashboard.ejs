@@ -2,21 +2,8 @@
 <link rel="stylesheet" href="/css/dashboard.css">
 
 
-<script>
-function allowDrop(ev) {
-  ev.preventDefault();
-}
 
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
 
-function drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-}
-</script>
 
 <!-- CALCULATIONS -->
     <% var income = 0%>
@@ -65,10 +52,17 @@ function drop(ev) {
         <button class='btn btn-primary btn-sm menu-button' id='debt-tracker'>Debt Tracker</button><br>
         <button class='btn btn-primary btn-sm menu-button' id='debt-snowball'>Debt Snowball</button><br>
         <!--<button class='btn btn-primary btn-sm menu-button' id='budget'>Budget</button><br>-->
+        <br>
+        <div class='header'>Favorite Sites<a href="/favorites/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addFavorite">Add</a></div>
+        
+        <% favorites.forEach(function(favorites){ %>
+                        <% if(currentUser.username === favorites.author.username){ %>
+                            <a href='<%= favorites.website %>' target='_blank'><button class='favorite-button'><%= favorites.label %></button></a><br>
+                        <% } %>
+                    <% }) %>
     </div>
 <!-- END LEFT MENU -->
 
-<!-- END LEFT MENU -->
     <div class='col-lg-10' id='main-page-section'>
          <div class='header'>Welcome <%= currentUser.name %></div>
 
@@ -76,9 +70,20 @@ function drop(ev) {
             <div class='pull-right main-level-data' id='date'><span></span></div>
     </div>
 <!-- DASHBOARD DATA -->
-<div class='dashboard-data'>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+$( "#sortable" ).sortable();
+$( "#sortable" ).disableSelection();
+} );
+</script>
+  
+<ul class='dashboard-data' id='sortable'>
     
-    <div class='dashboard-card' id='drag' draggable="true" ondragstart="drag(event)">
+    <li class='dashboard-card' draggable='true'>
         <div class='dashboard-card-number'>
             $<%= income.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
         </div>
@@ -88,9 +93,10 @@ function drop(ev) {
             <a href='/monthlyIncome/<%= monthlyIncome._id %>/edit' class='link'>Total Monthly Income</a>
         <% }) %>
         </div>
-    </div>
+    </li>
 
-    <div class='dashboard-card'>
+
+    <li class='dashboard-card'>
         <div class='dashboard-card-number'>
             $<%= totalBills.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
         </div>
@@ -98,9 +104,10 @@ function drop(ev) {
         <div class='dashboard-card-text'>
             Monthly Expenses
         </div>
-    </div>
-
-    <div class='dashboard-card'>
+    </li>
+    
+        
+    <li class='dashboard-card'>
         <div class='dashboard-card-number'>
             $<%= IncomeExpenseOffset.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
         </div>
@@ -108,9 +115,9 @@ function drop(ev) {
         <div class='dashboard-card-text'>
             Difference
         </div>
-    </div>
+    </li>
 
-    <div class='dashboard-card'>
+    <li class='dashboard-card'>
         <div class='dashboard-card-number'>
             $<%= totalDebts.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
         </div>
@@ -118,9 +125,10 @@ function drop(ev) {
         <div class='dashboard-card-text'>
             Debt Remaining
         </div>
-    </div>    
+    </li>    
 
-    <div class='dashboard-card'>
+  
+    <li class='dashboard-card'>
         <div class='dashboard-card-number'>
             $<%= variance.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
         </div>
@@ -128,9 +136,9 @@ function drop(ev) {
         <div class='dashboard-card-text'>
             Paid Off
         </div>
-    </div>    
+    </li>    
 
-    <div class='dashboard-card'>
+    <li class='dashboard-card'>
         <div class='dashboard-card-number'>
             <%= percentage %>%
         </div>
@@ -138,11 +146,17 @@ function drop(ev) {
         <div class='dashboard-card-text'>
             % Paid Off
         </div>
-    </div>
-</div>
+    </li>
+</ul>
+
 <!-- END DASHBOARD DATA -->
 
-
-
+<div class="modal fade" id="addFavorite" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div></div>
 
 <script src="/js/dashboard.js"></script>
+

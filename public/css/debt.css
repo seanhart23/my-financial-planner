@@ -1,5 +1,5 @@
 #chart {
-    background-color: limegreen;
+    background-color: green;
     bottom: 0px;
     position: absolute;
     overflow: hidden;
@@ -8,7 +8,7 @@
     font-size: 10px;
     padding-top: 0px;
     height: 1px;
-    
+    border-style: outset
 }
 
 #chartLine {
