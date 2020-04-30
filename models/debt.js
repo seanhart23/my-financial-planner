@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var debtSchema = new mongoose.Schema({
     itemLabel: String,
     type: String,
+    last_update: String,
     amount: Number,
     interestRate: Number,
     monthlyPayment: Number,

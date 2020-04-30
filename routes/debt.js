@@ -2,18 +2,21 @@ var express = require('express');
 var router = express.Router();
 var debt = require('../models/debt');
 var startingDebt = require('../models/startingDebt');
+var grossIncome = require('../models/grossIncome');
 var middleware = require('../middleware');
 
 router.get('/', middleware.isLoggedIn, function(req, res){
     debt.find({}, function(err, allDebts){
         startingDebt.find({}, function(err, allstartingDebts){
+            grossIncome.find({}, function(err, allgrossIncome){
             if(err){
                 console.log(err);
             } else {
-                res.render("debt", {debt: allDebts, startingDebt: allstartingDebts});
+                res.render("debt", {debt: allDebts, startingDebt: allstartingDebts, grossIncome: allgrossIncome});
             }
         });
     });
+});
 });
 
 
@@ -21,6 +24,7 @@ router.post('/', middleware.isLoggedIn, function(req, res){
     var itemLabel = req.body.itemLabel;
     var type = req.body.type;
     var amount = req.body.amount;
+    var last_update = req.body.last_update;
     var interestRate = req.body.interestRate;
     var monthlyPayment = req.body.monthlyPayment;
     var dueDate = req.body.dueDate;
@@ -30,7 +34,7 @@ router.post('/', middleware.isLoggedIn, function(req, res){
         id: req.user._id,
         username: req.user.username
     };
-    var newDebt = {itemLabel: itemLabel, type: type, amount: amount, interestRate: interestRate, monthlyPayment: monthlyPayment, dueDate: dueDate, website: website, author: author, authUser: authUser};
+    var newDebt = {last_update: last_update, itemLabel: itemLabel, type: type, amount: amount, interestRate: interestRate, monthlyPayment: monthlyPayment, dueDate: dueDate, website: website, author: author, authUser: authUser};
     debt.create(newDebt, function(err, newlyCreated){
         if(err){
             console.log(err);
@@ -89,7 +93,17 @@ router.put('/:id', middleware.isLoggedIn, function(req, res){
         if(err){
             res.redirect('err');
         } else {
-            res.redirect('/debt');
+            res.redirect('/dashboard');
+        }
+    });    
+});
+
+router.put('/:id', middleware.isLoggedIn, function(req, res){
+    grossIncome.findByIdAndUpdate(req.params.id, req.body, function(err, updatedDebt){
+        if(err){
+            res.redirect('err');
+        } else {
+            res.redirect('/dashboard');
         }
     });    
 });

@@ -1,3 +1,9 @@
+#amount {
+    width: 15%;
+    vertical-align: middle;
+    text-align: center;
+}
+
 #chart {
     background-color: green;
     bottom: 0px;
@@ -32,4 +38,43 @@
     margin-left: auto;
     margin-right: auto;
     color: red;
+}
+
+#debts{
+    border-collapse: separate;
+    border-spacing: 0px 15px;
+    margin-top: -15px;
+    /*margin-bottom: 50px;*/
+}
+
+#interestRate {
+    vertical-align: middle;
+    width:12%;
+    text-align: center;
+}
+
+#last_update {
+    vertical-align: middle;
+    width: 15%;
+    text-align: center;
+}
+
+#paid-off-debts{
+    border-collapse: separate;
+    border-spacing: 0px 15px;
+    margin-top: -15px;
+}
+
+#payeeDebt {
+    width: 30%;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#type {
+    vertical-align: middle;
+    width: 15%;
+    display: none;
 }

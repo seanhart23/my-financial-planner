@@ -53,9 +53,9 @@ router.get("/:id", middleware.isLoggedIn, function(req, res){
 router.delete('/:id', middleware.isLoggedIn, function(req, res){
    bill.findByIdAndRemove(req.params.id, function(err){
         if(err){
-            res.redirect('/expense');
+            res.redirect('/dashboard');
         } else {
-            res.redirect('/expense');
+            res.redirect('/dashboard');
         }
     });    
 }); 

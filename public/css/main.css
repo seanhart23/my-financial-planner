@@ -513,11 +513,7 @@ table.sortable thead {
     border-color: red;
 }
 
-#amount {
-    width: 15%;
-    vertical-align: middle;
-    text-align: center;
-}
+
 
 #auto{
     text-align: center;
@@ -580,12 +576,7 @@ table.sortable thead {
     padding-top: 5px;
 }
 
-#debts{
-    border-collapse: separate;
-    border-spacing: 0px 15px;
-    margin-top: -15px;
-    /*margin-bottom: 50px;*/
-}
+
 
 #delete{
     vertical-align: middle;
@@ -722,11 +713,7 @@ table.sortable thead {
     visibility: visible;
 }
 
-#interestRate {
-    vertical-align: middle;
-    width:12%;
-    text-align: center;
-}
+
 
 #landing-header {
     height: 75px;
@@ -873,11 +860,7 @@ table.sortable thead {
     margin-top: 20px;
 }
 
-#paid-off-debts{
-    border-collapse: separate;
-    border-spacing: 0px 15px;
-    margin-top: -15px;
-}
+
 
 #paMobileHeader{
     width: 100%;   
@@ -893,13 +876,7 @@ table.sortable thead {
     padding-left: 8px;
 }
 
-#payeeDebt {
-    width: 30%;
-    vertical-align: middle;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
+
 
 #percent {
     text-align: center;
@@ -1000,11 +977,6 @@ table.sortable thead {
     width: 6%;
 }
 
-#type {
-    vertical-align: middle;
-    width: 15%;
-    display: none;
-}
 
 #two {
     width: 33.33%;

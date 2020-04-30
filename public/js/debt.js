@@ -128,7 +128,7 @@ $(document).ready(function(){
 //
 
 buildChart();
-sortTable('debts', 3);
+sortTable('debts', 4);
 color('debts', 2);
 showStartingDebt();
 

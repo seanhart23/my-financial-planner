@@ -1,66 +1,67 @@
 <!-- HEADER -->
-    <div>
-         <div class='header'>Debt Tracker</div>
-    <div id='main-level'>
-        <div class='pull-right main-level-data' id='date'></div>
-    </div>
+<div>
+     <div class='header'>Debt Tracker</div>
+<div id='main-level'>
+    <div class='pull-right main-level-data' id='date'></div>
+</div>
+<br>
 <!-- END HEADER -->
 
-<br>
-
+<!-- DEBT TABLE -->
 <div id='main-page-section'>
-    
-       <div class='col-lg-9 col-sm-12' id='mobile-card'>
-        <div id='main-table'>
-            <div class="table-header">
-            <a href="/debt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addDebt">Add Debt</a>
-        </div>
-  
-    
-            <table class="table sortable" id="debts">
-                <thead> 
-                    <tr>
-                        <th id='color'></th>
-                        <th id='payeeDebt'>Payee</th>
-                        <th id='type'>Type</th>
-                        <th id='amount'>Amount</th>
-                        <th id='interestRate'>%</th>
-                        <th id='monthlyPayment'>Payment</th>
-                        <th id='website'>Website</th>
-                        <th id='trash'></th>
+   <div class='col-lg-9 col-sm-12' id='mobile-card'>
+    <div id='main-table'>
+        <div class="table-header">
+        <a href="/debt/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addDebt">Add Debt</a>
+    </div>
+    <table class="table sortable" id="debts">
+        <thead> 
+            <tr>
+                <th id='color'></th>
+                <th id='payeeDebt'>Payee</th>
+                <th id='type'>Type</th>
+                <th id='last_update'>Last Update</th>
+                <th id='amount'>Amount</th>
+                <th id='interestRate'>%</th>
+                <th id='monthlyPayment'>Payment</th>
+                <th id='website'>Website</th>
+                <th id='trash'></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% debt.forEach(function(debt){ %>
+                <% if(debt.amount > 0){ %>
+                    <% if(currentUser.username === debt.author.username){ %>
+                    <tr class='table-card'>
+                        <td id='color'></td>
+                        <td class='indent' id='payeeDebt'>
+                            <a href="/debt/<%= debt._id %>/edit" data-toggle="modal" data-target="#editDebt"><%= debt.itemLabel %></a></span></td>
+                        <td id='type'><%= debt.type %></td>
+                        <td id='last_update'><%= debt.last_update %></td>
+                        <td id='amount'><span class='debtAmount'><%= debt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
+                        <td id='interestRate'><%= debt.interestRate.toFixed(3)%>%</td>
+                        <td id='monthlyPayment'><%= debt.monthlyPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></td>
+                        <td id='website'><a href="<%= debt.website %>" target="_blank" class="btn btn-primary btn-xs" id='goButton'>Go</a></td>
+                        <td id='delete'>
+                        <form action="/debt/<%= debt._id %>?_method=DELETE" method="POST" class="delete-form">
+                            <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                        </form>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <% debt.forEach(function(debt){ %>
-                        <% if(debt.amount > 0){ %>
-                            <% if(currentUser.username === debt.author.username){ %>
-                            <tr class='table-card'>
-                                <td id='color'></td>
-                                <td class='indent' id='payeeDebt'>
-                                    <a href="/debt/<%= debt._id %>/edit" data-toggle="modal" data-target="#editDebt"><%= debt.itemLabel %></a></span></td>
-                                <td id='type'><%= debt.type %></td>
-                                <td id='amount'><span class='debtAmount'><%= debt.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></span></td>
-                                <td id='interestRate'><%= debt.interestRate.toFixed(3)%>%</td>
-                                <td id='monthlyPayment'><%= debt.monthlyPayment.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); %></td>
-                                <td id='website'><a href="<%= debt.website %>" target="_blank" class="btn btn-primary btn-xs" id='goButton'>Go</a></td>
-                                <td id='delete'>
-                                <form action="/debt/<%= debt._id %>?_method=DELETE" method="POST" class="delete-form">
-                                    <button id='deleteButton'><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                                </form>
-                                </td>
-                            </tr>
-                            <% } %>
-                        <% } %>
-                    <% }) %>
-                </tbody>
-            </table>
-            <div id='emptyMessage'></div>
-        </div>
+                    <% } %>
+                <% } %>
+            <% }) %>
+        </tbody>
+    </table>
+    <div id='emptyMessage'>
+    </div>
+</div>
+<!-- END DEBT TABLE -->
 
-
+<!-- PAID OFF DEBT TABLE -->
 <div class='chiclet main-table' id='paid-off'>
   <div id='main-table'>
-            <div class="table-header"><strong>Paid Off Debts</strong>
+    <div class="table-header"><strong>Paid Off Debts</strong>
         </div></div>
             <table class="table" id="paid-off-debts">
                 <thead>
@@ -98,12 +99,14 @@
             </table>
         </div>
     </div>
+<!-- END PAID OFF DEBT TABLE -->
 
-
-
+<!-- RIGHT COLUMN -->
 <div class='col-lg-3 col-sm-12' id='mobile-card'>
     <div class='chiclet card' id='snapshot'>
         <div class="panel">
+            
+<!-- DEBT SNAPSHOT -->
             <div class="panel-heading" id='db-panel-head'><strong>Debt Snapshot</strong>
                 <a href="/startingDebt/new" class='pull-right' id='show' data-toggle="modal" data-target="#addstartingDebt">Add Starting Debt</a><hr class='hr-th'>
             </div>
@@ -141,7 +144,9 @@
                 </table>
             </div>
         </div>
-            
+<!-- END DEBT SNAPSHOT -->
+
+<!-- BALANCES -->
             <div class='chiclet card'>
                 <div class="panel">
                             <div class="panel-heading" id='db-panel-head'><strong>Balances</strong><hr class='hr-th'></div>
@@ -209,6 +214,59 @@
                         </table>
                     </div>
                 </div>
+<!-- END BALANCES -->
+
+<!-- DEBT TO INCOME -->
+<!-- CALCULATIONS -->
+<% total_payment = 0 %>
+    <% debt.forEach(function(debt){ %>
+        <% if(debt.amount > 0){ %>
+        <% if(currentUser.username === debt.author.username){ %>
+        <% total_payment = total_payment + debt.monthlyPayment %>
+        <% } %>
+    <% } %>
+<% }) %>
+
+<% gross = 0 %>
+    <% grossIncome.forEach(function(grossIncome){ %>
+        <% if(currentUser.username === grossIncome.author.username){ %>
+        <% gross = gross + grossIncome.amount %>
+      
+<!-- END CALCULATIONS -->    
+<div class='chiclet card'>
+    <div class="panel">
+        <div class="panel-heading" id='db-panel-head'><strong>Debt to Income Ratio</strong>
+            <% if(gross >= 0){ %>
+                <a href="/grossIncome/<%= grossIncome._id %>/edit" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#editGrossIncome">Edit</a></div><hr class='hr-th'>  
+            <% } else { %>
+                <a href="/grossIncome/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addGrossIncome">Add</a></div><hr class='hr-th'>  
+            <% } %>
+              <% } %>
+        <% }) %>
+        </div>
+        <table>
+            <tr>
+                <td class='left-column-3'>Sum of payments</td>
+                <td class='dollarSign'>$</td>
+                <td class='td-right right-column-3'><span class='table-number pull-right'><%= total_payment.toFixed(2) %></td>
+            </tr>
+            <tr>
+                <td class='left-column-3'>Gross Income</td>
+                <td class='dollarSign'>$</td>
+                <td class='td-right right-column-3'><span class='table-number pull-right'><%= gross.toFixed(2) %></td>
+            </tr>            
+            <tr>
+            <td class='left-column-3'>DTI</td>
+            <td class='dollarSign'>%</td>
+            <td class='td-right right-column-3'><span class='table-number pull-right'><% var dti = (total_payment.toFixed(2)/gross.toFixed(2))*100 %><%= dti.toFixed(2) %></td>
+            </tr>
+        
+        </table>
+    </div>
+</div>
+<!-- END DEBT TO INCOME -->
+
+<!-- PAYOFF CHART -->
             <div class='panel card' id="outerChart">
                 <div class="panel-heading" id='db-panel-head'><strong>Payoff Chart</strong><hr class='hr-th'></div>
                 <br>
@@ -220,9 +278,9 @@
                 </div>
     
             </div>
+<!-- END PAYOFF CHART -->
+
         </div>
-
-
 </div>
 </div>
 
@@ -279,3 +337,22 @@ UpdateCount('debts', 'emptyMessage', 6)
 
 <script type="text/javascript" src='/js/debt.js'>
 </script>
+
+<script src="/js/dashboard.js"></script>
+
+<% include ./partials/footer %>
+<!-- END DASHBOARD DATA -->
+
+<div class="modal fade" id="editGrossIncome" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div></div>
+
+<div class="modal fade" id="addGrossIncome" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-body"></div>
+    </div>
+</div></div>

@@ -24,7 +24,7 @@ router.post('/', middleware.isLoggedIn, function(req, res){
         if(err){
             console.log(err);
         } else{
-            res.redirect("/debt");
+            res.redirect("/dashboard");
         }
     });
 });
@@ -46,7 +46,7 @@ router.get("/:id", middleware.isLoggedIn, function(req, res){
 router.delete('/:id', middleware.isLoggedIn, function(req, res){
    startingDebt.findByIdAndRemove(req.params.id, function(err){
         if(err){
-            res.redirect('/debt');
+            res.redirect('/dashboard');
         } else {
             res.redirect('/startingDebt');
         }
@@ -68,7 +68,7 @@ router.put('/:id', middleware.isLoggedIn, function(req, res){
         if(err){
             res.redirect('err');
         } else {
-            res.redirect('/debt');
+            res.redirect('/dashboard');
         }
     });    
 });

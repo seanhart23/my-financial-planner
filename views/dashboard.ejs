@@ -53,7 +53,8 @@
         <button class='btn btn-primary btn-sm menu-button' id='debt-snowball'>Debt Snowball</button><br>
         <!--<button class='btn btn-primary btn-sm menu-button' id='budget'>Budget</button><br>-->
         <br>
-        <div class='header'>Favorite Sites<a href="/favorites/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addFavorite">Add</a></div>
+        <div class='header'>Favorite Sites
+        <a href="/favorites/new" class='pull-right' id='hiddenButton' data-toggle="modal" data-target="#addFavorite">Add</a></div>
         
         <% favorites.forEach(function(favorites){ %>
                         <% if(currentUser.username === favorites.author.username){ %>
@@ -148,6 +149,8 @@ $( "#sortable" ).disableSelection();
         </div>
     </li>
 </ul>
+
+<% include ./partials/footer %>
 
 <!-- END DASHBOARD DATA -->
 
