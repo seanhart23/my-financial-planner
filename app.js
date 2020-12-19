@@ -11,6 +11,7 @@ var methodOverride = require('method-override'),
     budgetExpense  = require('./models/budgetExpense'),
     // budgetIncome   = require('./models/budgetIncome'),
     middleware     = require('./middleware'),
+    url              = mongodb+srv://seanhart:test@cluster0.ltpu5.mongodb.net/cluster0?retryWrites=true&w=majority,
     app            = express();
 
 var request = require('request');
@@ -18,7 +19,7 @@ var request = require('request');
 //CONNECT PACKAGES
 // mongoose.connect("mongodb://localhost/myfinancialplanner_v1", {useMongoClient: true}); 
 // mongoose.connect("mongodb://Seanhart23:Maem250123!@ds151528.mlab.com:51528/my_financial_planner", {useMongoClient: true});
-mongoose.connect("mongodb+srv://seanhart:test@Cluster0.4i40i.mongodb.net/Cluster0?retryWrites=true&w=majority")
+mongoose.connect(url)
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
