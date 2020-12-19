@@ -11,7 +11,7 @@ var methodOverride = require('method-override'),
     budgetExpense  = require('./models/budgetExpense'),
     // budgetIncome   = require('./models/budgetIncome'),
     middleware     = require('./middleware'),
-    url              = mongodb+srv://seanhart:test@cluster0.ltpu5.mongodb.net/cluster0?retryWrites=true&w=majority,
+    url              = "mongodb+srv://seanhart:test@cluster0.ltpu5.mongodb.net/cluster0?retryWrites=true&w=majority",
     app            = express();
 
 var request = require('request');
